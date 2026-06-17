@@ -20,12 +20,6 @@
     </properties>
 
     <dependencies>
-        <!-- Model from sandbox -->
-        <dependency>
-            <groupId>r-uu</groupId>
-            <artifactId>r-uu.sandbox.jasperreports.model</artifactId>
-        </dependency>
-
         <!-- JasperReports -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>

@@ -12,8 +12,9 @@
 
   <parent>
     <groupId>r-uu</groupId>
-    <artifactId>r-uu.root</artifactId>
+    <artifactId>r-uu.bom</artifactId>
     <version>0.0.1</version>
+    <relativePath>bom/pom.xml</relativePath>
   </parent>
 
 	<modules>
