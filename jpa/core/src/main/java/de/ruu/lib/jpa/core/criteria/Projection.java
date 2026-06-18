@@ -23,7 +23,7 @@ public interface Projection<T>
      * @param criteria criteria used in projection
      * @param criteriaQuery current query
      * @return part of group by clause
-     * @see #isGrouped()
+     * @see #grouped()
      */
     public String toGroupSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery);
 
@@ -32,5 +32,5 @@ public interface Projection<T>
      *
      * @return true when projection is grouping one
      */
-    public boolean isGrouped();
+    public boolean grouped();
 }

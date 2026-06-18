@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface ResourceContainer
 {
-	Map<String, ClasspathResource> getClassPathResources() throws IOException;
+	Map<String, ClasspathResource> classPathResources() throws IOException;
 
-	File getResourceContainerFile();
+	File resourceContainerFile();
 }

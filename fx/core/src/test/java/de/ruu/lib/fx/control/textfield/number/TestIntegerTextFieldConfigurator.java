@@ -26,7 +26,7 @@ class TestIntegerTextFieldConfigurator
 	{
 		NumberTextFieldConfigurator.configureIntegerTextField(textField);
 		textField.setText("0");
-		Optional<Integer> optionalInteger = IntegerTextFieldUtility.getCurrentTextFieldValueAsInteger(textField);
+		Optional<Integer> optionalInteger = IntegerTextFieldUtility.currentTextFieldValueAsInteger(textField);
 		assertThat(optionalInteger.isPresent()).isEqualTo(true);
 		assertThat(optionalInteger.get()).isEqualTo(0);
 	}
@@ -35,7 +35,7 @@ class TestIntegerTextFieldConfigurator
 	{
 		NumberTextFieldConfigurator.configureIntegerTextField(textField);
 		textField.setText("A");
-		Optional<Integer> optionalInteger = IntegerTextFieldUtility.getCurrentTextFieldValueAsInteger(textField);
+		Optional<Integer> optionalInteger = IntegerTextFieldUtility.currentTextFieldValueAsInteger(textField);
 		assertThat(optionalInteger.isPresent()).isEqualTo(false);
 	}
 
@@ -43,7 +43,7 @@ class TestIntegerTextFieldConfigurator
 	{
 		NumberTextFieldConfigurator.configureIntegerTextField(textField, new DefaultNumberTextFieldPostConvertAction());
 		textField.setText("A");
-		Optional<Integer> optionalInteger = IntegerTextFieldUtility.getCurrentTextFieldValueAsInteger(textField);
+		Optional<Integer> optionalInteger = IntegerTextFieldUtility.currentTextFieldValueAsInteger(textField);
 		assertThat(optionalInteger.isPresent()).isEqualTo(false);
 	}
 }

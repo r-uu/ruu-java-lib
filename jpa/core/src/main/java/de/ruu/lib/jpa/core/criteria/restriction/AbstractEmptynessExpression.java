@@ -20,6 +20,6 @@ public abstract class AbstractEmptynessExpression<T> implements Criterion<T>
 		return
 			  (excludeEmpty()
 			? "exists"
-			: "not exists") + " (select 1 from " + criteriaQuery.getPropertyName(property, criteria) + ")";
+			: "not exists") + " (select 1 from " + criteriaQuery.propertyName(property, criteria) + ")";
 	}
 }

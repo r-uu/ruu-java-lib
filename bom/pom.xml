@@ -36,14 +36,6 @@
 		<!-- Project root directory (BOM is in /bom, root is one level up) -->
 		<project.root.dir>${basedir}/..</project.root.dir>
 
-		<!-- Plugin versions -->
-		<version.maven-compiler-plugin>3.14.1</version.maven-compiler-plugin>
-		<version.lombok>1.18.42</version.lombok>
-		<version.lombok-mapstruct-binding>0.2.0</version.lombok-mapstruct-binding>
-		<version.mapstruct>1.6.3</version.mapstruct>
-		<version.hibernate-jpamodelgen>6.6.5.Final</version.hibernate-jpamodelgen>
-		<version.javafx-maven-plugin>0.0.8</version.javafx-maven-plugin>
-		<version.exec-maven-plugin>3.1.1</version.exec-maven-plugin> <!-- Added Exec Maven Plugin Version -->
 
 		<!-- ================================================================================== -->
 		<!-- Configuration properties loaded from .env file                                     -->
@@ -57,10 +49,10 @@
 		<postgres_admin_password>postgres_admin_default</postgres_admin_password>
 		<postgres_admin_database>postgres</postgres_admin_database>
 
-		<!-- PostgreSQL Jeeeraaah Database -->
-		<postgres_jeeeraaah_username>postgres_jeeeraaah_default</postgres_jeeeraaah_username>
-		<postgres_jeeeraaah_password>postgres_jeeeraaah_default</postgres_jeeeraaah_password>
-		<postgres_jeeeraaah_database>jeeeraaah</postgres_jeeeraaah_database>
+		<!-- PostgreSQL Pragma Database -->
+		<postgres_pragma_username>postgres_pragma_default</postgres_pragma_username>
+		<postgres_pragma_password>postgres_pragma_default</postgres_pragma_password>
+		<postgres_pragma_database>pragma</postgres_pragma_database>
 
 		<!-- PostgreSQL Lib Test Database -->
 		<postgres_libtest_username>lib_test_default</postgres_libtest_username>
@@ -598,8 +590,14 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.docker_health</artifactId>
+			<artifactId>r-uu.lib.docker.health</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>r-uu</groupId>
+			<artifactId>r-uu.lib.liberty.server</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
@@ -613,7 +611,7 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.se_hibernate_postgres</artifactId>
+			<artifactId>r-uu.lib.jpa.se.hibernate.postgres</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -623,12 +621,12 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.keycloak_admin</artifactId>
+			<artifactId>r-uu.lib.keycloak.admin</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.mapstruct</artifactId>
+			<artifactId>r-uu.lib.mapstruct.core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -638,7 +636,7 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.mp_config</artifactId>
+			<artifactId>r-uu.lib.mp.config</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -648,7 +646,7 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.ws_rs</artifactId>
+			<artifactId>r-uu.lib.ws.rs</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -683,7 +681,7 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.fx.comp_demo</artifactId>
+			<artifactId>r-uu.lib.fx.comp.demo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -728,12 +726,12 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.gen.java.fx.bean_editor</artifactId>
+			<artifactId>r-uu.lib.gen.java.fx.bean.editor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.gen.java.fx.bean_editor_demo</artifactId>
+			<artifactId>r-uu.lib.gen.java.fx.bean.editor.demo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -783,17 +781,17 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.core_mapstruct</artifactId>
+			<artifactId>r-uu.lib.jpa.core.mapstruct</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.core_mapstruct_demo_bidirectional</artifactId>
+			<artifactId>r-uu.lib.jpa.core.mapstruct.demo.bidirectional</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.core_mapstruct_test</artifactId>
+			<artifactId>r-uu.lib.jpa.core.mapstruct.test</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -803,12 +801,12 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.se_hibernate</artifactId>
+			<artifactId>r-uu.lib.jpa.se.hibernate</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.jpa.se_hibernate_postgres_demo</artifactId>
+			<artifactId>r-uu.lib.jpa.se.hibernate.postgres.demo</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -828,12 +826,12 @@
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.postgres</artifactId>
+			<artifactId>r-uu.lib.postgres.toolbox</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.postgres_util_ui</artifactId>
+			<artifactId>r-uu.lib.postgres.ui</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -921,7 +919,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${version.maven-compiler-plugin}</version>
+					<version>3.14.1</version>
 					<configuration>
 						<release>${java.version}</release>
 						<fork>true</fork>
@@ -939,22 +937,22 @@
 							<path>
 								<groupId>org.projectlombok</groupId>
 								<artifactId>lombok</artifactId>
-								<version>${version.lombok}</version>
+								<version>1.18.42</version>
 							</path>
 							<path>
 								<groupId>org.projectlombok</groupId>
 								<artifactId>lombok-mapstruct-binding</artifactId>
-								<version>${version.lombok-mapstruct-binding}</version>
+								<version>0.2.0</version>
 							</path>
 							<path>
 								<groupId>org.mapstruct</groupId>
 								<artifactId>mapstruct-processor</artifactId>
-								<version>${version.mapstruct}</version>
+								<version>1.6.3</version>
 							</path>
 							<path>
 								<groupId>org.hibernate.orm</groupId>
 								<artifactId>hibernate-jpamodelgen</artifactId>
-								<version>${version.hibernate-jpamodelgen}</version>
+								<version>6.6.5.Final</version>
 							</path>
 						</annotationProcessorPaths>
 						<showWarnings>true</showWarnings>
@@ -1092,14 +1090,14 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
-					<version>3.1.1</version> <!-- Managed in BOM -->
+					<version>3.1.1</version>
 				</plugin>
 
 				<!-- JavaFX Maven Plugin for jlink/jpackage -->
 				<plugin>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-maven-plugin</artifactId>
-					<version>${version.javafx-maven-plugin}</version>
+					<version>0.0.8</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -1148,7 +1146,7 @@
 				     </executions>
 				   </plugin>
 
-				Siehe Beispiel: app/jeeeraaah/frontend/api.client/ws.rs oder lib/jsonb
+				Siehe Beispiel: app/pragma/frontend/api.client/ws.rs oder lib/jsonb
 				Siehe Dokumentation: docs/entwicklung/JPMS-TEST-STRATEGY.md
 			-->
 			<plugin>

@@ -20,5 +20,5 @@ public enum TypeKindPrimitive
 
 	public String asString() { return typeKind.toString().toLowerCase(); }
 
-	public TypeKind getTypeKind() { return typeKind; }
+	public TypeKind typeKind() { return typeKind; }
 }

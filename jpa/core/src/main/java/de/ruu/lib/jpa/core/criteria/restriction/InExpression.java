@@ -17,7 +17,7 @@ public class InExpression<T> implements Criterion<T>
 
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
-		String sql = criteriaQuery.getPropertyName(property, criteria) + " in (";
+		String sql = criteriaQuery.propertyName(property, criteria) + " in (";
 
 		for (Object v : values)
 		{

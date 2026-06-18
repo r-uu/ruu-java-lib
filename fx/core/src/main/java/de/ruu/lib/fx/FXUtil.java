@@ -45,7 +45,7 @@ import static java.util.Objects.isNull;
 @Slf4j
 public abstract class FXUtil
 {
-	public static Optional<Stage> getStage(final Node node)
+	public static Optional<Stage> stage(final Node node)
 	{
 		final Scene scene = node.getScene();
 
@@ -87,14 +87,14 @@ public abstract class FXUtil
 		);
 	}
 
-	public static HostServices getHostServices()
+	public static HostServices hostServices()
 	{
 		final Application application =
 				new Application()
 				{
 					@Override public void start(final Stage primaryStage) throws Exception { throw new RuntimeException("never start this application"); }
 				};
-		return application.getHostServices();
+		return application.getHostServices(); // Application.getHostServices() is a framework method - not renamed
 	}
 
 	public static Optional<Region> asRegion(final Parent parent)

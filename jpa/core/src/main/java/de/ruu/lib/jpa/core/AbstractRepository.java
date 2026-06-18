@@ -44,7 +44,7 @@ public abstract class AbstractRepository<T extends Entity<ID>, ID extends Serial
 	@SuppressWarnings(value = "unchecked")
 	protected AbstractRepository()
 	{
-		Optional<ParameterizedType> optional = Reflection.getFirstParameterizedTypeInParents(getClass());
+		Optional<ParameterizedType> optional = Reflection.firstParameterizedTypeInParents(getClass());
 
 		if (optional.isPresent())
 		{

@@ -33,11 +33,11 @@ public abstract class Classpath
 
 	private Classpath() { throw new IllegalStateException("utility class must not be instantiated"); }
 
-	public static Map<String, List<ClasspathResource>> getClasspathResources()
+	public static Map<String, List<ClasspathResource>> classpathResources()
 			throws IOException
 	{
 		return
-				getClasspathResources(
+				classpathResources(
 						FILTER_ACCEPT_FILES_ALL,
 						FILTER_ACCEPT_FILES_ALL,
 						FILTER_ACCEPT_ZIP_ENTRIES_ALL);
@@ -55,7 +55,7 @@ public abstract class Classpath
 	 *         they are accepted by all filter parameters
 	 * @throws IOException
 	 */
-	public static Map<String, List<ClasspathResource>> getClasspathResources(
+	public static Map<String, List<ClasspathResource>> classpathResources(
 			FileFilter resourceContainerFilter,
 			FileFilter directoryResourceFilter,
 			ZipEntryFilter zipResourceFilter)
@@ -87,7 +87,7 @@ public abstract class Classpath
 			{
 				// fetch resources in directory
 				Map<String, ClasspathResource> resourcesInDirectory =
-						resourceContainerDirectory.getClassPathResources(directoryResourceFilter);
+						resourceContainerDirectory.classPathResources(directoryResourceFilter);
 
 				for (String resourceName : resourcesInDirectory.keySet())
 				{
@@ -109,7 +109,7 @@ public abstract class Classpath
 			{
 				// fetch resources in .jar file
 				Map<String, ClasspathResource> resourcesInJarFile =
-						resourceContainerJarFile.getClassPathResources(zipResourceFilter);
+						resourceContainerJarFile.classPathResources(zipResourceFilter);
 
 				for (String resourceName : resourcesInJarFile.keySet())
 				{
@@ -136,10 +136,10 @@ public abstract class Classpath
 		return result;
 	}
 
-	public static Map<String, List<ClasspathResource>> getPackagesAsClasspathResources() throws IOException
+	public static Map<String, List<ClasspathResource>> packagesAsClasspathResources() throws IOException
 	{
 		return
-				getClasspathResources(
+				classpathResources(
 						FILTER_ACCEPT_FILES_ALL,
 						FILTER_ACCEPT_FILES_DIRECTORIES_ONLY,
 						FILTER_ACCEPT_ZIP_ENTRIES_DIRECTORIES_ONLY);
@@ -170,7 +170,7 @@ public abstract class Classpath
 			for (ClasspathResource classpathResource : classpathResources)
 			{
 				containersForResource.add(
-						"\t" + classpathResource.getResourceContainer().getResourceContainerFile().getAbsolutePath());
+						"\t" + classpathResource.resourceContainer().resourceContainerFile().getAbsolutePath());
 			}
 
 			if (not(containersForResource.isEmpty())) resourceReport.append("\n");

@@ -3,18 +3,18 @@ package de.ruu.lib.gen.java;
 /** provides information about a primitive Java type */
 public interface JavaTypePrimitive extends JavaType
 {
-	TypeKindPrimitive getTypeKind();
+	TypeKindPrimitive typeKind();
 	JavaType setTypeKind(TypeKindPrimitive typeKind);
 
 	default String asString()
 	{
 		if (isArrayType())
 		{
-			return getTypeKind().asString() + "[]";
+			return typeKind().asString() + "[]";
 		}
 		else
 		{
-			return getTypeKind().asString();
+			return typeKind().asString();
 		}
 	}
 	

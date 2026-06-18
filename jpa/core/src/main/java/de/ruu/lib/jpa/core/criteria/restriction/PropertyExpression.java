@@ -20,7 +20,7 @@ public class PropertyExpression<T> implements Criterion<T>
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
 		return
-			  criteriaQuery.getPropertyName(property     , criteria) + operator
-	    + criteriaQuery.getPropertyName(otherProperty, criteria);
+			  criteriaQuery.propertyName(property     , criteria) + operator
+	    + criteriaQuery.propertyName(otherProperty, criteria);
 	}
 }

@@ -144,7 +144,7 @@ public class JasperReportsClient
 	 *
 	 * @return true if service responds to health check, false otherwise
 	 */
-	public boolean isServiceAvailable()
+	public boolean serviceAvailable()
 	{
 		try
 		{

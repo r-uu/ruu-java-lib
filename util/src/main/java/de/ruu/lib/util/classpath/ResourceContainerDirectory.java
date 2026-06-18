@@ -27,15 +27,15 @@ class ResourceContainerDirectory extends ResourceContainerBase
 		containerFileNameLength = containerFileName.length();
 	}
 
-	@Override public Map<String, ClasspathResource> getClassPathResources() throws IOException
+	@Override public Map<String, ClasspathResource> classPathResources() throws IOException
 	{
-		return getClassPathResources(Classpath.FILTER_ACCEPT_FILES_ALL);
+		return classPathResources(Classpath.FILTER_ACCEPT_FILES_ALL);
 	}
 
-	public Map<String, ClasspathResource> getClassPathResources(FileFilter fileFilter) throws IOException
+	public Map<String, ClasspathResource> classPathResources(FileFilter fileFilter) throws IOException
 	{
 		Map<String, ClasspathResource> result = new HashMap<>();
-	
+
 		Map<String, File> resourceFiles = getResourceFilesByName(containerFile, fileFilter);
 
 		for (String key : resourceFiles.keySet())
@@ -44,8 +44,8 @@ class ResourceContainerDirectory extends ResourceContainerBase
 					new ClasspathResourceFile(
 							new ResourceContainerDirectory(containerFile),
 							resourceFiles.get(key));
-	
-			result.put(value.getResourceName(), value);
+
+			result.put(value.resourceName(), value);
 		}
 
 		return result;

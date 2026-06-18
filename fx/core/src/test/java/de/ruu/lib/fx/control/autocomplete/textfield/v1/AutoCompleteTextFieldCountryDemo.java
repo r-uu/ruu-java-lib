@@ -96,7 +96,7 @@ public class AutoCompleteTextFieldCountryDemo extends Application
 
 	private void buttonOnAction(AutoCompleteTextField<Country> textField, Label label)
 	{
-		Optional<Country> optional = textField.getOptionalValue();
+		Optional<Country> optional = textField.optionalValue();
 		if (optional.isPresent())
 		{
 			Country country = optional.get();

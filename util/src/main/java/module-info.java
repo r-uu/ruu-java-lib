@@ -9,7 +9,6 @@ module de.ruu.lib.util
     requires static java.instrument;
     requires static com.fasterxml.jackson.databind;
 
-    // Exports for main code
     exports de.ruu.lib.util;
     exports de.ruu.lib.util.bimapped;
     exports de.ruu.lib.util.json;

@@ -20,7 +20,7 @@ class Wsl2IpResolverTest
 	@Test
 	void testGetWsl2Ip_shouldReturnValidIp()
 	{
-		String ip = Wsl2IpResolver.getWsl2Ip();
+		String ip = Wsl2IpResolver.wsl2Ip();
 
 		assertThat(ip).as("IP should not be null").isNotNull();
 		assertThat(ip.isEmpty()).as("IP should not be empty").isFalse();
@@ -36,8 +36,8 @@ class Wsl2IpResolverTest
 	@Test
 	void testGetWsl2Ip_shouldCacheResult()
 	{
-		String ip1 = Wsl2IpResolver.getWsl2Ip();
-		String ip2 = Wsl2IpResolver.getWsl2Ip();
+		String ip1 = Wsl2IpResolver.wsl2Ip();
+		String ip2 = Wsl2IpResolver.wsl2Ip();
 
 		assertThat(ip1).as("Should return same cached instance").isSameAs(ip2);
 	}
@@ -45,9 +45,9 @@ class Wsl2IpResolverTest
 	@Test
 	void testClearCache_shouldInvalidateCache()
 	{
-		String ip1 = Wsl2IpResolver.getWsl2Ip();
+		String ip1 = Wsl2IpResolver.wsl2Ip();
 		Wsl2IpResolver.clearCache();
-		String ip2 = Wsl2IpResolver.getWsl2Ip();
+		String ip2 = Wsl2IpResolver.wsl2Ip();
 
 		// Values should be equal, but not same instance (new object after cache clear)
 		assertThat(ip2).as("IPs should be equal").isEqualTo(ip1);

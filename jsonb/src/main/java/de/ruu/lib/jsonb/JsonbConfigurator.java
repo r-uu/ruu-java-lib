@@ -32,10 +32,7 @@ public class JsonbConfigurator implements ContextResolver<Jsonb>
 		return JsonbBuilder.newBuilder().withConfig(CONFIG).build();
 	}
 
-	/** just delegate to {@link #getContext(Class)} */
-	public Jsonb getContext() { return getContext(null); }
-
-	public static Jsonb context() { return new JsonbConfigurator().getContext(); }
+	public static Jsonb context() { return new JsonbConfigurator().getContext(null); }
 
 	public static Jsonb context(JsonbConfig config)
 	{

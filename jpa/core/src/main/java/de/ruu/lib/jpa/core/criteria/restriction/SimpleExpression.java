@@ -19,6 +19,6 @@ public class SimpleExpression<T> implements Criterion<T>
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
 		criteriaQuery.setParam(value);
-		return criteriaQuery.getPropertyName(property, criteria) + operator + "?";
+		return criteriaQuery.propertyName(property, criteria) + operator + "?";
 	}
 }

@@ -23,8 +23,8 @@ public class LikeExpression<T> implements Criterion<T>
 	{
 		criteriaQuery.setParam(ignoreCase ? value.toString().toLowerCase() : value);
 		String lhs =
-		    ignoreCase ? "lower(" + criteriaQuery.getPropertyName(property, criteria) + ")"
-		        : criteriaQuery.getPropertyName(property, criteria);
+		    ignoreCase ? "lower(" + criteriaQuery.propertyName(property, criteria) + ")"
+		        : criteriaQuery.propertyName(property, criteria);
 		return lhs + " like ?" + (escapeChar == null ? "" : " escape '" + escapeChar + "'");
 	}
 }

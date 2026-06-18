@@ -75,7 +75,7 @@ class TestJsonBWithMaxEncapsulationForData
 		);
 	}
 
-	private Jsonb getContext() { return new JsonbConfigurator().getContext(); }
+	private Jsonb getContext() { return JsonbConfigurator.context(); }
 
 	private Set<Parent> createTestData()
 	{

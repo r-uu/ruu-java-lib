@@ -15,11 +15,11 @@ import java.util.Set;
 public class Criteria<T>
 {
 	// Helper method to get the actual type parameter at runtime
-	protected Class<T> getType()
+	protected Class<T> type()
 	{
 		if (this instanceof Subcriteria)
 		{
-			return ((Subcriteria<T>) this).getParentCriteria().getType();
+			return ((Subcriteria<T>) this).parentCriteria().type();
 		}
 		@SuppressWarnings("unchecked")
 		Class<T> type = (Class<T>) Object.class;
@@ -60,7 +60,7 @@ public class Criteria<T>
     public static <T> Criteria<T> forClass(Class<T> entity) {
         return new Criteria<>(getEntityName(entity), "this", null, null) {
             @Override
-            protected Class<T> getType() {
+            protected Class<T> type() {
                 return entity;
             }
         };
@@ -74,16 +74,16 @@ public class Criteria<T>
 		this.joinType = joinType;
 	}
 
-	protected String getName() { return name; }
-	protected Criteria<T> getParent() { return parent; }
-	protected String getAlias() { return alias; }
+	protected String name() { return name; }
+	protected Criteria<T> parent() { return parent; }
+	protected String alias() { return alias; }
 
 	/**
 	 * Get join type.
 	 *
 	 * @return join type
 	 */
-	protected JoinType getJoinType()
+	protected JoinType joinType()
 	{
 		return joinType;
 	}
@@ -217,9 +217,9 @@ public class Criteria<T>
 
 		String result = prepateEql(criteriaQuery);
 
-		if (!criteriaQuery.getParams().isEmpty())
+		if (!criteriaQuery.params().isEmpty())
 		{
-			result += " [" + criteriaQuery.getParams() + "]";
+			result += " [" + criteriaQuery.params() + "]";
 		}
 
 		return result;
@@ -237,10 +237,10 @@ public class Criteria<T>
 
 		for (Criteria<T> subcriteria : subcriteriaList)
 		{
-			sql += subcriteria.getJoinType().toSqlString() + " ";
-			sql += criteriaQuery.getPropertyName(subcriteria.getName(), subcriteria.getParent());
-			sql += " as " + subcriteria.getAlias() + " ";
-			criteriaQuery.registerAlias(subcriteria.getAlias());
+			sql += subcriteria.joinType().toSqlString() + " ";
+			sql += criteriaQuery.propertyName(subcriteria.name(), subcriteria.parent());
+			sql += " as " + subcriteria.alias() + " ";
+			criteriaQuery.registerAlias(subcriteria.alias());
 		}
 
 		if (projection != null)
@@ -268,7 +268,7 @@ public class Criteria<T>
 			{
 				criterionSql += " and ";
 			}
-			criterionSql += criterionEntry.getCriterion().toSqlString(criterionEntry.getCriteria(), criteriaQuery);
+			criterionSql += criterionEntry.criterion().toSqlString(criterionEntry.criteria(), criteriaQuery);
 		}
 
 		if (!criterionSql.isEmpty())
@@ -278,7 +278,7 @@ public class Criteria<T>
 
 		if (projection != null)
 		{
-			if (projection.isGrouped())
+			if (projection.grouped())
 			{
 				String groupBySql = projection.toGroupSqlString(projectionCriteria, criteriaQuery);
 				if (!groupBySql.isEmpty())
@@ -296,7 +296,7 @@ public class Criteria<T>
 			{
 				orderSql += ",";
 			}
-			orderSql += orderEntry.getOrder().toSqlString(orderEntry.getCriteria(), criteriaQuery);
+			orderSql += orderEntry.order().toSqlString(orderEntry.criteria(), criteriaQuery);
 		}
 
 		if (!orderSql.isEmpty())
@@ -313,7 +313,7 @@ public class Criteria<T>
 
 		String sql = prepateEql(criteriaQuery);
 
-		TypedQuery<T> query = entityManager.createQuery(sql, getType());
+		TypedQuery<T> query = entityManager.createQuery(sql, type());
 
 		if (firstResult != null)
 		{
@@ -327,7 +327,7 @@ public class Criteria<T>
 
 		int i = 1;
 
-		for (Object property : criteriaQuery.getParams())
+		for (Object property : criteriaQuery.params())
 		{
 			query.setParameter(i++, property);
 		}
@@ -366,13 +366,13 @@ public class Criteria<T>
 		 * @param criteria criteria
 		 * @return proper name which can be used in EQL
 		 */
-		public String getPropertyName(String name, Criteria<T> criteria)
+		public String propertyName(String name, Criteria<T> criteria)
 		{
 			int pos = name.indexOf(".");
 
 			if (pos == -1)
 			{
-				return criteria.getAlias() + "." + name;
+				return criteria.alias() + "." + name;
 			}
 			else
 			{
@@ -382,7 +382,7 @@ public class Criteria<T>
 				}
 				else
 				{
-					return criteria.getAlias() + "." + name;
+					return criteria.alias() + "." + name;
 				}
 			}
 		}
@@ -400,7 +400,7 @@ public class Criteria<T>
 		}
 
 		/** Get all query's params. */
-		List<Object> getParams()
+		List<Object> params()
 		{
 			return params;
 		}
@@ -418,7 +418,7 @@ public class Criteria<T>
         parent.subcriteriaList.add(this);
     }
     
-    Criteria<T> getParentCriteria() {
+    Criteria<T> parentCriteria() {
         return parentCriteria;
     }
 
@@ -496,12 +496,12 @@ public class Criteria<T>
 			this.criterion = criterion;
 		}
 
-		private Criterion<T> getCriterion()
+		private Criterion<T> criterion()
 		{
 			return criterion;
 		}
 
-		private Criteria<T> getCriteria()
+		private Criteria<T> criteria()
 		{
 			return criteria;
 		}
@@ -518,12 +518,12 @@ public class Criteria<T>
 			this.order = order;
 		}
 
-		private Order<T> getOrder()
+		private Order<T> order()
 		{
 			return order;
 		}
 
-		private Criteria<T> getCriteria()
+		private Criteria<T> criteria()
 		{
 			return criteria;
 		}

@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CircuitBreaker<ORIGINAL> implements JsonbAdapter<ORIGINAL, JsonValue>
 {
-	private static final Jsonb JSONB = new JsonbConfigurator().getContext();
+	private static final Jsonb JSONB = JsonbConfigurator.context();
 
 	private BiMap biMap = new BiMap();
 

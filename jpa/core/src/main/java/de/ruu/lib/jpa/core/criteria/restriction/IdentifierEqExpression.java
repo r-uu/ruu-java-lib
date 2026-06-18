@@ -17,6 +17,6 @@ public class IdentifierEqExpression<T> implements Criterion<T>
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
 		criteriaQuery.setParam(value);
-		return criteriaQuery.getPropertyName(Entity.P_ID, criteria) + " = ?";
+		return criteriaQuery.propertyName(Entity.P_ID, criteria) + " = ?";
 	}
 }

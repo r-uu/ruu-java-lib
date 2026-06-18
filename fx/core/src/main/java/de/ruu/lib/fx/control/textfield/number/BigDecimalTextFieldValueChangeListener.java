@@ -105,19 +105,19 @@ public class BigDecimalTextFieldValueChangeListener implements ChangeListener<St
 		}
 	}
 
-	public BigDecimalStringConverter getConverter() { return converter; }
+	public BigDecimalStringConverter converter() { return converter; }
 
-	public Optional<BigDecimalValidation> getValidation() { return validationOptional; }
+	public Optional<BigDecimalValidation> validation() { return validationOptional; }
 
-	public boolean isCurrentTextFieldValueValid()
+	public boolean currentTextFieldValueValid()
 	{
 		try
 		{
 			BigDecimal bigDecimal = converter.fromString(textField.getText());
 
-			if (getValidation().isPresent())
+			if (validation().isPresent())
 			{
-				return getValidation().get().getPredicate().test(bigDecimal);
+				return validation().get().getPredicate().test(bigDecimal);
 			}
 
 			return true;
@@ -128,7 +128,7 @@ public class BigDecimalTextFieldValueChangeListener implements ChangeListener<St
 		}
 	}
 
-	public Optional<BigDecimal> getCurrentTextFieldValueAsBigDecimal()
+	public Optional<BigDecimal> currentTextFieldValueAsBigDecimal()
 	{
 		BigDecimal result;
 		try

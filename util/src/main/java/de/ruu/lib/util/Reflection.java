@@ -15,7 +15,7 @@ public abstract class Reflection
 	/** Private constructor to prevent instantiation of utility class. */
 	private Reflection() { throw new AssertionError("utility class"); }
 
-	public static Set<Method> getAllMethods(Object object) { return getAllMethods(object.getClass()); }
+	public static Set<Method> allMethods(Object object) { return allMethods(object.getClass()); }
 
 	/**
 	 * recursive implementation!
@@ -23,13 +23,13 @@ public abstract class Reflection
 	 * @param clazz
 	 * @return
 	 */
-	public static Set<Method> getAllMethods(Class<?> clazz)
+	public static Set<Method> allMethods(Class<?> clazz)
 	{
 		Set<Method> result = new HashSet<>();
 
 		result.addAll(asList(clazz.getDeclaredMethods()));
 
-		if (isNull(clazz.getSuperclass()) == false) result.addAll(getAllMethods(clazz.getSuperclass()));
+		if (isNull(clazz.getSuperclass()) == false) result.addAll(allMethods(clazz.getSuperclass()));
 
 		return result;
 	}
@@ -40,13 +40,13 @@ public abstract class Reflection
 	 * @param clazz
 	 * @return
 	 */
-	public static Set<Field> getAllFields(Class<?> clazz)
+	public static Set<Field> allFields(Class<?> clazz)
 	{
 		Set<Field> result = new HashSet<>();
 
 		result.addAll(asList(clazz.getDeclaredFields()));
 
-		if (isNull(clazz.getSuperclass()) == false) { result.addAll(getAllFields(clazz.getSuperclass())); }
+		if (isNull(clazz.getSuperclass()) == false) { result.addAll(allFields(clazz.getSuperclass())); }
 
 		return result;
 	}
@@ -57,14 +57,14 @@ public abstract class Reflection
 	 * @param clazz
 	 * @return first parameterized type in parents of {@code clazz}
 	 */
-	public static Optional<ParameterizedType> getFirstParameterizedTypeInParents(Class<?> clazz)
+	public static Optional<ParameterizedType> firstParameterizedTypeInParents(Class<?> clazz)
 	{
 		if (clazz.getGenericSuperclass() instanceof ParameterizedType)
 		{
 			return Optional.of((ParameterizedType) clazz.getGenericSuperclass());
 		}
 
-		if (isNull(clazz.getSuperclass()) == false) return getFirstParameterizedTypeInParents(clazz.getSuperclass());
+		if (isNull(clazz.getSuperclass()) == false) return firstParameterizedTypeInParents(clazz.getSuperclass());
 
 		return Optional.empty();
 	}

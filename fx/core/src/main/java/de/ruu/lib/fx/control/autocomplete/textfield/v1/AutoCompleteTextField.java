@@ -48,7 +48,7 @@ public class AutoCompleteTextField<T> extends HBox
 		ABOVE, BELOW
 	}
 
-	/** stores the current value of an instance at all time, accessible for clients via {@link #getValue()} */
+	/** stores the current value of an instance at all time, accessible for clients via {@link #value()} */
 	private final ObjectProperty<T> value;
 
 	private final TextField textField;
@@ -125,12 +125,12 @@ public class AutoCompleteTextField<T> extends HBox
 		setAlignment(Pos.CENTER_LEFT);
 	}
 
-	public T getValue()
+	public T value()
 	{
 		return value.get();
 	}
 
-	public Optional<T> getOptionalValue()
+	public Optional<T> optionalValue()
 	{
 		return Optional.ofNullable(value.get());
 	}
@@ -170,7 +170,7 @@ public class AutoCompleteTextField<T> extends HBox
 		}
 	}
 
-	public List<T> getItems()
+	public List<T> items()
 	{
 		return items;
 	}

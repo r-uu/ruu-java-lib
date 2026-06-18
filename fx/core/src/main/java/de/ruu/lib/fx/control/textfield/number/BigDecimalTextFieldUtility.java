@@ -10,7 +10,7 @@ import static java.util.Objects.isNull;
 
 public abstract class BigDecimalTextFieldUtility
 {
-	public static Optional<BigDecimalTextFieldValueChangeListener> getValueChangeListener(TextField textField)
+	public static Optional<BigDecimalTextFieldValueChangeListener> valueChangeListener(TextField textField)
 	{
 		Object object = textField.getProperties().get(BigDecimalTextFieldValueChangeListener.class.getName());
 
@@ -25,25 +25,25 @@ public abstract class BigDecimalTextFieldUtility
 		return Optional.empty();
 	}
 
-	public static Optional<BigDecimalValidation> getValidation(TextField textField)
+	public static Optional<BigDecimalValidation> validation(TextField textField)
 	{
-		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = getValueChangeListener(textField);
+		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = valueChangeListener(textField);
 
 		if (listenerOptional.isPresent())
 		{
-			return listenerOptional.get().getValidation();
+			return listenerOptional.get().validation();
 		}
 
 		return Optional.empty();
 	}
 
-	public static Optional<BigDecimal> getCurrentTextFieldValueAsBigDecimal(TextField textField)
+	public static Optional<BigDecimal> currentTextFieldValueAsBigDecimal(TextField textField)
 	{
-		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = getValueChangeListener(textField);
+		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = valueChangeListener(textField);
 
 		if (listenerOptional.isPresent())
 		{
-			return listenerOptional.get().getCurrentTextFieldValueAsBigDecimal();
+			return listenerOptional.get().currentTextFieldValueAsBigDecimal();
 		}
 
 		return Optional.empty();
@@ -51,11 +51,11 @@ public abstract class BigDecimalTextFieldUtility
 
 	public static boolean isCurrentTextFieldValueValid(TextField textField)
 	{
-		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = getValueChangeListener(textField);
+		Optional<BigDecimalTextFieldValueChangeListener> listenerOptional = valueChangeListener(textField);
 
 		if (listenerOptional.isPresent())
 		{
-			return listenerOptional.get().isCurrentTextFieldValueValid();
+			return listenerOptional.get().currentTextFieldValueValid();
 		}
 
 		return true;

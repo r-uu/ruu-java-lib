@@ -38,7 +38,7 @@ public class Wsl2IpResolver
 	 *
 	 * @return WSL2 IP address or "localhost" if detection fails
 	 */
-	public static String getWsl2Ip()
+	public static String wsl2Ip()
 	{
 		if (cachedWsl2Ip != null)
 		{
@@ -170,7 +170,7 @@ public class Wsl2IpResolver
 	 */
 	public static Properties resolve(Properties properties)
 	{
-		String wsl2Ip = getWsl2Ip();
+		String wsl2Ip = wsl2Ip();
 
 		for (String key : properties.stringPropertyNames())
 		{

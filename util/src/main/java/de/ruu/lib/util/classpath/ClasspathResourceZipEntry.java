@@ -13,7 +13,7 @@ public class ClasspathResourceZipEntry extends ClasspathResource
 	}
 
 	@Override
-	public boolean isDirectory()
+	public boolean directory()
 	{
 		return zipEntry.isDirectory();
 	}

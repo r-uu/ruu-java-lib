@@ -28,49 +28,49 @@ public final class Time
 	public final static long MSECS_MONTH = MSECS_DAY  *  30L;
 	public final static long MSECS_YEAR  = MSECS_DAY  * 365L;
 
-	public static SimpleDateFormat getDateFormatSortableTimestamp()
+	public static SimpleDateFormat dateFormatSortableTimestamp()
 	{
 		return new SimpleDateFormat("yyyy.MM.dd HH:mm:ss:SSS");
 	}
 
-	public static SimpleDateFormat getDateFormatSortableTimestampPrecisionSeconds()
+	public static SimpleDateFormat dateFormatSortableTimestampPrecisionSeconds()
 	{
 		return new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	}
 
-	public static SimpleDateFormat getDateFormatSortableTimestampPrecisionMinutes()
+	public static SimpleDateFormat dateFormatSortableTimestampPrecisionMinutes()
 	{
 		return new SimpleDateFormat("yyyy.MM.dd HH:mm");
 	}
 
-	public static SimpleDateFormat getDateFormatSortableTimestampPrecisionHours()
+	public static SimpleDateFormat dateFormatSortableTimestampPrecisionHours()
 	{
 		return new SimpleDateFormat("yyyy.MM.dd HH");
 	}
 
-	public static SimpleDateFormat getDateFormatSortableTimestampPrecisionDays()
+	public static SimpleDateFormat dateFormatSortableTimestampPrecisionDays()
 	{
 		return new SimpleDateFormat("yyyy.MM.dd");
 	}
 
-	public static String getSortableTimestamp()
+	public static String sortableTimestamp()
 	{
-		return getDateFormatSortableTimestamp().format(new Date());
+		return dateFormatSortableTimestamp().format(new Date());
 	}
 
-	public static String getSortableTimestampPrecisionSeconds()
+	public static String sortableTimestampPrecisionSeconds()
 	{
-		return getDateFormatSortableTimestampPrecisionSeconds().format(new Date());
+		return dateFormatSortableTimestampPrecisionSeconds().format(new Date());
 	}
 
-	public static String getSortableTimestampPrecisionMinutes()
+	public static String sortableTimestampPrecisionMinutes()
 	{
-		return getDateFormatSortableTimestampPrecisionMinutes().format(new Date());
+		return dateFormatSortableTimestampPrecisionMinutes().format(new Date());
 	}
 
 	public static String getSortableTimestampPrecisionMinutes(Date date)
 	{
-		return getDateFormatSortableTimestampPrecisionMinutes().format(date);
+		return dateFormatSortableTimestampPrecisionMinutes().format(date);
 	}
 
 	/**

@@ -17,7 +17,7 @@ public class InExpressionInsensitive<T> implements Criterion<T>
 
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
-		String sql = "lower(" + criteriaQuery.getPropertyName(property, criteria) + ") in (";
+		String sql = "lower(" + criteriaQuery.propertyName(property, criteria) + ") in (";
 
 		for (String v : values)
 		{

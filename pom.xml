@@ -27,16 +27,15 @@
 		<module>jpa</module>
 		<module>jsonb</module>
 		<module>junit</module>
-		<module>keycloak_admin</module>
+		<module>docker</module>
+		<module>keycloak</module>
+		<module>liberty</module>
 		<module>mapstruct</module>
-		<module>mapstruct/spi</module>
-		<module>mp_config</module>
-		<module>docker_health</module>
+		<module>mp</module>
 		<module>office</module>
 		<module>postgres</module>
-		<module>postgres_util_ui</module>
 		<module>util</module>
-		<module>ws_rs</module>
+		<module>ws</module>
 		<module>bom</module>
 	</modules>
 

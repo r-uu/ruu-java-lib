@@ -25,7 +25,7 @@ abstract class ResourceContainerBase
 	}
 
 	@Override
-	public File getResourceContainerFile()
+	public File resourceContainerFile()
 	{
 		return containerFile;
 	}

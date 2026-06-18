@@ -20,6 +20,6 @@ public class SizeExpression<T> implements Criterion<T>
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
 		criteriaQuery.setParam(size);
-		return "? " + operator + " (select count(*) from " + criteriaQuery.getPropertyName(property, criteria) + ")";
+		return "? " + operator + " (select count(*) from " + criteriaQuery.propertyName(property, criteria) + ")";
 	}
 }

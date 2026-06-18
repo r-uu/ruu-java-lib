@@ -22,7 +22,7 @@ class ClasspathTest
 {
 	@Test void testGetClasspathResourcesByName() throws IOException
 	{
-		final Map<String, List<ClasspathResource>> classpathResourceLists = getClasspathResources();
+		final Map<String, List<ClasspathResource>> classpathResourceLists = classpathResources();
 
 		assertThat(classpathResourceLists.size() > 0).isTrue();
 
@@ -39,7 +39,7 @@ class ClasspathTest
 				stringBuilder.append
 				(
 						"\n\tresource container " +
-						classpathResource.getResourceContainer().getResourceContainerFile().getAbsolutePath()
+						classpathResource.resourceContainer().resourceContainerFile().getAbsolutePath()
 				);
 			}
 		}
@@ -69,9 +69,9 @@ class ClasspathTest
 					}
 				};
 
-		final Map<String, List<ClasspathResource>> classpathResourcesWithoutFilter = getClasspathResources();
+		final Map<String, List<ClasspathResource>> classpathResourcesWithoutFilter = classpathResources();
 		final Map<String, List<ClasspathResource>> classpathResourcesWithFilter    =
-				getClasspathResources(resourceContainerFilter, FILTER_ACCEPT_FILES_ALL, FILTER_ACCEPT_ZIP_ENTRIES_ALL);
+				classpathResources(resourceContainerFilter, FILTER_ACCEPT_FILES_ALL, FILTER_ACCEPT_ZIP_ENTRIES_ALL);
 
 		assertThat(classpathResourcesWithoutFilter.size() > classpathResourcesWithFilter.size()).isTrue();
 
@@ -91,9 +91,9 @@ class ClasspathTest
 		final FileFilter resourceContainerFilter = FILTER_ACCEPT_FILES_ALL;
 		final FileFilter directoryResourceFilter = FILTER_ACCEPT_FILES_DIRECTORIES_ONLY;
 
-		final Map<String, List<ClasspathResource>> classpathResourceListsWithoutFilter = getClasspathResources();
+		final Map<String, List<ClasspathResource>> classpathResourceListsWithoutFilter = classpathResources();
 		final Map<String, List<ClasspathResource>> classpathResourceListsWithFilter    =
-				getClasspathResources(resourceContainerFilter, directoryResourceFilter, FILTER_ACCEPT_ZIP_ENTRIES_ALL);
+				classpathResources(resourceContainerFilter, directoryResourceFilter, FILTER_ACCEPT_ZIP_ENTRIES_ALL);
 
 		assertThat(classpathResourceListsWithoutFilter.size() > classpathResourceListsWithFilter.size()).isTrue();
 
@@ -104,8 +104,8 @@ class ClasspathTest
 
 	@Test void testGetClasspathPackages() throws IOException
 	{
-		final Map<String, List<ClasspathResource>> classpathResourceListsWithoutFilter = getClasspathResources();
-		final Map<String, List<ClasspathResource>> classpathResourceListsWithFilter    = getPackagesAsClasspathResources();
+		final Map<String, List<ClasspathResource>> classpathResourceListsWithoutFilter = classpathResources();
+		final Map<String, List<ClasspathResource>> classpathResourceListsWithFilter    = packagesAsClasspathResources();
 
 		assertThat(classpathResourceListsWithoutFilter.size() > classpathResourceListsWithFilter.size()).isTrue();
 
@@ -120,6 +120,6 @@ class ClasspathTest
 	{
 		log.debug(
 				"class path resources by resource container name\n{}",
-				Classpath.reportClasspathResourcesByName(getClasspathResources()));
+				Classpath.reportClasspathResourcesByName(classpathResources()));
 	}
 }

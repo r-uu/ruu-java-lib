@@ -11,9 +11,9 @@
 
 	<parent>
 		<groupId>r-uu</groupId>
-		<artifactId>r-uu.lib</artifactId>
+		<artifactId>r-uu.lib.mapstruct</artifactId>
 		<version>0.0.1</version>
-		<relativePath>../..</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>

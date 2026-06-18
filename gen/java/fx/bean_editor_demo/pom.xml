@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>r-uu.lib.gen.java.fx.bean_editor_demo</artifactId>
+	<artifactId>r-uu.lib.gen.java.fx.bean.editor.demo</artifactId>
 
 	<parent>
 		<groupId>r-uu</groupId>
@@ -47,7 +47,7 @@
         </dependency>
 		<dependency>
 			<groupId>r-uu</groupId>
-			<artifactId>r-uu.lib.gen.java.fx.bean_editor</artifactId>
+			<artifactId>r-uu.lib.gen.java.fx.bean.editor</artifactId>
         </dependency>
 		<dependency>
 			<groupId>r-uu</groupId>

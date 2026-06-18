@@ -3,7 +3,7 @@ package de.ruu.lib.util.classpath;
 import static de.ruu.lib.util.BooleanFunctions.not;
 import static java.util.Objects.isNull;
 
-/** Classpath resource with name {@link #getResourceName()} that exists inside {@link #getResourceContainer()}. */
+/** Classpath resource with name {@link #resourceName()} that exists inside {@link #resourceContainer()}. */
 public abstract class ClasspathResource
 {
 	private ResourceContainer resourcecontainer;
@@ -16,11 +16,11 @@ public abstract class ClasspathResource
 		this.resourcename = resourcename;
 	}
 
-	public ResourceContainer getResourceContainer() { return resourcecontainer; }
+	public ResourceContainer resourceContainer() { return resourcecontainer; }
 
-	public String getResourceName() { return resourcename; }
+	public String resourceName() { return resourcename; }
 
-	public abstract boolean isDirectory();
+	public abstract boolean directory();
 
 	public static boolean isResourceAvailableTo(String resource, ClassLoader classLoader)
 	{

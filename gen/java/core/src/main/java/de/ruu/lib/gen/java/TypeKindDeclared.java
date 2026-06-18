@@ -23,5 +23,5 @@ public enum TypeKindDeclared
 //		return                                                       ElementKind.INTERFACE.toString().toLowerCase();
 	}
 
-	public ElementKind getElementKind() { return elementKind; }
+	public ElementKind elementKind() { return elementKind; }
 }

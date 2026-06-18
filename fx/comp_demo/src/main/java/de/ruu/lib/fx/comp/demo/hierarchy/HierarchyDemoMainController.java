@@ -80,7 +80,7 @@ public class HierarchyDemoMainController extends DefaultFXCController<HierarchyD
 	 */
 	private void onAppStarted(FXCAppStartedEvent e)
 	{
-		Optional<Stage> optional = FXUtil.getStage(root);
+		Optional<Stage> optional = FXUtil.stage(root);
 
 		if (optional.isPresent())
 		{

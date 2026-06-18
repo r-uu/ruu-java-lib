@@ -12,5 +12,5 @@ public class ClasspathResourceFile extends ClasspathResource
 		this.file = file;
 	}
 
-	@Override public boolean isDirectory() { return file.isDirectory(); }
+	@Override public boolean directory() { return file.isDirectory(); }
 }

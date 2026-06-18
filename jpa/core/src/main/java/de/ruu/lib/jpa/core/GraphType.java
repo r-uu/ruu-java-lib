@@ -5,7 +5,7 @@ public enum GraphType
 	FETCH("jakarta.persistence.fetchgraph"),
 	LOAD ("jakarta.persistence.loadgraph" );
 
-	private String name;
-	private GraphType(String name) { this.name = name; }
-	public String getName() { return name; }
+	private String value;
+	private GraphType(String value) { this.value = value; }
+	public String value() { return value; }
 }

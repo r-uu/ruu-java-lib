@@ -105,19 +105,19 @@ public class IntegerTextFieldValueChangeListener implements ChangeListener<Strin
 		}
 	}
 
-	public IntegerStringConverter getConverter() { return converter; }
+	public IntegerStringConverter converter() { return converter; }
 
-	public Optional<IntegerValidation> getValidation() { return validationOptional; }
+	public Optional<IntegerValidation> validation() { return validationOptional; }
 
-	public boolean isCurrentTextFieldValueValid()
+	public boolean currentTextFieldValueValid()
 	{
 		try
 		{
 			Integer integer = converter.fromString(textField.getText());
 
-			if (getValidation().isPresent())
+			if (validation().isPresent())
 			{
-				return getValidation().get().getPredicate().test(integer);
+				return validation().get().getPredicate().test(integer);
 			}
 
 			return true;
@@ -128,7 +128,7 @@ public class IntegerTextFieldValueChangeListener implements ChangeListener<Strin
 		}
 	}
 
-	public Optional<Integer> getCurrentTextFieldValueAsInteger()
+	public Optional<Integer> currentTextFieldValueAsInteger()
 	{
 		Integer integer;
 		try

@@ -20,6 +20,6 @@ public class BetweenExpression<T> implements Criterion<T>
 	{
 		criteriaQuery.setParam(lo);
 		criteriaQuery.setParam(hi);
-		return criteriaQuery.getPropertyName(property, criteria) + " between ? and ?";
+		return criteriaQuery.propertyName(property, criteria) + " between ? and ?";
 	}
 }

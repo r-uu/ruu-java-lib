@@ -23,7 +23,7 @@ import static de.ruu.lib.util.Strings.isNullOrEmptyOrBlank;
  */
 public abstract class AbstractOptionalSetAdapter<T> implements JsonbAdapter<Optional<Set<T>>, JsonValue>
 {
-	private static final Jsonb JSONB = new JsonbConfigurator().getContext();
+	private static final Jsonb JSONB = JsonbConfigurator.context();
 
 	protected abstract Type getType();
 

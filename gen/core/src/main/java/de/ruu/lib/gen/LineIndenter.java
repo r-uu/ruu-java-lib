@@ -30,7 +30,7 @@ public class LineIndenter
 	 */
 	public LineIndenter() { this("", 0); }
 
-	public String getIndentation() { return indentation; }
+	public String indentation() { return indentation; }
 
 	/** @param indentation */
 	public LineIndenter setIndentation(@NonNull String indentation)
@@ -39,7 +39,7 @@ public class LineIndenter
 		return this;
 	}
 
-	public int getIndentationLevel() { return indentationLevel; }
+	public int indentationLevel() { return indentationLevel; }
 
 	/** @param indentationLevel values &lt; 0 are handled as 0 */
 	public LineIndenter setIndentationLevel(int indentationLevel)

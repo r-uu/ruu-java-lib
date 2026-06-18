@@ -3,8 +3,8 @@ package de.ruu.lib.gen.java.naming;
 import static de.ruu.lib.gen.java.naming.GeneratorImportStatement.importStatement;
 import static de.ruu.lib.util.StringBuilders.rTrimChars;
 import static de.ruu.lib.util.StringBuilders.sb;
-import static de.ruu.lib.util.Types.getPackageNameFromQualifiedTypeName;
-import static de.ruu.lib.util.Types.getSimpleNameFromQualifiedTypeName;
+import static de.ruu.lib.util.Types.packageNameFromQualifiedTypeName;
+import static de.ruu.lib.util.Types.simpleNameFromQualifiedTypeName;
 import static de.ruu.lib.util.lang.model.JavaLangMetaModel.asDeclaredType;
 import static de.ruu.lib.util.lang.model.JavaLangMetaModel.asTypeElement;
 import static de.ruu.lib.util.lang.model.JavaLangMetaModel.hasTypeArguments;
@@ -160,13 +160,13 @@ public class ImportManager
 	public String useType(String qualifiedImportTypeName)
 	{
 		String packagename =
-				getPackageNameFromQualifiedTypeName(qualifiedImportTypeName);
+				packageNameFromQualifiedTypeName(qualifiedImportTypeName);
 
 		if (forceSimpleNamesForPackages.contains(packagename))
 		{
 			// do not generate import statements for java types from default package
 			// java.lang
-			return getSimpleNameFromQualifiedTypeName(qualifiedImportTypeName);
+			return simpleNameFromQualifiedTypeName(qualifiedImportTypeName);
 		}
 
 		if (false == qualifiedImportTypeName.contains("."))
@@ -176,7 +176,7 @@ public class ImportManager
 		}
 
 		String simpleName =
-				getSimpleNameFromQualifiedTypeName(qualifiedImportTypeName).replace(
+				simpleNameFromQualifiedTypeName(qualifiedImportTypeName).replace(
 						'$', '.');  // do not use normalizeClassName from
 		                    // ProcessingUtilities here because replace is invoked
 		                    // for simple types here
@@ -206,7 +206,7 @@ public class ImportManager
 			}
 
 			return simpleName;
-//			return getSimpleNameFromQualifiedTypeName(qualifiedImportTypeName);
+//			return simpleNameFromQualifiedTypeName(qualifiedImportTypeName);
 		}
 
 		String typeImportPackageName = typeImports.get(simpleName);

@@ -15,6 +15,6 @@ public class NullExpression<T> implements Criterion<T>
 
 	@Override public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
 	{
-		return criteriaQuery.getPropertyName(property, criteria) + " is null";
+		return criteriaQuery.propertyName(property, criteria) + " is null";
 	}
 }

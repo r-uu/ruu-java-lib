@@ -192,7 +192,7 @@ public abstract class JavaLangMetaModel
 	 * @param element
 	 * @return
 	 */
-	public static PackageElement getPackageElementOf(Element element)
+	public static PackageElement packageElementOf(Element element)
 	{
 		PackageElement result = asPackageElement(element);
 
@@ -203,16 +203,16 @@ public abstract class JavaLangMetaModel
 		else
 		{
 			// recurse
-			return getPackageElementOf(element.getEnclosingElement());
+			return packageElementOf(element.getEnclosingElement());
 		}
 	}
 
-	public static List<VariableElement> getFields(TypeElement typeElement)
+	public static List<VariableElement> fields(TypeElement typeElement)
 	{
 		return fieldsIn(typeElement.getEnclosedElements());
 	}
 
-	public static List<ExecutableElement> getMethods(TypeElement typeElement)
+	public static List<ExecutableElement> methods(TypeElement typeElement)
 	{
 		return methodsIn(typeElement.getEnclosedElements());
 	}
@@ -226,7 +226,7 @@ public abstract class JavaLangMetaModel
 			// add type element
 			result.add(typeElement);
 			// add enclosed type elements recursively
-			result.addAll(withEnclosedTypeElements(getTypeElements(typeElement.getEnclosedElements())));
+			result.addAll(withEnclosedTypeElements(typeElements(typeElement.getEnclosedElements())));
 		}
 
 		return result;
@@ -268,7 +268,7 @@ public abstract class JavaLangMetaModel
 	 * @return those elements in <code>elements</code> that are <code>
 	 *         TypeElements</code>
 	 */
-	public static Set<TypeElement> getTypeElements(Collection<? extends Element> elements)
+	public static Set<TypeElement> typeElements(Collection<? extends Element> elements)
 	{
 		Set<TypeElement> result = new HashSet<TypeElement>();
 

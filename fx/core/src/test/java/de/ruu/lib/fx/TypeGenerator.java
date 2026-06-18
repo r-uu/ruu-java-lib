@@ -42,7 +42,7 @@ public class TypeGenerator
 		generator =
 				new GeneratorFXCompBundle
 						(
-								"de.ruu.app.jeeeraaah.client.fx.task.view.hierarchy",
+								"de.ruu.app.pragma.client.fx.task.view.hierarchy",
 								"TaskHierarchyAbstract"
 						);
 		generator.run();

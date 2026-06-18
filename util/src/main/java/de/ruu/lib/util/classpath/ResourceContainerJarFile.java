@@ -25,14 +25,14 @@ class ResourceContainerJarFile
   }
 
 	@Override
-  public Map<String, ClasspathResource> getClassPathResources()
+  public Map<String, ClasspathResource> classPathResources()
   		throws IOException
   {
 	  return
-	  		getClassPathResources(Classpath.FILTER_ACCEPT_ZIP_ENTRIES_ALL);
+	  		classPathResources(Classpath.FILTER_ACCEPT_ZIP_ENTRIES_ALL);
   }
 
-	public Map<String, ClasspathResource> getClassPathResources(
+	public Map<String, ClasspathResource> classPathResources(
 	    ZipEntryFilter zipEntryFilter) throws IOException
 	{
 		Map<String, ClasspathResource> result = new HashMap<>();
@@ -55,7 +55,7 @@ class ResourceContainerJarFile
 							new ClasspathResourceZipEntry(
 										new ResourceContainerJarFile(containerFile), zipEntry);
 
-					result.put(Strings.rTrimChars(value.getResourceName(), "\\/"), value);
+					result.put(Strings.rTrimChars(value.resourceName(), "\\/"), value);
 				}
 			}
 		}

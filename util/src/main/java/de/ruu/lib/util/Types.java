@@ -5,7 +5,7 @@ public final class Types
 	/** Private constructor to prevent instantiation of utility class. */
 	private Types() { throw new AssertionError("utility class"); }
 
-	public static String getPackageNameFromQualifiedTypeName(String qualifiedTypeName)
+	public static String packageNameFromQualifiedTypeName(String qualifiedTypeName)
 	{
 		int lastIndexOfPackageName = qualifiedTypeName.lastIndexOf(".");
 
@@ -14,7 +14,7 @@ public final class Types
 		return qualifiedTypeName.substring(0, qualifiedTypeName.lastIndexOf("."));
 	}
 
-	public static String getSimpleNameFromQualifiedTypeName(String qualifiedTypeName)
+	public static String simpleNameFromQualifiedTypeName(String qualifiedTypeName)
 	{
 		return qualifiedTypeName.substring(qualifiedTypeName.lastIndexOf(".") + 1);
 	}

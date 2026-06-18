@@ -19,5 +19,5 @@ public enum Visibility
 		return modifier.toString().toLowerCase();
 	}
 
-	public Modifier getModifier() { return modifier; }
+	public Modifier modifier() { return modifier; }
 }

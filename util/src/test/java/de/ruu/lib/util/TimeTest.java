@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 class TimeTest
 {
-	@Test void testSortableTimeStamp() { log.debug("sortable time stamp: {}", Time.getSortableTimestamp()); }
+	@Test void testSortableTimeStamp() { log.debug("sortable time stamp: {}", Time.sortableTimestamp()); }
 
 	@Test void test()
 	{

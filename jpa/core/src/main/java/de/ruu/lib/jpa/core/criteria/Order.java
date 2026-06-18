@@ -26,7 +26,7 @@ public class Order<T>
      */
     public String toSqlString(Criteria<T> criteria, Criteria<T>.CriteriaQuery criteriaQuery)
     {
-        return criteriaQuery.getPropertyName(property, criteria) + (ascending ? " asc" : " desc");
+        return criteriaQuery.propertyName(property, criteria) + (ascending ? " asc" : " desc");
     }
 
     /**
