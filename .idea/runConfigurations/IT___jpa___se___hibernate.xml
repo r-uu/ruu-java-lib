@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IT - jpa - se - hibernate" type="JUnit" factoryName="JUnit">
+    <module name="r-uu.lib.jpa.se.hibernate"/>
+    <option name="MAIN_CLASS_NAME" value=""/>
+    <option name="METHOD_NAME" value=""/>
+    <option name="TEST_OBJECT" value="package"/>
+    <option name="PACKAGE_NAME" value="de.ruu.lib.jpa.se.hibernate"/>
+    <option name="VM_PARAMETERS" value="-Ddatabase.host=localhost -Ddatabase.port=5434 -Ddatabase.name=lib_test -Ddatabase.user=lib_test -Ddatabase.password=lib_test"/>
+    <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$"/>
+    <method v="2">
+      <option name="Make" enabled="true"/>
+    </method>
+  </configuration>
+</component>

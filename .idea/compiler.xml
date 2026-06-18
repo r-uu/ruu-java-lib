@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for r-uu.lib.util.main" enabled="true">
+        <sourceOutputDir name="../generated-sources/annotations" />
+        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
+        <option name="mapstruct.defaultComponentModel" value="default" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+        </processorPath>
+        <module name="r-uu.lib.util.main" />
+      </profile>
+      <profile name="Annotation profile for r-uu.lib.util.test" enabled="true">
+        <sourceOutputDir name="../generated-sources/annotations" />
+        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
+        <option name="mapstruct.defaultComponentModel" value="default" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+        </processorPath>
+        <module name="r-uu.lib.util.test" />
+      </profile>
+      <profile name="Annotation profile for r-uu.lib" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="default" />
+        <option name="mapstruct.suppressGeneratorTimestamp" value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/orm/hibernate-jpamodelgen/6.6.5.Final/hibernate-jpamodelgen-6.6.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/orm/hibernate-core/6.6.5.Final/hibernate-core-6.6.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.15.11/byte-buddy-1.15.11.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/orm/hibernate-jpamodelgen/6.6.5.Final/hibernate-jpamodelgen-6.6.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/orm/hibernate-core/6.6.5.Final/hibernate-core-6.6.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar" />
+          <entry name="$MAVEN_REPOSITORY$/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.15.11/byte-buddy-1.15.11.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar" />
+        </processorPath>
+        <module name="r-uu.lib.fx.comp_demo" />
+        <module name="r-uu.lib.gen.core" />
+        <module name="r-uu.lib.fx.comp" />
+        <module name="r-uu.lib.gen.java.fx.bean" />
+        <module name="r-uu.lib.jpa.se.hibernate" />
+        <module name="r-uu.lib.jpa.se.hibernate.postgres.demo" />
+        <module name="r-uu.lib.cdi.se" />
+        <module name="r-uu.lib.jpa.core.mapstruct.test" />
+        <module name="r-uu.lib.gen.java.core" />
+        <module name="r-uu.lib.mapstruct.core" />
+        <module name="r-uu.lib.archunit" />
+        <module name="r-uu.lib.gen.java.fx.bean_editor" />
+        <module name="r-uu.lib.jdbc.postgres" />
+        <module name="r-uu.lib.fx.core" />
+        <module name="r-uu.lib.jpa.core.mapstruct" />
+        <module name="r-uu.lib.jpa.core" />
+        <module name="r-uu.lib.ws.rs" />
+        <module name="r-uu.lib.jasperreports.server" />
+        <module name="r-uu.lib.jdbc.core" />
+        <module name="r-uu.lib.jpa.se.hibernate.postgres" />
+        <module name="r-uu.lib.jsonb" />
+        <module name="r-uu.lib.gen.java.fx.comp" />
+        <module name="r-uu.lib.jackson" />
+        <module name="r-uu.lib.postgres.toolbox" />
+        <module name="r-uu.lib.docker.health" />
+        <module name="r-uu.lib.cdi.common" />
+        <module name="r-uu.lib.postgres.ui" />
+        <module name="r-uu.lib.gen.java.fx.bean_editor_demo" />
+        <module name="r-uu.lib.fx.demo" />
+        <module name="r-uu.lib.junit" />
+        <module name="r-uu.lib.cdi.se.demo" />
+        <module name="r-uu.lib.jpa.se" />
+        <module name="r-uu.lib.mp.config" />
+        <module name="r-uu.lib.liberty.server" />
+        <module name="r-uu.lib.jasperreports.client" />
+        <module name="r-uu.lib.keycloak.admin" />
+        <module name="r-uu.lib.jpa.core.mapstruct.demo.bidirectional" />
+        <module name="r-uu.lib.gen.java.fx.tableview" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="r-uu.lib.docker_health" target="25" />
+      <module name="r-uu.lib.jpa.core_mapstruct" target="25" />
+      <module name="r-uu.lib.jpa.core_mapstruct_demo_bidirectional" target="25" />
+      <module name="r-uu.lib.jpa.core_mapstruct_test" target="25" />
+      <module name="r-uu.lib.jpa.se_hibernate" target="25" />
+      <module name="r-uu.lib.jpa.se_hibernate_postgres" target="25" />
+      <module name="r-uu.lib.jpa.se_hibernate_postgres_demo" target="25" />
+      <module name="r-uu.lib.keycloak_admin" target="25" />
+      <module name="r-uu.lib.postgres" target="25" />
+      <module name="r-uu.lib.postgres_util_ui" target="25" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="postgres" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.bom" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.archunit" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.cdi" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.cdi.common" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.cdi.se" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.cdi.se.demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.docker" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.docker.health" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.docker_health" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.fx" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.fx.comp" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.fx.comp_demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.fx.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.fx.demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx.bean" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx.bean_editor" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx.bean_editor_demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx.comp" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.gen.java.fx.tableview" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jackson" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jasperreports" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jasperreports.client" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jasperreports.server" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jdbc" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jdbc.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jdbc.postgres" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core.mapstruct" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core.mapstruct.demo.bidirectional" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core.mapstruct.test" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core_mapstruct" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core_mapstruct_demo_bidirectional" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.core_mapstruct_test" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se.hibernate" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se.hibernate.postgres" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se.hibernate.postgres.demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se_hibernate" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se_hibernate_postgres" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jpa.se_hibernate_postgres_demo" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.jsonb" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.junit" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.keycloak" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.keycloak.admin" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.keycloak_admin" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.liberty" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.liberty.server" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.mapstruct" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.mapstruct.core" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.mapstruct.spi" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.mp.config" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.office" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.office.word" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.postgres" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.postgres.toolbox" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.postgres.ui" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.postgres_util_ui" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+      <module name="r-uu.lib.util" options="-parameters -Xlint:all -Xlint:-varargs -Amapstruct.defaultComponentModel=default" />
+      <module name="r-uu.lib.util.main" options="-parameters -Xlint:all -Xlint:-varargs -Amapstruct.defaultComponentModel=default" />
+      <module name="r-uu.lib.util.test" options="-parameters -Xlint:all -Amapstruct.defaultComponentModel=default" />
+      <module name="r-uu.lib.ws.rs" options="-parameters -Amapstruct.defaultComponentModel=default -Amapstruct.suppressGeneratorTimestamp=true -Xlint:-varargs" />
+    </option>
+  </component>
+</project>

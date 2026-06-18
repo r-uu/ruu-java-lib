@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IT - all - db" type="CompoundRunConfigurationType">
+    <toRun name="IT - jdbc - postgres" type="JUnit"/>
+    <toRun name="IT - jpa - se - hibernate" type="JUnit"/>
+    <toRun name="IT - jpa - se - hibernate - postgres - demo" type="JUnit"/>
+    <toRun name="IT - postgres - toolbox" type="JUnit"/>
+    <method v="2"/>
+  </configuration>
+</component>

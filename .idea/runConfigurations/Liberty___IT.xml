@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Liberty - IT (verify)" type="MavenRunConfiguration" factoryName="Maven">
+    <MavenSettings>
+      <option name="myGeneralSettings"/>
+      <option name="myRunnerSettings"/>
+      <option name="myParameters">
+        <MavenTasksAndGoals>
+          <option name="myGoals" value="verify"/>
+          <option name="myRawCommandLine" value=""/>
+          <option name="myProfilesList"/>
+        </MavenTasksAndGoals>
+        <option name="myWorkingDirPath" value="$PROJECT_DIR$/liberty/server"/>
+      </option>
+    </MavenSettings>
+    <method v="2"/>
+  </configuration>
+</component>

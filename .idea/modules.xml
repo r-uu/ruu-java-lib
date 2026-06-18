@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/archunit/r-uu.lib.archunit.iml" filepath="$PROJECT_DIR$/archunit/r-uu.lib.archunit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdi/se/r-uu.lib.cdi.se.iml" filepath="$PROJECT_DIR$/cdi/se/r-uu.lib.cdi.se.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdi/demo/r-uu.lib.cdi.se.demo.iml" filepath="$PROJECT_DIR$/cdi/demo/r-uu.lib.cdi.se.demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docker/health/r-uu.lib.docker.health.iml" filepath="$PROJECT_DIR$/docker/health/r-uu.lib.docker.health.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fx/comp/r-uu.lib.fx.comp.iml" filepath="$PROJECT_DIR$/fx/comp/r-uu.lib.fx.comp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fx/core/r-uu.lib.fx.core.iml" filepath="$PROJECT_DIR$/fx/core/r-uu.lib.fx.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fx/demo/r-uu.lib.fx.demo.iml" filepath="$PROJECT_DIR$/fx/demo/r-uu.lib.fx.demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gen/java/core/r-uu.lib.gen.java.core.iml" filepath="$PROJECT_DIR$/gen/java/core/r-uu.lib.gen.java.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gen/java/fx/bean/r-uu.lib.gen.java.fx.bean.iml" filepath="$PROJECT_DIR$/gen/java/fx/bean/r-uu.lib.gen.java.fx.bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gen/java/fx/comp/r-uu.lib.gen.java.fx.comp.iml" filepath="$PROJECT_DIR$/gen/java/fx/comp/r-uu.lib.gen.java.fx.comp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gen/java/fx/tableview/r-uu.lib.gen.java.fx.tableview.iml" filepath="$PROJECT_DIR$/gen/java/fx/tableview/r-uu.lib.gen.java.fx.tableview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson/r-uu.lib.jackson.iml" filepath="$PROJECT_DIR$/jackson/r-uu.lib.jackson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc/postgres/r-uu.lib.jdbc.postgres.iml" filepath="$PROJECT_DIR$/jdbc/postgres/r-uu.lib.jdbc.postgres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/core/mapstruct/r-uu.lib.jpa.core.mapstruct.iml" filepath="$PROJECT_DIR$/jpa/core/mapstruct/r-uu.lib.jpa.core.mapstruct.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/core/mapstruct/demo_bidirectional/r-uu.lib.jpa.core.mapstruct.demo.bidirectional.iml" filepath="$PROJECT_DIR$/jpa/core/mapstruct/demo_bidirectional/r-uu.lib.jpa.core.mapstruct.demo.bidirectional.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/core/mapstruct/test/r-uu.lib.jpa.core.mapstruct.test.iml" filepath="$PROJECT_DIR$/jpa/core/mapstruct/test/r-uu.lib.jpa.core.mapstruct.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/se/r-uu.lib.jpa.se.iml" filepath="$PROJECT_DIR$/jpa/se/r-uu.lib.jpa.se.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/se/hibernate/r-uu.lib.jpa.se.hibernate.iml" filepath="$PROJECT_DIR$/jpa/se/hibernate/r-uu.lib.jpa.se.hibernate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/se/hibernate/postgres/r-uu.lib.jpa.se.hibernate.postgres.iml" filepath="$PROJECT_DIR$/jpa/se/hibernate/postgres/r-uu.lib.jpa.se.hibernate.postgres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa/se/hibernate/postgres/demo/r-uu.lib.jpa.se.hibernate.postgres.demo.iml" filepath="$PROJECT_DIR$/jpa/se/hibernate/postgres/demo/r-uu.lib.jpa.se.hibernate.postgres.demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsonb/r-uu.lib.jsonb.iml" filepath="$PROJECT_DIR$/jsonb/r-uu.lib.jsonb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/junit/r-uu.lib.junit.iml" filepath="$PROJECT_DIR$/junit/r-uu.lib.junit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keycloak/admin/r-uu.lib.keycloak.admin.iml" filepath="$PROJECT_DIR$/keycloak/admin/r-uu.lib.keycloak.admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapstruct/spi/r-uu.lib.mapstruct.spi.iml" filepath="$PROJECT_DIR$/mapstruct/spi/r-uu.lib.mapstruct.spi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/r-uu.lib.util.iml" filepath="$PROJECT_DIR$/util/r-uu.lib.util.iml" />
+    </modules>
+  </component>
+</project>

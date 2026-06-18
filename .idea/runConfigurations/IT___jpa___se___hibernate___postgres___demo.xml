@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IT - jpa - se - hibernate - postgres - demo" type="JUnit" factoryName="JUnit">
+    <module name="r-uu.lib.jpa.se.hibernate.postgres.demo"/>
+    <option name="MAIN_CLASS_NAME" value=""/>
+    <option name="METHOD_NAME" value=""/>
+    <option name="TEST_OBJECT" value="package"/>
+    <option name="PACKAGE_NAME" value="de.ruu.lib.jpa.se.hibernate.postgres.demo"/>
+    <option name="VM_PARAMETERS" value="-Ddatabase.host=localhost -Ddatabase.port=5432 -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.host=localhost -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.port=5432 -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.database=lib_test -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.username=lib_test -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.password=lib_test -Dde.ruu.lib.jpa.se.hibernate.postgres.AbstractEntityManagerProducer.puname=lib_test"/>
+    <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$"/>
+    <method v="2">
+      <option name="Make" enabled="true"/>
+    </method>
+  </configuration>
+</component>
