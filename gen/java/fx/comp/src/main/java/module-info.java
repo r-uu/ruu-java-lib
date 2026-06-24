@@ -18,6 +18,5 @@ module de.ruu.lib.gen.java.fx.comp
 	requires de.ruu.lib.gen.java;
 	requires de.ruu.lib.util;
 
-	requires static lombok;
 	requires de.ruu.lib.cdi.se;
 }

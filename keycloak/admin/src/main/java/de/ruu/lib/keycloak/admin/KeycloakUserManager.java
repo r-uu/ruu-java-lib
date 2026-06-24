@@ -13,8 +13,10 @@ import org.keycloak.representations.idm.UserRepresentation;
 
 import jakarta.ws.rs.core.Response;
 
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Objects;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for managing Keycloak users programmatically.
@@ -53,9 +55,10 @@ import lombok.extern.slf4j.Slf4j;
  * @author r-uu
  * @since 2025-12-27
  */
-@Slf4j
 public class KeycloakUserManager implements AutoCloseable
 {
+	private static final Logger log = LoggerFactory.getLogger(KeycloakUserManager.class);
+
 	private final Keycloak keycloak;
 	private final String realmName;
 
@@ -76,6 +79,10 @@ public class KeycloakUserManager implements AutoCloseable
 			@NonNull String adminUsername,
 			@NonNull String adminPassword)
 	{
+		Objects.requireNonNull(serverUrl,      "serverUrl");
+		Objects.requireNonNull(realm,          "realm");
+		Objects.requireNonNull(adminUsername,  "adminUsername");
+		Objects.requireNonNull(adminPassword,  "adminPassword");
 		this.realmName = realm;
 		this.keycloak = KeycloakBuilder.builder()
 				.serverUrl(serverUrl)

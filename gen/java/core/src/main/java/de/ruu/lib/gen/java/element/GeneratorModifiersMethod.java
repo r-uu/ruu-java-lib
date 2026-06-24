@@ -4,7 +4,9 @@ import javax.lang.model.element.Element;
 
 import de.ruu.lib.gen.java.Visibility;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** generator for modifiers of java method {@link Element}s (java methods may be abstract) */
 public interface GeneratorModifiersMethod extends GeneratorModifiersAbstractable

@@ -3,9 +3,11 @@ package de.ruu.lib.gen.java.element.type;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import static de.ruu.lib.util.StringBuilders.sb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link GeneratorClassExtends} for interface extends clause like <pre>extends Generator, Serializable</pre>

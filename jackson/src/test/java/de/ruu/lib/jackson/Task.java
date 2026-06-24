@@ -4,81 +4,81 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.annotation.Nullable;
-import lombok.*;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.Objects.isNull;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="jsonId", scope = Task.class)
-@Getter
-@Accessors(fluent = true)
-@EqualsAndHashCode
-@ToString
-@Slf4j
 public class Task
 {
-//	@Serial private static final long serialVersionUID = 1L;
+	private static final Logger log = LoggerFactory.getLogger(Task.class);
 
-	@EqualsAndHashCode.Exclude
 	private final long jsonId = ThreadLocalRandom.current().nextLong();
 	/** may be <pre>null</pre> if corresponding jpa instance was not (yet) persisted. */
 	@Nullable private Long   id;
 	/** may be <pre>null</pre> if corresponding jpa instance was not (yet) persisted. */
 	@Nullable private Short  version;
-	@NonNull  private String name; // mutable non-null, see handmade setter
+	private String name;
 
-	@Setter @Nullable private String    description;
-	@Setter @Nullable private LocalDate start;
-	@Setter @Nullable private LocalDate end;
-	@Setter @NonNull  private Boolean   closed;
+	@Nullable private String    description;
+	@Nullable private LocalDate start;
+	@Nullable private LocalDate end;
+	@Nullable private Boolean   closed;
 
-	@EqualsAndHashCode.Exclude
-	@ToString         .Exclude
 	@JsonBackReference("taskGroup-task")
-	@NonNull  private TaskGroup group;
+	private TaskGroup group;
 
-	@EqualsAndHashCode.Exclude
-	@ToString         .Exclude
 	@Nullable private Task      superTask;
-
-	@EqualsAndHashCode.Exclude
-	@ToString         .Exclude
 	@Nullable private Set<Task> subTasks;
-
-	@EqualsAndHashCode.Exclude
-	@ToString         .Exclude
 	@Nullable private Set<Task> predecessors;
-
-	@EqualsAndHashCode.Exclude
-	@ToString         .Exclude
 	@Nullable private Set<Task> successors;
 
 	private Task() {} // with this no-args constructor jackson does not need a @JsonCreator annotated method
 
-	public Task(@NonNull TaskGroup group, @NonNull String name)
+	public Task(TaskGroup group, String name)
 	{
-		this.group = group;
-		this.name  = name;
+		this.group = Objects.requireNonNull(group, "group");
+		this.name  = Objects.requireNonNull(name,  "name");
 
 		group.addTask(this);
 	}
 
-	public boolean superTask(@NonNull Task task) { return task.addSubTask(this); }
+	public long      jsonId()      { return jsonId; }
+	@Nullable public Long id()            { return id; }
+	@Nullable public Short version()      { return version; }
+	public String    name()        { return name; }
+	@Nullable public String description() { return description; }
+	@Nullable public LocalDate start()    { return start; }
+	@Nullable public LocalDate end()      { return end; }
+	@Nullable public Boolean closed()     { return closed; }
+	public TaskGroup group()       { return group; }
+	@Nullable public Task superTask()     { return superTask; }
+	@Nullable public Set<Task> subTasks()      { return subTasks; }
+	@Nullable public Set<Task> predecessors()  { return predecessors; }
+	@Nullable public Set<Task> successors()    { return successors; }
 
-	public boolean addSubTask(@NonNull Task task)
+	public void description(String description) { this.description = description; }
+	public void start(LocalDate start)          { this.start = start; }
+	public void end(LocalDate end)              { this.end = end; }
+	public void closed(Boolean closed)          { this.closed = Objects.requireNonNull(closed, "closed"); }
+
+	public boolean superTask(Task task) { return task.addSubTask(this); }
+
+	public boolean addSubTask(Task task)
 	{
 		if (isNull(subTasks)) subTasks = new HashSet<>();
 		task.superTask = this;
 		return subTasks.add(task);
 	}
 
-	public boolean addPredecessor(@NonNull Task task)
+	public boolean addPredecessor(Task task)
 	{
 		if (    predecessors == null)      predecessors = new HashSet<>();
 		if (task.successors  == null) task.successors   = new HashSet<>();
@@ -89,7 +89,7 @@ public class Task
 		return false;
 	}
 
-	public boolean addSuccessor(@NonNull Task task)
+	public boolean addSuccessor(Task task)
 	{
 		if (     successors   == null)      successors   = new HashSet<>();
 		if (task.predecessors == null) task.predecessors = new HashSet<>();
@@ -98,5 +98,36 @@ public class Task
 				if (successors.add(task)) return true;
 				else task.predecessors.remove(this); // rollback
 		return false;
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof Task other)) return false;
+		return Objects.equals(id,          other.id)
+			&& Objects.equals(version,     other.version)
+			&& Objects.equals(name,        other.name)
+			&& Objects.equals(description, other.description)
+			&& Objects.equals(start,       other.start)
+			&& Objects.equals(end,         other.end)
+			&& Objects.equals(closed,      other.closed);
+	}
+
+	@Override public int hashCode()
+	{
+		return Objects.hash(id, version, name, description, start, end, closed);
+	}
+
+	@Override public String toString()
+	{
+		return "Task [jsonId=" + jsonId
+				+ ", id=" + id
+				+ ", version=" + version
+				+ ", name=" + name
+				+ ", description=" + description
+				+ ", start=" + start
+				+ ", end=" + end
+				+ ", closed=" + closed
+				+ "]";
 	}
 }

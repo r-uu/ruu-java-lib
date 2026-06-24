@@ -1,6 +1,6 @@
 package de.ruu.lib.gen;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import static de.ruu.lib.util.StringBuilders.sb;
 

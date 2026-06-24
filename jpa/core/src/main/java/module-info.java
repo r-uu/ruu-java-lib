@@ -9,8 +9,7 @@ module de.ruu.lib.jpa.core
 	requires jakarta.json.bind;
 	requires jakarta.persistence;
 	requires java.sql;
-	requires static lombok;
-	requires java.desktop;
+	requires org.jspecify;
 
 	// Opens for reflection by JPA providers (Hibernate) and CDI (Weld)
 	// Unrestricted: Liberty opens need no specific module target

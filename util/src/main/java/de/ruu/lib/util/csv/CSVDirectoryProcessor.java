@@ -5,11 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Processes all csv files in a directory. Processing is configured by processors that can be provided by {@link
@@ -21,14 +19,22 @@ public interface CSVDirectoryProcessor
 
 	CSVDirectoryProcessor csvFileProcessor(@NonNull CSVFileProcessor processor);
 
-	@Getter @Setter @Accessors(fluent = true)
-	@Slf4j
 	class CSVDirectoryProcessorSimple implements CSVDirectoryProcessor
 	{
-		private @NonNull CSVFileProcessor csvFileProcessor = CSVFileProcessor.create();
+		static final Logger log = LoggerFactory.getLogger(CSVDirectoryProcessorSimple.class);
+
+		@NonNull private CSVFileProcessor csvFileProcessor = CSVFileProcessor.create();
 
 		/** Public constructor. */
 		public CSVDirectoryProcessorSimple() { }
+
+		public CSVFileProcessor csvFileProcessor() { return csvFileProcessor; }
+
+		@Override public CSVDirectoryProcessorSimple csvFileProcessor(@NonNull CSVFileProcessor csvFileProcessor)
+		{
+			this.csvFileProcessor = csvFileProcessor;
+			return this;
+		}
 
 		@Override public void process(@NonNull Path csvDirectory)
 		{
@@ -44,6 +50,6 @@ public interface CSVDirectoryProcessor
 			}
 		}
 	}
-	
+
 	static CSVDirectoryProcessor create() { return new CSVDirectoryProcessorSimple(); }
 }

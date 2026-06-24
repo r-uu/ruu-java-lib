@@ -13,5 +13,4 @@ module de.ruu.lib.cdi.se.demo
 	requires org.slf4j;
 	requires de.ruu.lib.cdi.se;
 
-	requires static lombok;
 }

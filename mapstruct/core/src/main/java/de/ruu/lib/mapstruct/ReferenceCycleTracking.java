@@ -1,14 +1,14 @@
 package de.ruu.lib.mapstruct;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.BeforeMapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.TargetType;
 
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Used as {@link org.mapstruct.Context} parameter in mapstruct mappings, leverages mapstruct annotations {@link
@@ -27,6 +27,7 @@ public class ReferenceCycleTracking
 	 */
 	@BeforeMapping public <T> T get(Object source, @TargetType @NonNull Class<T> targetType)
 	{
+		Objects.requireNonNull(targetType, "targetType");
 		return targetType.cast(map.get(source));
 	}
 
@@ -39,6 +40,8 @@ public class ReferenceCycleTracking
 	 */
 	@BeforeMapping public void put(@NonNull Object source, @MappingTarget @NonNull Object target)
 	{
+		Objects.requireNonNull(source, "source");
+		Objects.requireNonNull(target, "target");
 		map.put(source, target);
 	}
 

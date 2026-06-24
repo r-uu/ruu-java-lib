@@ -7,13 +7,15 @@ import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.BeforeBeanDiscovery;
 import jakarta.enterprise.inject.spi.Extension;
 import jakarta.enterprise.inject.spi.ProcessAnnotatedType;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-@Slf4j
 public class CDIExtension implements Extension
 {
+	private static final Logger log = LoggerFactory.getLogger(CDIExtension.class);
+
 	void beforeBeanDiscovery(@Observes BeforeBeanDiscovery bbd)
 	{
 		log.debug("beginning the scanning process");
@@ -30,9 +32,9 @@ public class CDIExtension implements Extension
 				beanManager
 						.getBeans(Object.class)
 						.stream()
-	          .map(bean -> bean.getBeanClass().getName())
-	          .sorted()
-	          .toList();
+		          .map(bean -> bean.getBeanClass().getName())
+		          .sorted()
+		          .toList();
 
     String logOutput = "finished the deployment validation process, managed beans:\n" + String.join("\n", beanClasses);
 

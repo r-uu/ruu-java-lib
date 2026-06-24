@@ -5,9 +5,7 @@ import static de.ruu.lib.util.StringBuilders.sb;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 public interface GeneratorAnnotation extends Generator
 {
@@ -18,9 +16,7 @@ public interface GeneratorAnnotation extends Generator
 	/** narrowing method from super */
 	GeneratorAnnotation add(@NonNull GeneratorAnnotationParameters parameters)
 			throws UnsupportedOperationException;
-	
-	@Getter
-	@Accessors(fluent = true)
+
 	abstract class GeneratorAnnotationAbstract extends GeneratorAbstract implements GeneratorAnnotation
 	{
 		private String type;
@@ -39,6 +35,8 @@ public interface GeneratorAnnotation extends Generator
 			super(context);
 			this.type = context().importManager().useType(type);
 		}
+
+		@Override public String type() { return type; }
 
 		@Override public GeneratorAnnotation type(@NonNull Class<?> type)
 		{
@@ -65,7 +63,7 @@ public interface GeneratorAnnotation extends Generator
 			return sb("@").append(type).append(super.generate());
 		}
 	}
-	
+
 	class GeneratorAnnotationSimple extends GeneratorAnnotationAbstract
 	{
 		public GeneratorAnnotationSimple(@NonNull CompilationUnitContext context, @NonNull String   type)

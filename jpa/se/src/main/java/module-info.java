@@ -6,7 +6,6 @@ module de.ruu.lib.jpa.se
 	requires jakarta.inject;
 	requires jakarta.interceptor;
 	requires jakarta.persistence;
-	requires static lombok;
 	requires org.slf4j;
 	
 	// Open for Hibernate persistence provider reflection

@@ -15,8 +15,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,10 +32,11 @@ import static de.ruu.lib.util.BooleanFunctions.not;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-@Slf4j
 // public class TextFieldAutoCompleteClearable<T> extends ClearableTextField
 public class TextFieldAutoCompleteClearable<T> extends HBox
 {
+	private static final Logger log = LoggerFactory.getLogger(TextFieldAutoCompleteClearable.class);
+
 	private final ClearableTextField clearableTextField = new ClearableTextField();
 	protected final ListView<T> listView = new ListView<>();
 	protected final Popup popup = new Popup();

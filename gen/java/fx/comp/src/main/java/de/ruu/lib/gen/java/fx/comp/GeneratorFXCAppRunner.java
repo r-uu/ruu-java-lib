@@ -1,11 +1,13 @@
 package de.ruu.lib.gen.java.fx.comp;
 
 import static de.ruu.lib.gen.java.GeneratorCodeBlock.codeBlokk;
+import static de.ruu.lib.gen.java.Visibility.PRIVATE;
 import static de.ruu.lib.gen.java.Visibility.PUBLIC;
 import static de.ruu.lib.gen.java.context.CompilationUnitContext.context;
 import static de.ruu.lib.gen.java.doc.GeneratorJavaDoc.javaDoc;
-import static de.ruu.lib.gen.java.element.GeneratorAnnotations.annotations;
+import static de.ruu.lib.gen.java.element.GeneratorModifiers.modifiers;
 import static de.ruu.lib.gen.java.element.GeneratorModifiersMethod.methodModifiers;
+import static de.ruu.lib.gen.java.element.field.GeneratorField.field;
 import static de.ruu.lib.gen.java.element.method.GeneratorMethod.method;
 import static de.ruu.lib.gen.java.element.method.GeneratorParameter.parameter;
 import static de.ruu.lib.gen.java.element.method.GeneratorParameters.parameters;
@@ -18,14 +20,16 @@ import java.io.IOException;
 import de.ruu.lib.fx.comp.FXCAppRunner;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.CompilationUnitFileWriter;
+import de.ruu.lib.gen.java.GeneratorCodeBlock;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import de.ruu.lib.gen.java.element.GeneratorAnnotation;
 import de.ruu.lib.gen.java.element.type.GeneratorClass;
 import de.ruu.lib.util.Time;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GeneratorFXCAppRunner {
+	private static final Logger log = LoggerFactory.getLogger(GeneratorFXCAppRunner.class);
 	private String packageName;
 	private String simpleFileName;
 	private String appName;
@@ -39,6 +43,32 @@ public class GeneratorFXCAppRunner {
 
 	public void run() throws GeneratorException, IOException {
 		CompilationUnitContext context = context(packageName, simpleFileName);
+
+		String loggerType       = context.importManager().useType("org.slf4j.Logger");
+		String loggerFactoryType = context.importManager().useType("org.slf4j.LoggerFactory");
+
+		GeneratorCodeBlock classCodeBlock = codeBlokk(context).childNodesSeparator(LS);
+		classCodeBlock.add(
+				field(context, loggerType, "log")
+						.modifiers(modifiers(context).visibility(PRIVATE).setStatic(true).setFinal(true))
+						.assignment(loggerFactoryType + ".getLogger(" + simpleFileName + ".class)"));
+		classCodeBlock.add(classCodeBlock.childNodesSeparator().toString());
+		classCodeBlock.add(
+				method(context, "void", "main")
+						.childNodesSeparator(LS)
+						.modifiers(methodModifiers(context).visibility(PUBLIC).setStatic(true))
+						.parameters(parameters(context).add(parameter(context, "String[]", "args")))
+						.codeBlock(
+								codeBlokk(context)
+										.add(
+												"log.debug(\"starting " + simpleFileName + ".class.getName()\");"
+														+ LS + "// Configure JPMS module access for Weld CDI"
+														+ LS + context.importManager().useType(FXCAppRunner.class)
+														+ ".configureModuleAccessForCDI();"
+														+ LS + context.importManager().useType(FXCAppRunner.class) + ".run"
+														+ "(" + context.importManager().useType(appName) + ".class, args);"
+														+ LS + "log.debug(\"finished " + simpleFileName + ".class.getName()\")")));
+
 		GeneratorClass generatorClass = classType(context, simpleFileName)
 				.childNodesSeparator(LS)
 				.javaDoc(
@@ -51,36 +81,8 @@ public class GeneratorFXCAppRunner {
 								.add("before launching the application to configure JPMS module read access for Weld CDI.")
 								.add("Application-specific CDI events requiring module access should be registered")
 								.add("after configureModuleAccessForCDI() and before {@code FXCAppRunner.run()}."))
-				.annotations(
-						annotations(context)
-								.add(
-										GeneratorAnnotation.annotation(context, Slf4j.class)))
-				.extendsClause(
-						extendsClause(context)
-								.extendsClause(FXCAppRunner.class))
-				.codeBlock(
-						codeBlokk(context)
-								.add(
-										method(context, "void", "main")
-												.childNodesSeparator(LS)
-												.modifiers(
-														methodModifiers(context)
-																.visibility(PUBLIC)
-																.setStatic(true))
-												.parameters(
-														parameters(context)
-																.add(
-																		parameter(context, "String[]", "args")))
-												.codeBlock(
-														codeBlokk(context)
-																.add(
-																		"log.debug(\"starting " + simpleFileName + ".class.getName()\");"
-																				+ LS + "// Configure JPMS module access for Weld CDI"
-																				+ LS + context.importManager().useType(FXCAppRunner.class)
-																				+ ".configureModuleAccessForCDI();"
-																				+ LS + context.importManager().useType(FXCAppRunner.class) + ".run"
-																				+ "(" + context.importManager().useType(appName) + ".class, args);"
-																				+ LS + "log.debug(\"finished " + simpleFileName + ".class.getName()\");"))));
+				.extendsClause(extendsClause(context).extendsClause(FXCAppRunner.class))
+				.codeBlock(classCodeBlock);
 		CompilationUnitFileWriter writer = CompilationUnitFileWriter.writer(packageName, simpleFileName);
 		writer.write(generatorClass.generate().toString());
 	}

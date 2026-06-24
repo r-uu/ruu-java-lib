@@ -10,7 +10,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -34,8 +35,9 @@ import java.util.stream.Collectors;
  * - REST API: http://localhost:8090/api/report/generate
  * - CLI:      java -jar jasperreports-server.jar cli template.jrxml data.json output.pdf
  */
-@Slf4j
 public class ReportService {
+
+    private static final Logger log = LoggerFactory.getLogger(ReportService.class);
 
 
     private static final String TEMPLATES_DIR = "/app/templates";

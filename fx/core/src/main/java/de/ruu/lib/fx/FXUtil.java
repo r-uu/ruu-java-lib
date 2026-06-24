@@ -32,8 +32,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +43,10 @@ import java.util.function.Predicate;
 
 import static java.util.Objects.isNull;
 
-@Slf4j
 public abstract class FXUtil
 {
+	private static final Logger log = LoggerFactory.getLogger(FXUtil.class);
+
 	public static Optional<Stage> stage(final Node node)
 	{
 		final Scene scene = node.getScene();

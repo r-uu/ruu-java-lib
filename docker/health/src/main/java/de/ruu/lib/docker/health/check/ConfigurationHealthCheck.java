@@ -2,7 +2,8 @@ package de.ruu.lib.docker.health.check;
 
 import de.ruu.lib.docker.health.HealthCheckResult;
 import de.ruu.lib.util.config.mp.ConfigHealthCheck;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Health check for MicroProfile Config properties.
@@ -16,9 +17,10 @@ import lombok.extern.slf4j.Slf4j;
  *   <li>Testing mode properties</li>
  * </ul>
  */
-@Slf4j
 public class ConfigurationHealthCheck implements HealthCheck
 {
+	private static final Logger log = LoggerFactory.getLogger(ConfigurationHealthCheck.class);
+
 	@Override
 	public String getName()
 	{

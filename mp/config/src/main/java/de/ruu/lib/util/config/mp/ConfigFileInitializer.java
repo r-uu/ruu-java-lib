@@ -3,7 +3,8 @@ package de.ruu.lib.util.config.mp;
 import java.io.File;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for initializing and managing configuration files with default values.
@@ -15,9 +16,10 @@ import lombok.extern.slf4j.Slf4j;
  *   <li>ensure all required properties are present without overwriting existing values
  * </ul>
  */
-@Slf4j
 public class ConfigFileInitializer
 {
+	private static final Logger log = LoggerFactory.getLogger(ConfigFileInitializer.class);
+
 	/**
 	 * Creates and initializes a config file with default values if it doesn't exist.
 	 *

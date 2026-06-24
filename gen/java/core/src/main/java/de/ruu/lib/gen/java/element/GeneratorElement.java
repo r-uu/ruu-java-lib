@@ -12,9 +12,7 @@ import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 /**
  * {@link GeneratorElement} for Java {@link javax.lang.model.element.Element}s like {@code package de.ruu.lib.gen.java} or {@code class
@@ -45,8 +43,6 @@ public interface GeneratorElement extends Generator
 	String           name();
 	GeneratorElement name(@NonNull String name);
 
-	@Getter
-	@Accessors(fluent = true)
 	abstract class GeneratorElementAbstract extends GeneratorAbstract implements GeneratorElement
 	{
 		private String               name;
@@ -58,7 +54,7 @@ public interface GeneratorElement extends Generator
 		public GeneratorElementAbstract(@NonNull CompilationUnitContext context, @NonNull String name)
 		{
 			super(context);
-			
+
 			if (name.isEmpty()) throw new IllegalArgumentException("name must not be empty");
 
 			this.name   = name;
@@ -67,6 +63,11 @@ public interface GeneratorElement extends Generator
 			annotations = GeneratorAnnotations.annotations(context);
 			modifiers   = GeneratorModifiers  .modifiers(context);
 		}
+
+		@Override public String             name()        { return name; }
+		@Override public GeneratorJavaDoc   javaDoc()     { return javaDoc; }
+		@Override public GeneratorAnnotations annotations() { return annotations; }
+		@Override public GeneratorModifiers modifiers()   { return modifiers; }
 
 		@Override public GeneratorElement childNodesSeparator(@NonNull String separator)
 		{

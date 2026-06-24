@@ -1,8 +1,9 @@
 package de.ruu.lib.fx.comp;
 
 import javafx.fxml.FXML;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static de.ruu.lib.util.BooleanFunctions.not;
 import static java.util.Objects.isNull;
@@ -14,10 +15,10 @@ import static java.util.Objects.isNull;
  */
 public interface FXCController<V extends FXCView<S>, S extends FXCService>// extends FXCService
 {
+
 	void view(@NonNull V view) throws UnsupportedOperationException;
 
 	/**  @author r-uu */
-	@Slf4j
 	abstract class DefaultFXCController<V extends FXCView<S>, S extends FXCService>
 			implements FXCController<V, S>, FXCService
 	{

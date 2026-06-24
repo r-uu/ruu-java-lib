@@ -1,13 +1,8 @@
 package de.ruu.lib.docker.health;
 
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 /**
  * Result of a health check.
  */
-@Getter
-@Accessors(fluent = true)
 public class HealthCheckResult
 {
 	private final boolean healthy;
@@ -18,11 +13,11 @@ public class HealthCheckResult
 
 	private HealthCheckResult(boolean healthy, String service, String problem, String fixCommand, String alias)
 	{
-		this.healthy = healthy;
-		this.service = service;
-		this.problem = problem;
+		this.healthy    = healthy;
+		this.service    = service;
+		this.problem    = problem;
 		this.fixCommand = fixCommand;
-		this.alias = alias;
+		this.alias      = alias;
 	}
 
 	/**
@@ -40,4 +35,10 @@ public class HealthCheckResult
 	{
 		return new HealthCheckResult(false, service, problem, fixCommand, alias);
 	}
+
+	public boolean healthy()    { return healthy; }
+	public String  service()    { return service; }
+	public String  problem()    { return problem; }
+	public String  fixCommand() { return fixCommand; }
+	public String  alias()      { return alias; }
 }

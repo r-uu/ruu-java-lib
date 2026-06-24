@@ -1,6 +1,6 @@
 package de.ruu.lib.util.bimapped;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public interface BiMappable
 {

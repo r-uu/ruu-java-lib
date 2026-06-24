@@ -17,16 +17,18 @@ import de.ruu.lib.jpa.se.hibernate.PersistenceUnitProperties;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link #produce()} returns an instance of a hibernate {@link EntityManager}.
  * Call this method from method annotated
  * with {@link jakarta.enterprise.inject.Produces} in subclasses.
  */
-@Slf4j
 public abstract class AbstractEntityManagerProducer
 {
+	private static final Logger log = LoggerFactory.getLogger(AbstractEntityManagerProducer.class);
+
 	private EntityManager        entityManager;
 	private EntityManagerFactory entityManagerFactory;
 

@@ -5,7 +5,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.BigDecimalStringConverter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -21,9 +22,10 @@ import static java.util.Objects.isNull;
  * <p>
  * Furthermore, if present <b>and</b> the conversion succeeded, it executes a {@link BigDecimalValidation}.
  */
-@Slf4j
 public class BigDecimalTextFieldValueChangeListener implements ChangeListener<String>
 {
+	private static final Logger log = LoggerFactory.getLogger(BigDecimalTextFieldValueChangeListener.class);
+
 	private final BigDecimalStringConverter converter = new BigDecimalStringConverter();
 	private final TextFormatter<BigDecimal> formatter = new TextFormatter<>(converter);
 
@@ -117,7 +119,7 @@ public class BigDecimalTextFieldValueChangeListener implements ChangeListener<St
 
 			if (validation().isPresent())
 			{
-				return validation().get().getPredicate().test(bigDecimal);
+				return validation().get().predicate().test(bigDecimal);
 			}
 
 			return true;

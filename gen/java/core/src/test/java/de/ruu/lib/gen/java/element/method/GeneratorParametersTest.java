@@ -13,7 +13,6 @@ import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 
-//@Slf4j
 class GeneratorParametersTest
 {
 	private CompilationUnitContext context;

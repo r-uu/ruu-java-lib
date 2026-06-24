@@ -2,16 +2,10 @@ package de.ruu.lib.jpa.core;
 
 import jakarta.annotation.Nullable;
 import jakarta.json.bind.annotation.JsonbProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serial;
-
-import static lombok.AccessLevel.NONE;
+import java.util.Objects;
 
 /**
  * Base class of <b>D</b>ata <b>T</b>ransfer <b>O</b>bjects (DTOs) for corresponding {@link AbstractEntity} classes.
@@ -25,12 +19,6 @@ import static lombok.AccessLevel.NONE;
  *
  * @author r-uu
  */
-@Getter                   // generate getter methods for all fields using lombok unless configured otherwise ({@code
-                          // @Getter(AccessLevel.NONE}))
-@Accessors(fluent = true) // generate fluent accessors with lombok and java-bean-style-accessors with ide, fluent
-                          // accessors will (usually / by default) be ignored by mapstruct
-@EqualsAndHashCode
-@ToString
 public abstract class AbstractDTO<E extends AbstractEntity<?>> implements Entity<Long>, DTO<E, Long>
 {
 	@Serial private static final long serialVersionUID = 1L;
@@ -41,7 +29,6 @@ public abstract class AbstractDTO<E extends AbstractEntity<?>> implements Entity
 	 * Not {@code final} or {@code @NonNull} because otherwise there would have to be a constructor
 	 * with {@code id}-parameter
 	 */
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	@JsonbProperty("id")
 	@Nullable private Long id;
 
@@ -50,7 +37,6 @@ public abstract class AbstractDTO<E extends AbstractEntity<?>> implements Entity
 	 * <p>may not be modified from outside type hierarchy (from non-{@link AbstractEntity}-subclasses)
 	 * <p>not {@code final} or {@code @NonNull} because otherwise there has to be a constructor with {@code id}-parameter
 	 */
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	@JsonbProperty("version")
 	@Nullable private Short version;
 
@@ -76,8 +62,7 @@ public abstract class AbstractDTO<E extends AbstractEntity<?>> implements Entity
 	/** bean style getter to comply with java bean conventions*/
 	@Override public Short getVersion() { return Entity.super.getVersion(); }
 
-	@Override public Long id() { return id; }
-
+	@Override public Long  id()      { return id; }
 	@Override public Short version() { return version; }
 
 	/**
@@ -90,10 +75,23 @@ public abstract class AbstractDTO<E extends AbstractEntity<?>> implements Entity
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	protected void mapIdAndVersion(@NonNull Entity<Long> source)
-//	protected <E extends AbstractEntity> void mapIdAndVersion(@NonNull E source)
 	{
 		// set fields that can not be modified from outside
 		id      = source.id();
 		version = source.version();
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof AbstractDTO<?> other)) return false;
+		return Objects.equals(id, other.id) && Objects.equals(version, other.version);
+	}
+
+	@Override public int hashCode() { return Objects.hash(id, version); }
+
+	@Override public String toString()
+	{
+		return getClass().getSimpleName() + "(id=" + id + ", version=" + version + ")";
 	}
 }

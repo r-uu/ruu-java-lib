@@ -5,11 +5,12 @@ import java.nio.file.Path;
 
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.util.Files;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class GeneratorFXCViewCSS
 {
+	private static final Logger log = LoggerFactory.getLogger(GeneratorFXCViewCSS.class);
 	private String packageName;
 	private String simpleFileName;
 

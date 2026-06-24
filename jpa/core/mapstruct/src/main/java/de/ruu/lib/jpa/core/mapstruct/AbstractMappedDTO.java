@@ -3,7 +3,7 @@ package de.ruu.lib.jpa.core.mapstruct;
 import de.ruu.lib.jpa.core.AbstractDTO;
 import de.ruu.lib.jpa.core.Entity;
 import de.ruu.lib.mapstruct.BiMappedTarget;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Methods of this class are meant as callback hooks for mapstruct mappers and should be used to map values into private

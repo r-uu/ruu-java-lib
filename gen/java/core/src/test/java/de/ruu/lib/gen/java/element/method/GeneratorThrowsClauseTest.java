@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 
-//@Slf4j
 class GeneratorThrowsClauseTest
 {
 	private CompilationUnitContext context;

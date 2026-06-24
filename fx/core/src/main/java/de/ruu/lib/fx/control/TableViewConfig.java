@@ -4,7 +4,7 @@ import de.ruu.lib.fx.css.FontWeight;
 import de.ruu.lib.fx.css.TableViewUtil;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public class TableViewConfig
 {

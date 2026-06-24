@@ -1,18 +1,20 @@
 package de.ruu.lib.jdbc.postgres;
 
 import de.ruu.lib.junit.DisabledOnServerNotListening;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 class TestDataSourceFactory
 {
+	private static final Logger log = LoggerFactory.getLogger(TestDataSourceFactory.class);
+
 	@DisabledOnServerNotListening(propertyNameHost = "database.host", propertyNamePort = "database.port")
 	@Test void testDataSourceFactory()
 	{

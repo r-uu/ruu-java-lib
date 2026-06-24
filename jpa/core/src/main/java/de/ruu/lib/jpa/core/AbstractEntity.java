@@ -6,18 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serial;
-
-import static lombok.AccessLevel.NONE;
-import static lombok.AccessLevel.PROTECTED;
+import java.util.Objects;
 
 /**
  * Mapped superclass for JPA entities that implements features of {@link Entity} interface. It is useful as base class
@@ -25,14 +17,6 @@ import static lombok.AccessLevel.PROTECTED;
  *
  * @author r-uu
  */
-// generate no args constructor for jpa, mapstruct, ...
-@NoArgsConstructor(access = PROTECTED)
-@Getter                   // generate getter methods for all fields using lombok unless configured otherwise ({@code
-// @Getter(AccessLevel.NONE}))
-@Accessors(fluent = true) // generate fluent accessors with lombok and java-bean-style-accessors in non-abstract classes
-// with ide, fluent accessors will (usually / by default) be ignored by mapstruct
-@EqualsAndHashCode
-@ToString
 @MappedSuperclass
 public abstract class AbstractEntity<D extends AbstractDTO<?>> implements Entity<Long>
 {
@@ -44,14 +28,15 @@ public abstract class AbstractEntity<D extends AbstractDTO<?>> implements Entity
 	 * <p>not {@code final} or {@code @NonNull} because otherwise there has to be a constructor with {@code id}-parameter
 	 */
 	@Nullable
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	@Id @GeneratedValue private Long id;
 
 	/** may be <pre>null</pre> if {@link AbstractEntity} was not (yet) persisted. */
 	@Nullable
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	@Version @Column(nullable = false)
 	private Short version;
+
+	/** required by JPA */
+	protected AbstractEntity() { }
 
 	protected AbstractEntity(Entity<Long> entity)
 	{
@@ -67,8 +52,7 @@ public abstract class AbstractEntity<D extends AbstractDTO<?>> implements Entity
 	// TODO find out why default implementation in Entity2 interface is not sufficient
 	@Override public Short getVersion() { return Entity.super.getVersion(); }
 
-	@Override public Long id() { return id; }
-
+	@Override public Long  id()      { return id; }
 	@Override public Short version() { return version; }
 
 	/**
@@ -87,5 +71,19 @@ public abstract class AbstractEntity<D extends AbstractDTO<?>> implements Entity
 		// set fields that can not be modified from outside
 		id      = source.getId();
 		version = source.getVersion();
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof AbstractEntity<?> other)) return false;
+		return Objects.equals(id, other.id) && Objects.equals(version, other.version);
+	}
+
+	@Override public int hashCode() { return Objects.hash(id, version); }
+
+	@Override public String toString()
+	{
+		return getClass().getSimpleName() + "(id=" + id + ", version=" + version + ")";
 	}
 }

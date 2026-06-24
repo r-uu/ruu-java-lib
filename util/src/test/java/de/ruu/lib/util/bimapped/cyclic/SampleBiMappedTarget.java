@@ -2,7 +2,7 @@ package de.ruu.lib.util.bimapped.cyclic;
 
 import de.ruu.lib.util.bimapped.BiMap;
 import de.ruu.lib.util.bimapped.BiMappedTarget;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;

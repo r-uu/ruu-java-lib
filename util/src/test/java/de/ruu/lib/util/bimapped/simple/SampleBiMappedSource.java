@@ -2,7 +2,7 @@ package de.ruu.lib.util.bimapped.simple;
 
 import de.ruu.lib.util.bimapped.BiMap;
 import de.ruu.lib.util.bimapped.BiMappedSource;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 class SampleBiMappedSource implements BiMappedSource<SampleBiMappedTarget>
 {

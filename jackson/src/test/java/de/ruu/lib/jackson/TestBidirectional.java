@@ -2,17 +2,19 @@ package de.ruu.lib.jackson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 class TestBidirectional
 {
+	private static final Logger log = LoggerFactory.getLogger(TestBidirectional.class);
+
     private static ObjectMapper MAPPER;
 
     @BeforeAll

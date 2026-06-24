@@ -24,7 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -48,9 +48,12 @@ import static de.ruu.lib.gen.java.fx.bean.FXMapper.mapFXPropertyToPrimitiveWrapp
 import static de.ruu.lib.gen.java.fx.bean.FXPropertyUtil.isNumericFXPropertyType;
 import static de.ruu.lib.util.Constants.LS;
 import static de.ruu.lib.util.Strings.firstLetterToUpperCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GeneratorFXTableViewConfigurator
 {
+	private static final Logger log = LoggerFactory.getLogger(GeneratorFXTableViewConfigurator.class);
 	@NonNull private final String packageName;    // package name for target
 	@NonNull private final String simpleFileName; // simple file name for target
 

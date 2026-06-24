@@ -3,23 +3,21 @@ package de.ruu.lib.jpa.se.hibernate.postgres.demo;
 import de.ruu.lib.jpa.core.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
-import lombok.experimental.Accessors;
 
-import static lombok.AccessLevel.PROTECTED;
+import java.util.Objects;
 
 @Entity
 @Table(name = "simple_type")  // Verwendet standard "public" schema
-@Getter
-@Accessors(fluent = true) // generate fluent style getters but also implement java bean style getters
-// to comply to java bean conventions
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor(access = PROTECTED) // required by jpa
 public class SimpleTypeEntity extends AbstractEntity<SimpleTypeDTO> implements SimpleType
 {
-	@Setter private String name;
+	private String name;
 
-	SimpleTypeEntity(String name) { this.name  = name; }
+	protected SimpleTypeEntity() { name = ""; } // required by JPA
+
+	SimpleTypeEntity(String name) { this.name = name; }
+
+	public String name()            { return name; }
+	public void   name(String name) { this.name = name; }
 
 	SimpleTypeDTO toDTO()
 	{
@@ -29,4 +27,13 @@ public class SimpleTypeEntity extends AbstractEntity<SimpleTypeDTO> implements S
 
 	// Package-private wrapper to take over id/version from a DTO
 	void mapIdAndVersionFrom(SimpleTypeDTO dto) { mapIdAndVersion(dto); }
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof SimpleTypeEntity other)) return false;
+		return super.equals(o) && Objects.equals(name, other.name);
+	}
+
+	@Override public int hashCode() { return Objects.hash(super.hashCode(), name); }
 }

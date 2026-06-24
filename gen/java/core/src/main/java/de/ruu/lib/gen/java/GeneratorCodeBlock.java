@@ -8,7 +8,9 @@ import de.ruu.lib.gen.LineIndenter;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.element.field.GeneratorField;
 import de.ruu.lib.gen.java.element.method.GeneratorMethod;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** code block will be indented and wrapped in curly braces */
 public interface GeneratorCodeBlock extends Generator

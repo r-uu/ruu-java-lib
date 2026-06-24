@@ -3,11 +3,13 @@ package de.ruu.lib.cdi.se.demo.parameters;
 import de.ruu.lib.cdi.se.demo.parameters.InjectableProducer.Ping;
 import de.ruu.lib.cdi.se.demo.parameters.InjectableProducer.Pong;
 import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class InjectableImpl implements Injectable
 {
+	private static final Logger log = LoggerFactory.getLogger(InjectableImpl.class);
+
 	private String ping;
 	private String pong;
 

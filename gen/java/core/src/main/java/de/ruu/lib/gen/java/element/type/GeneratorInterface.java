@@ -11,7 +11,9 @@ import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorModifiers;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface GeneratorInterface extends GeneratorType
 {

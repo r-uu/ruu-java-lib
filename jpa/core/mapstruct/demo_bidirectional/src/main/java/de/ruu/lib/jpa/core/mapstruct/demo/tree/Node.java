@@ -1,7 +1,7 @@
 package de.ruu.lib.jpa.core.mapstruct.demo.tree;
 
 import jakarta.annotation.Nullable;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Optional;

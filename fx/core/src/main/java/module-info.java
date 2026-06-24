@@ -25,7 +25,6 @@ module de.ruu.lib.fx.core
 
 	requires org.apache.logging.log4j;
 
-	requires static lombok;
 	requires org.slf4j;
 	requires de.ruu.lib.cdi.common;
 	requires javafx.graphics;

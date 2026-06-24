@@ -10,7 +10,9 @@ import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.element.GeneratorElement;
 import de.ruu.lib.gen.java.element.GeneratorModifiers;
 import de.ruu.lib.gen.java.element.pckg.GeneratorPackageStatement;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface GeneratorType extends GeneratorElement
 {

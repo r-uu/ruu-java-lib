@@ -15,10 +15,7 @@ import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.Visibility;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 /** common (base) generator for java {@link Element} modifiers */
 public interface GeneratorModifiers extends Generator
@@ -34,9 +31,6 @@ public interface GeneratorModifiers extends Generator
 	GeneratorModifiers setFinal   (boolean isFinal   ) throws IllegalArgumentException;
 	boolean isFinal();
 
-	@Getter
-	@Accessors(fluent = true)
-	@ToString
 	abstract class GeneratorModifiersAbstract extends GeneratorAbstract implements GeneratorModifiers
 	{
 		private Visibility visibility = DEFAULT;
@@ -46,12 +40,17 @@ public interface GeneratorModifiers extends Generator
 
 		protected GeneratorModifiersAbstract(@NonNull CompilationUnitContext context) { super(context); }
 
+		@Override public Visibility visibility() { return visibility; }
+		@Override public boolean    isStatic()   { return isStatic; }
+		@Override public boolean    isFinal()    { return isFinal; }
+		public    boolean isAbstract()           { return isAbstract; }
+
 		@Override public GeneratorModifiers visibility(@NonNull Visibility visibility)
 		{
 			this.visibility = visibility;
 			return this;
 		}
-		
+
 		@Override public GeneratorModifiers setStatic(boolean isStatic) throws IllegalArgumentException
 		{
 			if (isStatic && isAbstract) throw new IllegalArgumentException("illegal combination of static and abstract");
@@ -77,8 +76,14 @@ public interface GeneratorModifiers extends Generator
 
 			return sb(join(" ", modifiers));
 		}
+
+		@Override public String toString()
+		{
+			return "GeneratorModifiersAbstract(visibility=" + visibility
+					+ ", isStatic=" + isStatic + ", isFinal=" + isFinal + ", isAbstract=" + isAbstract + ")";
+		}
 	}
-	
+
 	class GeneratorModifiersSimple extends GeneratorModifiersAbstract
 	{
 		public GeneratorModifiersSimple(@NonNull CompilationUnitContext context) { super(context); }

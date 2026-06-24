@@ -3,12 +3,9 @@ package de.ruu.lib.jpa.core.mapstruct.demo.tree;
 import de.ruu.lib.jpa.core.AbstractDTO;
 import de.ruu.lib.jpa.core.AbstractEntity;
 import de.ruu.lib.jpa.core.Entity;
-import lombok.NonNull;
-import lombok.Setter;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serial;
-
-import static lombok.AccessLevel.NONE;
 
 public class AbstractNode
 		<D extends AbstractDTO<?>, E extends AbstractEntity<?>>
@@ -21,11 +18,9 @@ public class AbstractNode
 	 * <p>may not be modified from outside type hierarchy (from non-{@link AbstractEntity}-subclasses)
 	 * <p>not {@code final} or {@code @NonNull} because otherwise there has to be a constructor with {@code id}-parameter
 	 */
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	private Long id;
 
 	/** may be <pre>null</pre> if {@link AbstractEntity} was not (yet) persisted. */
-	@Setter(NONE) // redundant as long as there are no setters anyway, but just in case ...
 	private Short version;
 
 	// java bean style accessors for those who do not work with fluent style accessors (mapstruct)

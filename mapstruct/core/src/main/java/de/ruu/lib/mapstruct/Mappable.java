@@ -1,6 +1,6 @@
 package de.ruu.lib.mapstruct;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public interface Mappable<IN extends Mappable<IN, OUT>, OUT extends Mappable<OUT, IN>>
 {

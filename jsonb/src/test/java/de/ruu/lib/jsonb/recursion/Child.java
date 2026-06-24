@@ -1,10 +1,8 @@
 package de.ruu.lib.jsonb.recursion;
 
 import jakarta.json.bind.annotation.JsonbTransient;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.ToString;
+
+import java.util.Objects;
 
 /**
  * data class for Jsonb tests
@@ -13,23 +11,28 @@ import lombok.ToString;
  *
  * @author ruu
  */
-@Getter
-@ToString
-@NoArgsConstructor
 public class Child
 {
-	@NonNull
 	private String field;
 
 	@JsonbTransient
-	@NonNull
 	private Parent parent;
 
-	public Child(@NonNull String field, @NonNull Parent parent)
+	public Child() {}
+
+	public Child(String field, Parent parent)
 	{
-		this.field = field;
-		this.parent = parent;
+		this.field  = Objects.requireNonNull(field,  "field");
+		this.parent = Objects.requireNonNull(parent, "parent");
 
 		parent.getChildren().add(this);
+	}
+
+	public String getField()  { return field; }
+	public Parent getParent() { return parent; }
+
+	@Override public String toString()
+	{
+		return "Child [field=" + field + "]";
 	}
 }

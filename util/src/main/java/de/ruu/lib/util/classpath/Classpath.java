@@ -16,11 +16,13 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public abstract class Classpath
 {
+	private static final Logger log = LoggerFactory.getLogger(Classpath.class);
+
 	public static final String RAM_COMPILER_TYPENAME = "__dyna_type__";
 
 	public static final FileFilter FILTER_ACCEPT_FILES_ALL              = file -> true;

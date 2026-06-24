@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Code of this type is "copied" from junit internal class. Unfortunately junit does not export it.

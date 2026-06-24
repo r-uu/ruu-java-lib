@@ -3,11 +3,13 @@ package de.ruu.lib.cdi.se.demo.parameters;
 import de.ruu.lib.cdi.se.CDIContainer;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 class DemoProducer
 {
+	private static final Logger log = LoggerFactory.getLogger(DemoProducer.class);
+
 	@Inject private InjectableProducer producer;
 
 	private void run()
@@ -24,7 +26,7 @@ class DemoProducer
 	public static void main(String[] args)
 	{
 		CDIContainer.bootstrap();
-		DemoProducer demo = CDI.current().select(DemoProducer.class).get();		
+		DemoProducer demo = CDI.current().select(DemoProducer.class).get();
 		demo.run();
 	}
 }

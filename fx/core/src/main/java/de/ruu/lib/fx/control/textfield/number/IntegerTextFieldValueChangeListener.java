@@ -5,7 +5,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -20,9 +21,10 @@ import static java.util.Objects.isNull;
  * <p>
  * Furthermore, if present <b>and</b> the conversion succeeded, it executes an {@link IntegerValidation}.
  */
-@Slf4j
 public class IntegerTextFieldValueChangeListener implements ChangeListener<String>
 {
+	private static final Logger log = LoggerFactory.getLogger(IntegerTextFieldValueChangeListener.class);
+
 	private final IntegerStringConverter converter = new IntegerStringConverter();
 	private final TextFormatter<Integer> formatter = new TextFormatter<>(converter);
 
@@ -117,7 +119,7 @@ public class IntegerTextFieldValueChangeListener implements ChangeListener<Strin
 
 			if (validation().isPresent())
 			{
-				return validation().get().getPredicate().test(integer);
+				return validation().get().predicate().test(integer);
 			}
 
 			return true;

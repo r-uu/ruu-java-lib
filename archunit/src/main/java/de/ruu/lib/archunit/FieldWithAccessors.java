@@ -4,39 +4,38 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaField;
 import com.tngtech.archunit.core.domain.JavaMethod;
 import de.ruu.lib.util.Strings;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
  * looks for java bean style or, if not present, for fluent style getter and setter
  */
-@Getter
-@Accessors(fluent = true)
 public class FieldWithAccessors
 {
-	private final @NonNull JavaField javaField;
+	private final JavaField javaField;
 
 	private final Optional<JavaMethod> getter;
 	private final Optional<JavaMethod> setter;
 
-	public FieldWithAccessors(@NonNull JavaField javaField)
+	public FieldWithAccessors(JavaField javaField)
 	{
-		this.javaField = javaField;
+		this.javaField = Objects.requireNonNull(javaField, "javaField");
 
 		getter = findGetter(javaField);
 		setter = findSetter(javaField);
 	}
 
+	public JavaField             javaField() { return javaField; }
+	public Optional<JavaMethod>  getter()    { return getter;    }
+	public Optional<JavaMethod>  setter()    { return setter;    }
 
 	/**
 	 * looks for getter (java bean style or fluent style)
 	 * @param javaField
 	 * @return getter or empty optional if none was found
 	 */
-	private Optional<JavaMethod> findGetter(@NonNull JavaField javaField)
+	private Optional<JavaMethod> findGetter(JavaField javaField)
 	{
 		JavaClass clazz = javaField.getOwner();
 
@@ -59,7 +58,7 @@ public class FieldWithAccessors
 	 * @param javaField
 	 * @return setter or empty optional if none was found
 	 */
-	private Optional<JavaMethod> findSetter(@NonNull JavaField javaField)
+	private Optional<JavaMethod> findSetter(JavaField javaField)
 	{
 		JavaClass clazz = javaField.getOwner();
 

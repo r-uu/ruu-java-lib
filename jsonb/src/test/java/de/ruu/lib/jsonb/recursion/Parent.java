@@ -1,11 +1,9 @@
 package de.ruu.lib.jsonb.recursion;
 
 import jakarta.json.bind.annotation.JsonbTypeAdapter;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -15,16 +13,21 @@ import java.util.Set;
  *
  * @author ruu
  */
-@Getter
-@ToString
 public class Parent
 {
-	@NonNull
-	private String      field;
+	private String     field;
 	@JsonbTypeAdapter(ChildrenAdapter.class)
 	private Set<Child> children = new HashSet<>();
 
 	/** has to be {@code public} for Jsonb */
 	public Parent() {}
-	Parent(@NonNull String field) { this.field = field; }
+	Parent(String field) { this.field = Objects.requireNonNull(field, "field"); }
+
+	public String     getField()    { return field; }
+	public Set<Child> getChildren() { return children; }
+
+	@Override public String toString()
+	{
+		return "Parent [field=" + field + "]";
+	}
 }

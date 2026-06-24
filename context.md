@@ -26,7 +26,7 @@ Dokumentation muss immer klar, präzise und gut verständlich sein. Dokumentatio
 
 Die bereitgestellten maven modules müssen immer so gewählt werden, dass sie bei Verwendung möglichst wenig, also nur die wirklich benötigten Abhängigkeiten einführen.
 
-### bill of material
+### Bill of Material
 
 Alle Maven Module nutzen die Abhängigkeiten aus dem Modul [r-uu.bom](bom/pom.xml). Dort werden auch die (default) dependency-versions festgelegt.
 
@@ -40,7 +40,7 @@ AI-Chat Fenster sollen immer mit einem light theme und / oder mit hohen Kontrast
 
 Projekte, insbesondere maven-sub-module, können eigene, ergänzende context.md Dateien beinhalten, die von KI-Agenten wie diese behandelt werden. Ggf. überschreiben Kontextdateien "untergeordneter" Projekte die Festlegungen in "übergeordneten" Projekten.
 
-### quality assurance
+### Quality Assurance
 
 AI-Agenten sollen überprüfen, ob Code durch weitere Tests besser abgesichert werden kann. Ist dies der Fall, sollen in Absprache mit dem Entwickler neue Tests generiert oder existierende Tests erweitert bzw. angepasst werden.
 
@@ -52,17 +52,17 @@ Wenn möglich und sinnvoll soll jpms eingesetzt werden, und dies möglichst kons
 
 Versuche aus meinem eigenen code die formatting rules abzuleiten.
 
-## code style
+## Code Style
 
 ### Einrückungen
 
 Einrückungen sollen als 2 spaces sichtbar sein, entweder durch 2 space zeichen oder durch einen tab, der mit zwei spaces angezeigt wird.
 
-### field-accessors in fluent style
+### Fluent Style
 
-Wenn möglich, soll für field-accessors der moderne fluent style verwendet werden.
+Wenn möglich, soll für soll fluent style verwendet werden.
 
-### builder-pattern
+### Builder Pattern
 
 Wenn sinnvoll, soll das builder-pattern anstelle von Konstruktoren verwendet werden.
 

@@ -5,13 +5,15 @@ import de.ruu.lib.fx.demo.gen.input.FXBeanModel;
 import de.ruu.lib.fx.demo.gen.input.FXBeanModelDTO;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.fx.bean.FXBeanGenerator;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-@Slf4j
 class FXBeanGeneratorRunner
 {
+	private static final Logger log = LoggerFactory.getLogger(FXBeanGeneratorRunner.class);
+
 	public static void main(String[] args) throws GeneratorException, IOException
 	{
 		Class<?>        fxBeanModelClass       = FXBeanModel.class;

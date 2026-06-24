@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.keycloak.representations.idm.UserRepresentation;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -27,10 +28,11 @@ import static org.assertj.core.api.Assertions.*;
  * @author r-uu
  * @since 2025-12-27
  */
-@Slf4j
 @Disabled("Requires Keycloak running on localhost:8080")
 class KeycloakUserManagerIT
 {
+	private static final Logger log = LoggerFactory.getLogger(KeycloakUserManagerIT.class);
+
 	private KeycloakUserManager manager;
 	private String createdUserId;
 

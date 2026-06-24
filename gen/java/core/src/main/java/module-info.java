@@ -11,11 +11,9 @@ module de.ruu.lib.gen.java
 	exports de.ruu.lib.gen.java.element.type;
 	exports de.ruu.lib.gen.java.naming;
 
-	requires transitive java.desktop;
 
 	requires com.tngtech.archunit;
 	requires java.compiler;
-	requires static lombok;
 	requires org.slf4j;
 
 	requires de.ruu.lib.gen.core;

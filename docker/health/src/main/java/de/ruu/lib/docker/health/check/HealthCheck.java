@@ -1,7 +1,6 @@
 package de.ruu.lib.docker.health.check;
 
 import de.ruu.lib.docker.health.HealthCheckResult;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base interface for all health checks.

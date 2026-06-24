@@ -1,21 +1,23 @@
 package de.ruu.lib.junit;
 
 import de.ruu.lib.util.IO;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.extension.ConditionEvaluationResult;
 import org.junit.jupiter.api.extension.ExecutionCondition;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.AnnotationSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.AnnotatedElement;
 import java.net.UnknownHostException;
 import java.text.MessageFormat;
 import java.util.Optional;
 
-@Slf4j
 public class DisableOnServerNotListening implements ExecutionCondition
 {
+	private static final Logger log = LoggerFactory.getLogger(DisableOnServerNotListening.class);
+
 	public DisableOnServerNotListening() { }
 
 	@Override public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context)

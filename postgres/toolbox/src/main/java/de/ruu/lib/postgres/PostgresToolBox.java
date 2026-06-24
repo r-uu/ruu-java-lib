@@ -10,10 +10,12 @@ import java.util.Map;
 
 import de.ruu.lib.util.config.mp.ConfigFileInitializer;
 import de.ruu.lib.util.config.mp.WritableFileConfigSource;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public abstract class PostgresToolBox
+{
+	private static final Logger log = LoggerFactory.getLogger(PostgresToolBox.class);
 {
 	public static void backup(
 			Path executable, String host, int port, String dbName, String username, String password, Path backupFile)

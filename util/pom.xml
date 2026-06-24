@@ -17,14 +17,12 @@
 
 	<dependencies>
 
-	<!-- lombok for main and test - only needed at compile time -->
-	<dependency>
-		<groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<scope>provided</scope>
-	</dependency>
 
 		<!-- other dependencies -->
+		<dependency>
+			<groupId>org.jspecify</groupId>
+			<artifactId>jspecify</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -95,14 +93,6 @@
 					</compilerArgs>
 					<annotationProcessorPaths>
 						<!-- Lombok must come first -->
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok-mapstruct-binding</artifactId>
-						</path>
 					</annotationProcessorPaths>
 				</configuration>
 				<executions>

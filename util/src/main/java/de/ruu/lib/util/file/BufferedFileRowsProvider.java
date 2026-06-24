@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public interface BufferedFileRowsProvider
 {

@@ -2,13 +2,15 @@ package de.ruu.lib.fx.comp;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-@Slf4j
 abstract class FXMLUtil
 {
+	private static final Logger log = LoggerFactory.getLogger(FXMLUtil.class);
+
 	static Parent loadFrom(final FXMLLoader loader)
 	{
 		// load from fxmlLoader

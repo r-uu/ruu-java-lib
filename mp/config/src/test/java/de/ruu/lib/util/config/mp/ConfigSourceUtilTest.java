@@ -1,7 +1,8 @@
 package de.ruu.lib.util.config.mp;
 
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.config.spi.ConfigSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,9 +29,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <li>Correct identification of the right config source type</li>
  * </ul>
  */
-@Slf4j
 class ConfigSourceUtilTest
 {
+	private static final Logger log = LoggerFactory.getLogger(ConfigSourceUtilTest.class);
+
 	@TempDir
 	Path tempDir;
 

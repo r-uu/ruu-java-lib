@@ -7,14 +7,16 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static de.ruu.lib.util.BooleanFunctions.not;
 import static java.util.Objects.isNull;
 
-@Slf4j
 public class DefaultNumberTextFieldPostConvertAction implements NumberTextFieldPostConvertAction
 {
+	private static final Logger log = LoggerFactory.getLogger(DefaultNumberTextFieldPostConvertAction.class);
+
 	private Border  errorBorder;
 	private Tooltip tooltip;
 

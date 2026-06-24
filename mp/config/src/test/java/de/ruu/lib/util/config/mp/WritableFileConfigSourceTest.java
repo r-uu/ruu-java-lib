@@ -15,7 +15,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Unit tests for {@link WritableFileConfigSource}.
@@ -31,9 +32,10 @@ import lombok.extern.slf4j.Slf4j;
  * <li>Default behaviour when config file doesn't exist</li>
  * </ul>
  */
-@Slf4j
 class WritableFileConfigSourceTest
 {
+	private static final Logger log = LoggerFactory.getLogger(WritableFileConfigSourceTest.class);
+
 	@TempDir
 	Path tempDir;
 

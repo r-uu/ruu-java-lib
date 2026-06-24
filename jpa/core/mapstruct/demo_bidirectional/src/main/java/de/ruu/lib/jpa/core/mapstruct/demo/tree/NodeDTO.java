@@ -6,25 +6,21 @@ import de.ruu.lib.jpa.core.Entity;
 import de.ruu.lib.jpa.core.mapstruct.AbstractMappedDTO;
 import de.ruu.lib.util.Strings;
 import jakarta.annotation.Nullable;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 public class NodeDTO extends AbstractMappedDTO<NodeEntity> implements Node<NodeDTO>
 {
+	private static final Logger log = LoggerFactory.getLogger(NodeDTO.class);
+
 	@NonNull  private String        name;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@Nullable private NodeDTO       parent;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@NonNull  private List<NodeDTO> children;
 
 	protected NodeDTO() { } // required by mapstruct

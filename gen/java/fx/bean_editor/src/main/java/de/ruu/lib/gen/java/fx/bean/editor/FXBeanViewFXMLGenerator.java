@@ -15,8 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,9 +28,9 @@ import static de.ruu.lib.archunit.Util.publicMethodsWithAnnotationAndSortedByNam
 import static de.ruu.lib.util.Constants.LS;
 import static de.ruu.lib.util.StringBuilders.sb;
 
-@Slf4j
 public class FXBeanViewFXMLGenerator
 {
+	private static final Logger log = LoggerFactory.getLogger(FXBeanViewFXMLGenerator.class);
 	@NonNull private final String packageName;    // package name for target
 	@NonNull private final String simpleFileName; // simple file name for target
 

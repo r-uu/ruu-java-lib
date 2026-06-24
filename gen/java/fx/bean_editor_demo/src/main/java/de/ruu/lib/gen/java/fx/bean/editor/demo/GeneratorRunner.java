@@ -8,8 +8,8 @@ import de.ruu.lib.gen.java.fx.bean.FXBeanGenerator;
 import de.ruu.lib.gen.java.fx.bean.FXProperty;
 import de.ruu.lib.gen.java.fx.bean.editor.FXBeanViewFXMLGenerator;
 import de.ruu.lib.gen.java.fx.comp.GeneratorFXCompBundle;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -19,9 +19,9 @@ import java.util.List;
  * Analyses a provided {@link JavaClass} that represents an existing java type (source). It
  * generates artifacts for a java fx editor control.
  */
-@Slf4j
 class GeneratorRunner
 {
+	private static final Logger log = LoggerFactory.getLogger(GeneratorRunner.class);
 	interface JavaModelDemo
 	{
 		@FXProperty boolean      aBoolean();
@@ -31,9 +31,16 @@ class GeneratorRunner
 		@FXProperty List<String> stringList();
 	}
 
-	@AllArgsConstructor
 	class JavaModelDemoDTO
 	{
+		JavaModelDemoDTO(boolean aBoolean, int anInteger, String aString, BigDecimal aBigDecimal, java.util.List<String> stringList)
+		{
+			this.aBoolean    = aBoolean;
+			this.anInteger   = anInteger;
+			this.aString     = aString;
+			this.aBigDecimal = aBigDecimal;
+			this.stringList  = stringList;
+		}
 		boolean      aBoolean;
 		int          anInteger;
 		String       aString;

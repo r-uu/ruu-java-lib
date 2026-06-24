@@ -31,12 +31,8 @@ import de.ruu.lib.gen.java.JavaTypeDeclared;
 import de.ruu.lib.gen.java.JavaTypePrimitive;
 import de.ruu.lib.util.StringBuilders;
 import de.ruu.lib.util.Strings;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
-@Getter
-@Accessors(fluent = true)
 public class ImportManager
 {
 	/**
@@ -76,6 +72,12 @@ public class ImportManager
 
 	/** stores fully qualified static names. */
 	private Set<String> fullyQualifiedStaticNames = new TreeSet<>();
+
+	public String                    targetCompilationUnitPackageName()      { return targetCompilationUnitPackageName; }
+	public String                    targetCompilationUnitSimpleName()        { return targetCompilationUnitSimpleName; }
+	public Map<TypeElement, String>  typeElementToTargetQualifiedTypeName()  { return typeElementToTargetQualifiedTypeName; }
+	public Set<String>               forceSimpleNamesForPackages()           { return forceSimpleNamesForPackages; }
+	public Set<String>               fullyQualifiedStaticNames()             { return fullyQualifiedStaticNames; }
 
 	public ImportManager(
 			String targetCompilationUnitPackageName,

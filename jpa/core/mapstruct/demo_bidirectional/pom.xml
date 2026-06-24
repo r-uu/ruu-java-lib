@@ -21,12 +21,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
@@ -59,33 +53,5 @@
 		</dependency>
 	</dependencies>
 
-	<!--    <build>-->
-	<!--        <plugins>-->
-	<!--            <plugin>-->
-	<!--                <groupId>org.apache.maven.plugins</groupId>-->
-	<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-	<!--                <configuration>-->
-	<!--                    <source>${java.version}</source>-->
-	<!--                    <target>${java.version}</target>-->
-	<!--                    <release>${java.version}</release>-->
-	<!--                    <compilerArgs>&#45;&#45;enable-preview</compilerArgs>-->
-	<!--                    <annotationProcessorPaths>-->
-	<!--                        <path>-->
-	<!--                            <groupId>org.projectlombok</groupId>-->
-	<!--                            <artifactId>lombok</artifactId>-->
-	<!--                        </path>-->
-	<!--                        <path>-->
-	<!--                            <groupId>org.projectlombok</groupId>-->
-	<!--                            <artifactId>lombok-mapstruct-binding</artifactId>-->
-	<!--                        </path>-->
-	<!--                        <path>-->
-	<!--                            <groupId>org.mapstruct</groupId>-->
-	<!--                            <artifactId>mapstruct-processor</artifactId>-->
-	<!--                        </path>-->
-	<!--                    </annotationProcessorPaths>-->
-	<!--                </configuration>-->
-	<!--            </plugin>-->
-	<!--        </plugins>-->
-	<!--    </build>-->
 
 </project>

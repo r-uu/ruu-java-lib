@@ -2,7 +2,6 @@ module de.ruu.lib.jpa.core.mapstruct.test
 {
 	exports de.ruu.lib.jpa.core.mapstruct.test;
 
-	requires static lombok;
 	requires static java.compiler;
 
 	requires org.slf4j;

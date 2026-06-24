@@ -6,7 +6,8 @@ import jakarta.ws.rs.client.ClientResponseContext;
 import jakarta.ws.rs.client.ClientResponseFilter;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.Provider;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -14,9 +15,10 @@ import static de.ruu.lib.util.BooleanFunctions.not;
 import static de.ruu.lib.util.StringBuilders.sb;
 
 @Provider
-@Slf4j
 public class ClientLoggingFilter implements ClientRequestFilter, ClientResponseFilter
 {
+	private static final Logger log = LoggerFactory.getLogger(ClientLoggingFilter.class);
+
 	@Override public void filter(ClientRequestContext requestContext) throws IOException
 	{
 		StringBuilder result = sb("\nrequest URL=" + requestContext.getUri().toURL().toString());

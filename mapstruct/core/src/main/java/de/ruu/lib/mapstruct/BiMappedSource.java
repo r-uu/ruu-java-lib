@@ -1,6 +1,6 @@
 package de.ruu.lib.mapstruct;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Interface for types that can be mapped to {@code T}. Instances of  {@code T} on the other hand can be mapped

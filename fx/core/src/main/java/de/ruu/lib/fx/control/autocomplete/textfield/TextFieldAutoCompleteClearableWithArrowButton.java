@@ -19,12 +19,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class TextFieldAutoCompleteClearableWithArrowButton<T> extends TextFieldAutoCompleteClearable<T>
 {
+	private static final Logger log = LoggerFactory.getLogger(TextFieldAutoCompleteClearableWithArrowButton.class);
+
 	private final Button button = new Button("▼");
 
 	public TextFieldAutoCompleteClearableWithArrowButton(List<T> items, @NonNull BiPredicate<T, String> suggestionFilter,

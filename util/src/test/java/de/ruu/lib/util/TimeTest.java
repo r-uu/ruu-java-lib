@@ -1,6 +1,7 @@
 package de.ruu.lib.util;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -9,9 +10,10 @@ import java.util.List;
 import static de.ruu.lib.util.Time.datesInPeriod;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 class TimeTest
 {
+	private static final Logger log = LoggerFactory.getLogger(TimeTest.class);
+
 	@Test void testSortableTimeStamp() { log.debug("sortable time stamp: {}", Time.sortableTimestamp()); }
 
 	@Test void test()

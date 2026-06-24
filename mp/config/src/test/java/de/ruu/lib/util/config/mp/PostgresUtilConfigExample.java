@@ -6,7 +6,8 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Example demonstrating how to create a config file with default values using WritableFileConfigSource.
@@ -20,9 +21,10 @@ import lombok.extern.slf4j.Slf4j;
  * <li>How to initialize default values only if they don't exist</li>
  * </ul>
  */
-@Slf4j
 class PostgresUtilConfigExample
 {
+	private static final Logger log = LoggerFactory.getLogger(PostgresUtilConfigExample.class);
+
 	/**
 	 * Example: Creates a postgresutil.config file in the project root with default values.
 	 *

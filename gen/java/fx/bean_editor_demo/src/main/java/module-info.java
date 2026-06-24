@@ -5,7 +5,6 @@ module de.ruu.lib.gen.java.fx.bean.editor.demo
 
 	requires com.tngtech.archunit;
 
-	requires static lombok;
 	requires org.apache.logging.log4j;
 	requires org.slf4j;
 

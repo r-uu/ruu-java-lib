@@ -2,27 +2,22 @@ package de.ruu.lib.jpa.core.mapstruct.demo.tree;
 
 import de.ruu.lib.util.Strings;
 import jakarta.annotation.Nullable;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-@Slf4j
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 public class NodeSimple extends AbstractMappedNode<NodeDTO, NodeEntity> implements Node<NodeSimple>
 {
+	private static final Logger log = LoggerFactory.getLogger(NodeSimple.class);
+
 	@NonNull  private String           name;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@Nullable private NodeSimple       parent;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@NonNull  private List<NodeSimple> children;
 
 	protected NodeSimple() { } // required by mapstruct
@@ -97,4 +92,19 @@ public class NodeSimple extends AbstractMappedNode<NodeDTO, NodeEntity> implemen
 
 	@Override public @NonNull NodeDTO    toTarget() { return MapperNodeSimpleNodeDTO   .INSTANCE.map(this); }
 	@Override public @NonNull NodeEntity toSource() { return MapperNodeSimpleNodeEntity.INSTANCE.map(this); }
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof NodeSimple other)) return false;
+		if (!super.equals(o)) return false;
+		return Objects.equals(name, other.name);
+	}
+
+	@Override public int hashCode() { return Objects.hash(super.hashCode(), name); }
+
+	@Override public String toString()
+	{
+		return super.toString() + ", NodeSimple(name=" + name + ")";
+	}
 }

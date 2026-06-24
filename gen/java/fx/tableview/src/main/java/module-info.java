@@ -14,5 +14,4 @@ module de.ruu.lib.gen.java.fx.tableview
 	requires de.ruu.lib.util;
 	requires de.ruu.lib.archunit;
 
-	requires static lombok;
 }

@@ -6,13 +6,15 @@ import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorModifiers;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import javax.lang.model.element.ElementKind;
 
 import static de.ruu.lib.util.BooleanFunctions.not;
 import static de.ruu.lib.util.Constants.LS;
 import static javax.lang.model.element.ElementKind.CLASS;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface GeneratorClass extends GeneratorType
 {

@@ -1,12 +1,12 @@
 package de.ruu.lib.ws.rs;
 
 import jakarta.ws.rs.core.Response.Status;
-import lombok.Getter;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+
+import java.util.Objects;
 
 import static jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
-@Getter
 public class ErrorResponseWithException extends ErrorResponse
 {
 	private final @NonNull SerializableException serializableException;
@@ -24,13 +24,15 @@ public class ErrorResponseWithException extends ErrorResponse
 
 	public ErrorResponseWithException
 	(
-			@NonNull String message,
-			@NonNull String cause,
-			@NonNull Status httpStatus,
+			@NonNull String              message,
+			@NonNull String              cause,
+			@NonNull Status              httpStatus,
 			@NonNull SerializableException serializableException
 	)
 	{
 		super(message, cause, httpStatus);
-		this.serializableException = serializableException;
+		this.serializableException = Objects.requireNonNull(serializableException, "serializableException");
 	}
+
+	public @NonNull SerializableException getSerializableException() { return serializableException; }
 }

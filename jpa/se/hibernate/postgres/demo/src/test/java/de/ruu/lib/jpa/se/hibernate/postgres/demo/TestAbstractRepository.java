@@ -6,8 +6,9 @@ import de.ruu.lib.junit.DisabledOnServerNotListening;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TransactionRequiredException;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +19,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisabledOnServerNotListening(propertyNameHost = "database.host", propertyNamePort = "database.port")
-@Slf4j class TestAbstractRepository
+class TestAbstractRepository
 {
+	private static final Logger log = LoggerFactory.getLogger(TestAbstractRepository.class);
+
 	/** bootstrap CDI in Java SE with {@code TransactionalInterceptorCDI} */
 	@BeforeAll static void beforeAll()
 	{

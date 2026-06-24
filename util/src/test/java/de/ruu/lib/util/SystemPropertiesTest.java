@@ -1,13 +1,15 @@
 package de.ruu.lib.util;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 
-@Slf4j
 class SystemPropertiesTest
 {
+	private static final Logger log = LoggerFactory.getLogger(SystemPropertiesTest.class);
+
 	@Test void test()
 	{
 		log.debug("user name: {}", SystemProperties.userName());

@@ -8,6 +8,5 @@ module de.ruu.lib.jpa.se.hibernate
 	requires jakarta.persistence;
 	requires org.hibernate.orm.core;
 
-	requires static lombok;
 	requires org.slf4j;
 }

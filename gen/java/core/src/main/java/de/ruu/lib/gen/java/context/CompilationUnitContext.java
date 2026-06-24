@@ -9,9 +9,7 @@ import java.util.Set;
 
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.naming.ImportManager;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 public interface CompilationUnitContext
 {
@@ -31,19 +29,20 @@ public interface CompilationUnitContext
 	 * @return unmodifiable list of all registered generators
 	 */
 	List<Generator> registeredGenerators();
-	
+
 	/** @throws UnsupportedOperationException if {@code generator} is attempted to be registered more than once */
 	List<Generator> register(Generator generator) throws UnsupportedOperationException;
 
 	abstract class CompilationUnitContextAbstract implements CompilationUnitContext
 	{
-		@Getter @Accessors(fluent = true)
 		private ImportManager importManager;
 
 		/**
 		 * Contains each generator that has been registered since the last call to {@link #reset(String, String)}.
 		 */
 		private final List<Generator> registeredGenerators = new ArrayList<>();
+
+		@Override public ImportManager importManager() { return importManager; }
 
 		@Override public List<Generator> register(Generator generator) throws UnsupportedOperationException
 		{
@@ -72,7 +71,7 @@ public interface CompilationUnitContext
 			{
 				if (registeredGenerator == generator) return true;
 			}
-			
+
 			return false;
 		}
 	}

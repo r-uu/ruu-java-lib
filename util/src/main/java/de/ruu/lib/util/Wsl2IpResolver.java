@@ -1,6 +1,7 @@
 package de.ruu.lib.util;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -11,8 +12,9 @@ import java.util.Properties;
 /**
  * Utility class for automatic WSL2 IP detection and property resolution.
  *
- * <p>Automatically resolves ${WSL2_IP} placeholders in property values with the actual WSL2 IP address.
- * This allows configuration files to work on different machines without manual adjustment.
+ * <p>Automatically resolves {@code ${WSL2_IP}} placeholders in property values with the actual
+ * WSL2 IP address. This allows configuration files to work on different machines without manual
+ * adjustment.
  *
  * <p>Usage:
  * <pre>
@@ -20,9 +22,10 @@ import java.util.Properties;
  * String dbHost = props.getProperty("db.host"); // Returns actual IP like "172.25.188.232"
  * </pre>
  */
-@Slf4j
 public class Wsl2IpResolver
 {
+	private static final Logger log = LoggerFactory.getLogger(Wsl2IpResolver.class);
+
 	/** Private constructor - utility class should not be instantiated */
 	private Wsl2IpResolver()
 	{

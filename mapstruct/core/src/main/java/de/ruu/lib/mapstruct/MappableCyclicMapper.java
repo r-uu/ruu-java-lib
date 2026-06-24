@@ -1,7 +1,9 @@
 package de.ruu.lib.mapstruct;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.mapstruct.*;
+
+import java.util.Objects;
 
 public interface MappableCyclicMapper<IN extends MappableCyclic<OUT, IN>, OUT extends MappableCyclic<IN, OUT>>
 {
@@ -17,6 +19,9 @@ public interface MappableCyclicMapper<IN extends MappableCyclic<OUT, IN>, OUT ex
 			@NonNull @MappingTarget OUT                    out,
 			@NonNull @Context       ReferenceCycleTracking context)
 	{
+		Objects.requireNonNull(in,      "in");
+		Objects.requireNonNull(out,     "out");
+		Objects.requireNonNull(context, "context");
 		out.beforeMapping(in, context);
 	}
 
@@ -30,6 +35,9 @@ public interface MappableCyclicMapper<IN extends MappableCyclic<OUT, IN>, OUT ex
 			@NonNull @MappingTarget OUT                    out,
 			@NonNull @Context       ReferenceCycleTracking context)
 	{
+		Objects.requireNonNull(in,      "in");
+		Objects.requireNonNull(out,     "out");
+		Objects.requireNonNull(context, "context");
 		out.afterMapping(in, context);
 	}
 
@@ -43,6 +51,8 @@ public interface MappableCyclicMapper<IN extends MappableCyclic<OUT, IN>, OUT ex
 	@ObjectFactory
 	default @NonNull OUT lookupOrCreate(@NonNull IN in, @NonNull @Context ReferenceCycleTracking context)
 	{
+		Objects.requireNonNull(in,      "in");
+		Objects.requireNonNull(context, "context");
 		OUT out = context.get(in, outType());
 		if (out == null)
 		{

@@ -1,7 +1,8 @@
 package de.ruu.lib.util.config.mp;
 
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.microprofile.config.ConfigProvider;
 
 import java.util.*;
@@ -20,9 +21,10 @@ import java.util.*;
  * }
  * </pre>
  */
-@Slf4j
 public class ConfigHealthCheck
 {
+	private static final Logger log = LoggerFactory.getLogger(ConfigHealthCheck.class);
+
 	/**
 	 * Required database properties for the pragma database.
 	 */

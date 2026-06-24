@@ -1,13 +1,15 @@
 package de.ruu.lib.fx.comp;
 
 import de.ruu.lib.util.AbstractEvent;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Event that can be thrown to indicate that a {@link FXCApp} has started successfully. */
-@Slf4j
 public abstract class FXComponentReadyEventAbstract<V extends FXCView<S>, S extends FXCService>
 		extends AbstractEvent<V, S>
 {
+	private static final Logger log = LoggerFactory.getLogger(FXComponentReadyEventAbstract.class);
+
 	public FXComponentReadyEventAbstract(final V view, final S service) {
 		super(view, service);
 	}

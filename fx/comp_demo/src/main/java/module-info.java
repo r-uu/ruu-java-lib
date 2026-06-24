@@ -17,8 +17,6 @@ module de.ruu.lib.fx.comp.demo.hierarchy
 	requires javafx.graphics;
 	requires javafx.fxml;
 
-	requires static lombok;
-	
 	requires org.apache.logging.log4j;
 	requires org.slf4j;
 

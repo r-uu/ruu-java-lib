@@ -1,7 +1,8 @@
 package de.ruu.lib.util.config.mp;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -24,9 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <li>Ensuring required properties exist</li>
  * </ul>
  */
-@Slf4j
 class ConfigFileInitializerTest
 {
+	private static final Logger log = LoggerFactory.getLogger(ConfigFileInitializerTest.class);
+
 	@TempDir
 	Path tempDir;
 

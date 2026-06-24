@@ -6,15 +6,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.function.Predicate;
 
 import static java.util.Objects.isNull;
 
-@Slf4j
 public class IntegerTextFieldConfiguratorDemo extends Application
 {
+	private static final Logger log = LoggerFactory.getLogger(IntegerTextFieldConfiguratorDemo.class);
+
 	@Override	public void start(Stage stage)
 	{
 		NumberTextFieldPostConvertAction postConvertAction =

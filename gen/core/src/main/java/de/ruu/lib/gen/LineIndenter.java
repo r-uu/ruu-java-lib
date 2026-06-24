@@ -1,10 +1,13 @@
 package de.ruu.lib.gen;
 
 import de.ruu.lib.util.Strings;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LineIndenter
 {
+	private static final Logger log = LoggerFactory.getLogger(LineIndenter.class);
 	/** String used for indentation of lines in {@link #indent(String)} and {@link #indent(StringBuffer)}. */
 	private String indentation;
 

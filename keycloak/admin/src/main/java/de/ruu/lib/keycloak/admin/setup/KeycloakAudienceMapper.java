@@ -1,6 +1,7 @@
 package de.ruu.lib.keycloak.admin.setup;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.ClientRepresentation;
@@ -19,9 +20,10 @@ import java.util.Map;
  * @author r-uu
  * @since 2026-01-21
  */
-@Slf4j
 public class KeycloakAudienceMapper
 {
+	private static final Logger log = LoggerFactory.getLogger(KeycloakAudienceMapper.class);
+
 	private static final String KEYCLOAK_URL = System.getProperty("keycloak.url", "http://localhost:8080");
 	private static final String ADMIN_USER = System.getProperty("keycloak.admin.user", "admin");
 	private static final String ADMIN_PASSWORD = System.getProperty("keycloak.admin.password",

@@ -4,8 +4,9 @@ import jakarta.enterprise.inject.spi.CDI;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
@@ -31,12 +32,13 @@ import static java.util.Objects.isNull;
  *
  * @author r-uu
  */
-@Slf4j
 public abstract class DefaultFXCView<
 		V extends FXCView<S>,
 		S extends FXCService,
 		C extends FXCController<V, S>> implements FXCView<S>
 {
+	private static final Logger log = LoggerFactory.getLogger(DefaultFXCView.class);
+
 	private C controller;
 
 	private Parent     localRoot;

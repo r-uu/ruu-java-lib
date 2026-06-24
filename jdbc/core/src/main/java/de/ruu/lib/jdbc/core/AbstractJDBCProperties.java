@@ -1,14 +1,7 @@
 package de.ruu.lib.jdbc.core;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 import java.util.Properties;
 
-@AllArgsConstructor
-@Getter
-@Accessors(fluent = true)
 public abstract class AbstractJDBCProperties
 {
 	public static final String PROPERTY_KEY_JAKARTA_PERSISTENCE_JDBC_DRIVER   = "jakarta.persistence.jdbc.driver";
@@ -20,6 +13,19 @@ public abstract class AbstractJDBCProperties
 	private String url;
 	private String user;
 	private String password;
+
+	protected AbstractJDBCProperties(String driver, String url, String user, String password)
+	{
+		this.driver   = driver;
+		this.url      = url;
+		this.user     = user;
+		this.password = password;
+	}
+
+	public String driver()   { return driver;   }
+	public String url()      { return url;      }
+	public String user()     { return user;     }
+	public String password() { return password; }
 
 	public Properties properties()
 	{

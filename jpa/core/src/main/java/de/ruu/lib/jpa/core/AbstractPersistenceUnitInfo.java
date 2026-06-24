@@ -5,15 +5,13 @@ import jakarta.persistence.SharedCacheMode;
 import jakarta.persistence.ValidationMode;
 import jakarta.persistence.spi.ClassTransformer;
 import jakarta.persistence.spi.PersistenceUnitInfo;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 import javax.sql.DataSource;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
@@ -23,8 +21,6 @@ import static jakarta.persistence.ValidationMode.AUTO;
 import static java.lang.Thread.currentThread;
 
 /** {@link #transactionType} is #RESOURCE_LOCAL by default */
-@RequiredArgsConstructor
-@Data
 @SuppressWarnings({"removal"})
 public abstract class AbstractPersistenceUnitInfo implements PersistenceUnitInfo
 {
@@ -75,13 +71,51 @@ public abstract class AbstractPersistenceUnitInfo implements PersistenceUnitInfo
 	@NonNull private PersistenceUnitTransactionType transactionType   = RESOURCE_LOCAL;
 
 	private URL             persistenceUnitRootUrl;
-	@Accessors(fluent = true)
 	private Boolean         excludeUnlistedClasses      = false;
 	private SharedCacheMode sharedCacheMode             = UNSPECIFIED;
 	private ValidationMode  validationMode              = AUTO;
 	private String          persistenceXMLSchemaVersion = JPA_VERSION;
 	private ClassLoader     newTempClassLoader;
 	private ClassLoader     classLoader                 = currentThread().getContextClassLoader();
+
+	protected AbstractPersistenceUnitInfo(
+			String     persistenceUnitName,
+			Class<?>   persistenceProvider,
+			DataSource dataSource)
+	{
+		this.persistenceUnitName = persistenceUnitName;
+		this.persistenceProvider = persistenceProvider;
+		this.dataSource          = dataSource;
+	}
+
+	// --- getters ---
+	public String                   getPersistenceUnitName()      { return persistenceUnitName; }
+	public List<String>             getMappingFileNames()         { return mappingFileNames; }
+	public List<URL>                getJarFileUrls()              { return jarFileUrls; }
+	public URL                      getPersistenceUnitRootUrl()   { return persistenceUnitRootUrl; }
+	public List<String>             getManagedClassNames()        { return managedClassNames; }
+	public SharedCacheMode          getSharedCacheMode()          { return sharedCacheMode; }
+	public ValidationMode           getValidationMode()           { return validationMode; }
+	public String                   getPersistenceXMLSchemaVersion() { return persistenceXMLSchemaVersion; }
+	public ClassLoader              getClassLoader()              { return classLoader; }
+	public ClassLoader              getNewTempClassLoader()       { return newTempClassLoader; }
+	public List<ClassTransformer>   classTransformers()           { return classTransformers; }
+	public PersistenceUnitTransactionType transactionType()       { return transactionType; }
+
+	// --- setters ---
+	public AbstractPersistenceUnitInfo mappingFileNames  (@NonNull List<String>                   v) { this.mappingFileNames           = v; return this; }
+	public AbstractPersistenceUnitInfo jarFileUrls       (@NonNull List<URL>                      v) { this.jarFileUrls                = v; return this; }
+	public AbstractPersistenceUnitInfo managedClassNames (@NonNull List<String>                   v) { this.managedClassNames          = v; return this; }
+	public AbstractPersistenceUnitInfo properties        (@NonNull Properties                     v) { this.properties                 = v; return this; }
+	public AbstractPersistenceUnitInfo classTransformers (@NonNull List<ClassTransformer>         v) { this.classTransformers          = v; return this; }
+	public AbstractPersistenceUnitInfo transactionType   (@NonNull PersistenceUnitTransactionType v) { this.transactionType            = v; return this; }
+	public AbstractPersistenceUnitInfo persistenceUnitRootUrl     (URL             v) { this.persistenceUnitRootUrl     = v; return this; }
+	public AbstractPersistenceUnitInfo excludeUnlistedClasses     (Boolean         v) { this.excludeUnlistedClasses     = v; return this; }
+	public AbstractPersistenceUnitInfo sharedCacheMode            (SharedCacheMode v) { this.sharedCacheMode            = v; return this; }
+	public AbstractPersistenceUnitInfo validationMode             (ValidationMode  v) { this.validationMode             = v; return this; }
+	public AbstractPersistenceUnitInfo persistenceXMLSchemaVersion(String          v) { this.persistenceXMLSchemaVersion = v; return this; }
+	public AbstractPersistenceUnitInfo newTempClassLoader         (ClassLoader     v) { this.newTempClassLoader         = v; return this; }
+	public AbstractPersistenceUnitInfo classLoader                (ClassLoader     v) { this.classLoader                = v; return this; }
 
 	@Override public String getPersistenceProviderClassName() { return persistenceProvider.getName(); }
 
@@ -148,5 +182,19 @@ public abstract class AbstractPersistenceUnitInfo implements PersistenceUnitInfo
 	public void addManagedClass(Class<?> clazz)
 	{
 		managedClassNames.add(clazz.getName());
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof AbstractPersistenceUnitInfo other)) return false;
+		return Objects.equals(persistenceUnitName, other.persistenceUnitName);
+	}
+
+	@Override public int hashCode() { return Objects.hash(persistenceUnitName); }
+
+	@Override public String toString()
+	{
+		return getClass().getSimpleName() + "(persistenceUnitName=" + persistenceUnitName + ")";
 	}
 }

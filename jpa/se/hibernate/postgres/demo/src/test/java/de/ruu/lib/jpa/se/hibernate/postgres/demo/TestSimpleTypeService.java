@@ -6,8 +6,9 @@ import de.ruu.lib.util.BooleanFunctions;
 import jakarta.enterprise.inject.Vetoed;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +19,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Vetoed
 @DisabledOnServerNotListening(propertyNameHost = "database.host", propertyNamePort = "database.port")
-@Slf4j
 class TestSimpleTypeService
 {
+	private static final Logger log = LoggerFactory.getLogger(TestSimpleTypeService.class);
+
 	private static SeContainer seContainer; // initialisation and closure handled in before/after all methods
 
 	@SuppressWarnings("unchecked")

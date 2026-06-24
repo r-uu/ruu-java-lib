@@ -30,7 +30,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -40,6 +40,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import static de.ruu.lib.archunit.Util.firstActualTypeArgument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface FXMapper
 {

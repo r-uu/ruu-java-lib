@@ -1,8 +1,9 @@
 package de.ruu.lib.jpa.core.mapstruct;
 
 import de.ruu.lib.mapstruct.ReferenceCycleTracking;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.mapstruct.BeforeMapping;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -11,18 +12,17 @@ import org.mapstruct.factory.Mappers;
 
 import static java.util.Objects.isNull;
 
-@Slf4j
 @org.mapstruct.Mapper
 abstract class Mapper
 {
+	private static final Logger log = LoggerFactory.getLogger(Mapper.class);
+
 	static Mapper INSTANCE = Mappers.getMapper(Mapper.class);
 
 	private static ReferenceCycleTracking CONTEXT  = new ReferenceCycleTracking();
 
 	// name is set in the @ObjectFactory methods, not by MapStruct field mapping
-	@Mapping(target = "name", ignore = true)
 	abstract SimpleMappedEntity map(SimpleMappedDTO    input);
-	@Mapping(target = "name", ignore = true)
 	abstract SimpleMappedDTO    map(SimpleMappedEntity input);
 
 	/** annotating parameter {@code target} with {@link MappingTarget} is essential for this method being called */

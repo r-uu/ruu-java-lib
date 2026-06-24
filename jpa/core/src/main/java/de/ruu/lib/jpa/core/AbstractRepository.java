@@ -8,7 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

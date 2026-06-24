@@ -4,7 +4,7 @@ import de.ruu.lib.jpa.core.mapstruct.AbstractMappedDTO;
 import de.ruu.lib.jpa.core.mapstruct.AbstractMappedEntity;
 import de.ruu.lib.mapstruct.BiMappedSource;
 import de.ruu.lib.mapstruct.BiMappedTarget;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public abstract class AbstractMappedNode
 		<D extends AbstractMappedDTO<?>, E extends AbstractMappedEntity<?>>

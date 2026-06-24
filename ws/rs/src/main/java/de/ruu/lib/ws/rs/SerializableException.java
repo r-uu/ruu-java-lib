@@ -1,11 +1,8 @@
 package de.ruu.lib.ws.rs;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
 
-@Getter
 public class SerializableException
 {
 	private final String                  type;
@@ -20,4 +17,9 @@ public class SerializableException
 		this.stackTrace = Arrays.asList(t.getStackTrace());
 		this.cause      = (t.getCause() != null ? new SerializableException(t.getCause()) : null);
 	}
+
+	public String                  getType()       { return type; }
+	public String                  getMessage()    { return message; }
+	public List<StackTraceElement> getStackTrace() { return stackTrace; }
+	public SerializableException   getCause()      { return cause; }
 }

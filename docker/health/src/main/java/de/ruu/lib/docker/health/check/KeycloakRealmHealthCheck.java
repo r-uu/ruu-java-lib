@@ -1,7 +1,8 @@
 package de.ruu.lib.docker.health.check;
 
 import de.ruu.lib.docker.health.HealthCheckResult;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -22,9 +23,10 @@ import java.net.URL;
  * <p><strong>Note:</strong> This class only performs checks. Auto-fix is handled by
  * {@code AutoFixRunner} with {@code KeycloakRealmSetupStrategy}.</p>
  */
-@Slf4j
 public class KeycloakRealmHealthCheck implements HealthCheck
 {
+	private static final Logger log = LoggerFactory.getLogger(KeycloakRealmHealthCheck.class);
+
 	private final String host;
 	private final int port;
 	private final String realmName;

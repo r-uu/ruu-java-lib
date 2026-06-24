@@ -1,25 +1,24 @@
 package de.ruu.lib.jpa.core.mapstruct;
 
-import de.ruu.lib.util.Strings;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
+
+import java.util.Objects;
 
 import static de.ruu.lib.util.Strings.isEmptyOrBlank;
-import static de.ruu.lib.util.Strings.isNotEmptyOrBlank;
-import static lombok.AccessLevel.PACKAGE;
 
-@RequiredArgsConstructor(access = PACKAGE)
-//@EqualsAndHashCode(callSuper = true)
-@Getter
-@Setter
-@Accessors(fluent = true)
 class SimpleMappedDTO extends AbstractMappedDTO<SimpleMappedEntity>
 {
 	@NonNull private String name;
+
+	SimpleMappedDTO(@NonNull String name)
+	{
+		this.name = Objects.requireNonNull(name, "name");
+	}
+
+	public String name() { return name; }
+
+	public void name(@NonNull String v) { this.name = Objects.requireNonNull(v, "name"); }
+
 	@Override public @NonNull SimpleMappedEntity toSource()
 	{
 		return Mapper.INSTANCE.map(this);

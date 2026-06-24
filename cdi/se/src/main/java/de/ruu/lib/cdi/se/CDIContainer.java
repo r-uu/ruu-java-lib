@@ -5,15 +5,17 @@ import jakarta.enterprise.inject.se.SeContainerInitializer;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.Extension;
 import jakarta.interceptor.Interceptor;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
-@Slf4j
 public abstract class CDIContainer
 {
+	private static final Logger log = LoggerFactory.getLogger(CDIContainer.class);
+
 	private CDIContainer()
 	{
 		throw new IllegalStateException("utility class with static methods only must not be instantiated");
@@ -22,8 +24,9 @@ public abstract class CDIContainer
 	public static void bootstrap() { bootstrap(ClassLoader.getSystemClassLoader()); }
 
 	/** @param classLoader used for loading {@code META-INF/beans.xml} */
-	public static void bootstrap(@NonNull ClassLoader classLoader)
+	public static void bootstrap(ClassLoader classLoader)
 	{
+		Objects.requireNonNull(classLoader, "classLoader");
 		bootstrap(classLoader, List.of());
 	}
 
@@ -31,18 +34,21 @@ public abstract class CDIContainer
 	 * @param classLoader used for loading {@code META-INF/beans.xml}}
 	 * @param interceptorClasses list of {@link Interceptor} classes to enable
 	 */
-	public static void bootstrap(
-			@NonNull ClassLoader classLoader,
-			@NonNull List<Class<?>> interceptorClasses)
+	public static void bootstrap(ClassLoader classLoader, List<Class<?>> interceptorClasses)
 	{
+		Objects.requireNonNull(classLoader,       "classLoader");
+		Objects.requireNonNull(interceptorClasses, "interceptorClasses");
 		bootstrap(classLoader, interceptorClasses, List.of());
 	}
 
 	public static void bootstrap(
-			@NonNull ClassLoader                      classLoader,
-			@NonNull List<Class<?>>                   interceptorClasses,
-			@NonNull List<Class<? extends Extension>> extensionClasses)
+			ClassLoader                      classLoader,
+			List<Class<?>>                   interceptorClasses,
+			List<Class<? extends Extension>> extensionClasses)
 	{
+		Objects.requireNonNull(classLoader,       "classLoader");
+		Objects.requireNonNull(interceptorClasses, "interceptorClasses");
+		Objects.requireNonNull(extensionClasses,   "extensionClasses");
 		bootstrap(classLoader, interceptorClasses, extensionClasses, List.of());
 	}
 
@@ -52,11 +58,16 @@ public abstract class CDIContainer
 	 * @param extensionClasses list of {@link Extension} classes to enable
 	 */
 	public static void bootstrap(
-			@NonNull ClassLoader                      classLoader,
-			@NonNull List<Class<?>>                   interceptorClasses,
-			@NonNull List<Class<? extends Extension>> extensionClasses,
-			@NonNull List<Class<?>>                   beanClasses)
+			ClassLoader                      classLoader,
+			List<Class<?>>                   interceptorClasses,
+			List<Class<? extends Extension>> extensionClasses,
+			List<Class<?>>                   beanClasses)
 	{
+		Objects.requireNonNull(classLoader,       "classLoader");
+		Objects.requireNonNull(interceptorClasses, "interceptorClasses");
+		Objects.requireNonNull(extensionClasses,   "extensionClasses");
+		Objects.requireNonNull(beanClasses,        "beanClasses");
+
 		try
 		{
 			CDI.current();

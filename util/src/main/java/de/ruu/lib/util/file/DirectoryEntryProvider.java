@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Processes all files in a directory. Processing is configured by processors that can be provided by {@link
@@ -23,10 +21,10 @@ public interface DirectoryEntryProvider
 	Stream<Path> provide(@NonNull Path directory);
 	Stream<Path> provide(@NonNull Path directory, @NonNull Predicate<Path> predicate);
 
-	@Getter @Setter @Accessors(fluent = true)
-	@Slf4j
 	class DirectoryEntryProviderSimple implements DirectoryEntryProvider
 	{
+		static final Logger log = LoggerFactory.getLogger(DirectoryEntryProviderSimple.class);
+
 		/** Public constructor. */
 		public DirectoryEntryProviderSimple() { }
 
@@ -58,10 +56,10 @@ public interface DirectoryEntryProvider
 			{
 				throw new RuntimeException("failure listing files in " + directory, e);
 			}
-			
+
 			return result.stream();
 		}
 	}
-	
+
 	static DirectoryEntryProvider create() { return new DirectoryEntryProviderSimple(); }
 }

@@ -8,5 +8,4 @@ module de.ruu.lib.archunit
 	requires com.tngtech.archunit;
 	requires org.slf4j;
 
-	requires static lombok;
 }

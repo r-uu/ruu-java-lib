@@ -1,19 +1,24 @@
 package de.ruu.lib.jdbc.postgres;
 
 import de.ruu.lib.jdbc.core.JDBCURL;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.postgresql.ds.common.BaseDataSource;
 
 import javax.sql.DataSource;
+import java.util.Objects;
 
-@RequiredArgsConstructor
 public class DataSourceFactory
 {
-	@NonNull private final JDBCURL url;
-	@NonNull private final String  user;
-	@NonNull private final String  password;
+	private final JDBCURL url;
+	private final String  user;
+	private final String  password;
+
+	public DataSourceFactory(JDBCURL url, String user, String password)
+	{
+		this.url      = Objects.requireNonNull(url,      "url");
+		this.user     = Objects.requireNonNull(user,     "user");
+		this.password = Objects.requireNonNull(password, "password");
+	}
 
 	public DataSource create()
 	{

@@ -6,7 +6,8 @@ import jakarta.ws.rs.container.ContainerResponseContext;
 import jakarta.ws.rs.container.ContainerResponseFilter;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.Provider;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -18,9 +19,10 @@ import static java.util.Objects.isNull;
 
 // comment / uncomment @Provider ro deactivate / activate logging filter
 @Provider
-@Slf4j
 public class ContainerLoggingFilter implements ContainerRequestFilter, ContainerResponseFilter
 {
+	private static final Logger log = LoggerFactory.getLogger(ContainerLoggingFilter.class);
+
 	@Override public void filter(ContainerRequestContext requestContext) throws IOException
 	{
 		StringBuilder result =

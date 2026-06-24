@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import jakarta.annotation.Nullable;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public interface Collections
 {

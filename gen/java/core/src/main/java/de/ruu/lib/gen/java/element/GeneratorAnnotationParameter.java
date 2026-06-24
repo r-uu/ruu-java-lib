@@ -5,20 +5,16 @@ import static de.ruu.lib.util.StringBuilders.sb;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 public interface GeneratorAnnotationParameter extends Generator
 {
 	GeneratorAnnotationParameter name( @NonNull String name);
 	GeneratorAnnotationParameter value(@NonNull String value);
-	
+
 	StringBuilder name();
 	StringBuilder value();
 
-	@Getter
-	@Accessors(fluent = true)
 	abstract class GeneratorAnnotationParameterAbstract
 			extends GeneratorAbstract implements GeneratorAnnotationParameter
 	{
@@ -32,6 +28,9 @@ public interface GeneratorAnnotationParameter extends Generator
 			name(name);
 			value(value);
 		}
+
+		@Override public StringBuilder name()  { return name; }
+		@Override public StringBuilder value() { return value; }
 
 		@Override public GeneratorAnnotationParameter name(@NonNull String name)
 		{

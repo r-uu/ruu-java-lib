@@ -3,7 +3,8 @@ package de.ruu.lib.postgres.toolbox.ui;
 import de.ruu.lib.fx.comp.FXCAppRunner;
 import de.ruu.lib.postgres.PostgresToolBox;
 import de.ruu.lib.postgres.toolbox.ui.PostgresBackupUIService.PostgresBackupUIReadyEvent;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Java FX Component Application Runner {@link PostgresUtilUIAppRunner}
@@ -14,9 +15,10 @@ import lombok.extern.slf4j.Slf4j;
  * application to configure JPMS module read access for Weld CDI. Application-specific CDI events requiring module
  * access should be registered after configureModuleAccessForCDI() and before {@code FXCAppRunner.run()}.
  */
-@Slf4j
 class PostgresBackupUIAppRunner extends FXCAppRunner
 {
+	private static final Logger log = LoggerFactory.getLogger(PostgresBackupUIAppRunner.class);
+
 	public static void main(String[] args)
 	{
 		log.debug("starting {}", PostgresBackupUIAppRunner.class.getName());

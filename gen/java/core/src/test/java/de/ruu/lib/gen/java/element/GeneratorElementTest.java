@@ -12,10 +12,13 @@ import org.junit.jupiter.api.Test;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.element.GeneratorElement.GeneratorElementAbstract;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class GeneratorElementTest
 {
+	private static final Logger log = LoggerFactory.getLogger(GeneratorElementTest.class);
 	private class GeneratorElementSimple extends GeneratorElementAbstract
 	{
 		public GeneratorElementSimple(

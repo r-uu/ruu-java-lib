@@ -16,12 +16,6 @@
 	<description>Docker environment health check utilities</description>
 
 	<dependencies>
-		<!-- Lombok for logging -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
 		<!-- SLF4J API for logging -->
 		<dependency>

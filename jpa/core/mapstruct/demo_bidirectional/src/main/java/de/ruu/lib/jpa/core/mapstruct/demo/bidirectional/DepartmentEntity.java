@@ -2,43 +2,31 @@ package de.ruu.lib.jpa.core.mapstruct.demo.bidirectional;
 
 import de.ruu.lib.jpa.core.mapstruct.AbstractMappedEntity;
 import de.ruu.lib.util.Strings;
-import lombok.*;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import static java.util.Objects.isNull;
-import static lombok.AccessLevel.NONE;
-import static lombok.AccessLevel.PROTECTED;
 
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-@Slf4j
-@Getter                   // generate getter methods for all fields using lombok unless configured otherwise ({@code
-                          // @Getter(AccessLevel.NONE}))
-@Accessors(fluent = true) // generate fluent accessors with lombok and java-bean-style-accessors in non-abstract classes
-                          // with ide, fluent accessors will (usually / by default) be ignored by mapstruct
-@NoArgsConstructor(access = PROTECTED, force = true) // generate no args constructor for jsonb, jaxb, jpa, mapstruct, ...
 public class DepartmentEntity extends AbstractMappedEntity<DepartmentDTO>
 {
+	private static final Logger log = LoggerFactory.getLogger(DepartmentEntity.class);
+
 	/** mutable non-null */
-	// no lombok-generation of setter because of additional validation in manually created method
-	@NonNull
-	@Setter(NONE)
-	private String name;
+	@NonNull private String name;
 
 	/** mutable */
-	@Setter
 	private String description;
 
 	/** no direct access to nullable modifiable set */
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	@Getter(AccessLevel.NONE)
 	private Set<EmployeeEntity> employees;
+
+	protected DepartmentEntity() { }
 
 	/* do not use lombok to make sure that fluent setter with its validation is called */
 	public DepartmentEntity(@NonNull String name)
@@ -46,6 +34,11 @@ public class DepartmentEntity extends AbstractMappedEntity<DepartmentDTO>
 		this();     // just in case something important happens in the default constructor
 		name(name); // use fluent setter with its validation
 	}
+
+	public String name()        { return name; }
+	public String description() { return description; }
+
+	public void description(String v) { this.description = v; }
 
 	public @NonNull DepartmentEntity name(@NonNull String name)
 	{
@@ -113,5 +106,20 @@ public class DepartmentEntity extends AbstractMappedEntity<DepartmentDTO>
 	{
 		if (isNull(employees)) return false;
 		return employees.contains(employee);
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof DepartmentEntity other)) return false;
+		if (!super.equals(o)) return false;
+		return Objects.equals(name, other.name) && Objects.equals(description, other.description);
+	}
+
+	@Override public int hashCode() { return Objects.hash(super.hashCode(), name, description); }
+
+	@Override public String toString()
+	{
+		return super.toString() + ", DepartmentEntity(name=" + name + ", description=" + description + ")";
 	}
 }

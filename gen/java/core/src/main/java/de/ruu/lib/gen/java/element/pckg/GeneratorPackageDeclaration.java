@@ -13,7 +13,9 @@ import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorElement;
 import de.ruu.lib.gen.java.element.GeneratorModifiers;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Package declarations are contained in {@code package-info.java} files. In addition to simple

@@ -4,7 +4,8 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Abstract super class for transactional interceptors. Extend this class to provide a suitable {@link #entityManager()}
@@ -40,9 +41,10 @@ import lombok.extern.slf4j.Slf4j;
  *
  * @author r-uu
  */
-@Slf4j
 public abstract class AbstractTransactionalInterceptor
 {
+	private static final Logger log = LoggerFactory.getLogger(AbstractTransactionalInterceptor.class);
+
 	protected abstract EntityManager entityManager();
 
 	@AroundInvoke

@@ -9,7 +9,7 @@ module de.ruu.lib.ws.rs
 	requires de.ruu.lib.util;
 
 	requires org.slf4j;
-	requires static lombok;
+	requires org.jspecify;
 	requires com.fasterxml.jackson.annotation;
 	requires static com.fasterxml.jackson.databind;
 }

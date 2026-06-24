@@ -14,7 +14,6 @@ module de.ruu.lib.postgres.ui
 	requires jakarta.inject;
 	requires microprofile.config.api;
 
-	requires static lombok;
 	requires org.slf4j;
 	requires de.ruu.lib.postgres;
 	requires de.ruu.lib.fx.core;

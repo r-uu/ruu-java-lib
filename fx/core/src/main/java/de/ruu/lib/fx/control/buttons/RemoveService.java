@@ -5,7 +5,7 @@ import de.ruu.lib.fx.comp.FXCService;
 import de.ruu.lib.fx.comp.FXComponentReadyEventAbstract;
 import jakarta.enterprise.context.ApplicationScoped;
 import javafx.scene.control.Button;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Java FX Component View Service

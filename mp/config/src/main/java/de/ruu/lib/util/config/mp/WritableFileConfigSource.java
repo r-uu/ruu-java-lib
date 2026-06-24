@@ -1,7 +1,8 @@
 package de.ruu.lib.util.config.mp;
 
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.spi.ConfigSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,9 +39,10 @@ import static java.util.Objects.isNull;
  *   <li>This ConfigSource will use that value when it first loads.
  * </ul>
  */
-@Slf4j
 public class WritableFileConfigSource implements ConfigSource
 {
+	private static final Logger log = LoggerFactory.getLogger(WritableFileConfigSource.class);
+
 	public static final String CONFIG_FILE_NAME_KEY           = "config.file.name";
 	public static final String CONFIG_FILE_NAME_VALUE_DEFAULT = "config/application.properties";
 

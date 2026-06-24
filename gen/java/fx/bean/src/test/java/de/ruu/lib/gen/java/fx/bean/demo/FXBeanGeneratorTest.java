@@ -4,7 +4,6 @@ import com.tngtech.archunit.core.importer.ClassFileImporter;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.fx.bean.FXBeanGenerator;
 import de.ruu.lib.gen.java.fx.bean.FXProperty;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -22,9 +21,16 @@ class FXBeanGeneratorTest
 		@FXProperty List<String> stringList();
 	}
 
-	@AllArgsConstructor
 	class FXModelDemoDTO
 	{
+		FXModelDemoDTO(boolean aBoolean, int anInteger, String aString, BigDecimal aBigDecimal, java.util.List<String> stringList)
+		{
+			this.aBoolean    = aBoolean;
+			this.anInteger   = anInteger;
+			this.aString     = aString;
+			this.aBigDecimal = aBigDecimal;
+			this.stringList  = stringList;
+		}
 		boolean      aBoolean;
 		int          anInteger;
 		String       aString;

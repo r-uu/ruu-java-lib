@@ -3,10 +3,7 @@ package de.ruu.lib.gen.java.element;
 import javax.lang.model.element.Element;
 
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 /** generator for modifiers of java {@link Element}s that may be abstract */
 public interface GeneratorModifiersAbstractable extends GeneratorModifiers
@@ -15,15 +12,15 @@ public interface GeneratorModifiersAbstractable extends GeneratorModifiers
 	GeneratorModifiers setAbstract(boolean isAbstract) throws IllegalArgumentException;
 	boolean isAbstract();
 
-	@Getter
-	@Accessors(fluent = true)
-	@ToString class GeneratorModifiersAbstractableAbstract
+	class GeneratorModifiersAbstractableAbstract
 			extends GeneratorModifiersAbstract implements GeneratorModifiersAbstractable
 	{
 		private boolean isAbstract;
-		
+
 		protected GeneratorModifiersAbstractableAbstract(@NonNull CompilationUnitContext context) { super(context); }
-	
+
+		@Override public boolean isAbstract() { return isAbstract; }
+
 		@Override public GeneratorModifiers setAbstract(boolean isAbstract) throws IllegalArgumentException
 		{
 			if (isAbstract && isFinal() ) throw new IllegalArgumentException("illegal combination of abstract and final");
@@ -31,7 +28,14 @@ public interface GeneratorModifiersAbstractable extends GeneratorModifiers
 			this.isAbstract = isAbstract;
 			return this;
 		}
+
+		@Override public String toString()
+		{
+			return "GeneratorModifiersAbstractableAbstract(visibility=" + visibility()
+					+ ", isStatic=" + isStatic() + ", isFinal=" + isFinal() + ", isAbstract=" + isAbstract + ")";
+		}
 	}
+
 	class GeneratorModifiersAbstractableSimple extends GeneratorModifiersAbstractableAbstract
 	{
 		public GeneratorModifiersAbstractableSimple(@NonNull CompilationUnitContext context) { super(context); }

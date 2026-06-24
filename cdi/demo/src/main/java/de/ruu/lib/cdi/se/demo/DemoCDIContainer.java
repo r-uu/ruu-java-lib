@@ -2,11 +2,13 @@ package de.ruu.lib.cdi.se.demo;
 
 import de.ruu.lib.cdi.se.CDIContainer;
 import jakarta.enterprise.inject.spi.CDI;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 class DemoCDIContainer
 {
+	private static final Logger log = LoggerFactory.getLogger(DemoCDIContainer.class);
+
 //	@Test void test()
 //	{
 //		CDIContainer.bootstrap(TestCDIContainer.class.getClassLoader());

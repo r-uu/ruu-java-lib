@@ -13,7 +13,9 @@ import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorElement;
 import de.ruu.lib.gen.java.element.GeneratorModifiersMethod;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** generates method declaration consisting of javadoc, annotations, modifiers, type, name, parameters and throws clause */
 public interface GeneratorMethodDeclaration extends GeneratorElement

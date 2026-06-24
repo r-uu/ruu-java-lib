@@ -2,7 +2,7 @@ package de.ruu.lib.jpa.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.util.Optional;

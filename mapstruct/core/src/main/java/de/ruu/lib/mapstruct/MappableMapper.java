@@ -1,7 +1,9 @@
 package de.ruu.lib.mapstruct;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.mapstruct.Context;
+
+import java.util.Objects;
 
 public interface MappableMapper<IN extends Mappable<IN, OUT>, OUT extends Mappable<OUT, IN>>
 {
@@ -9,11 +11,15 @@ public interface MappableMapper<IN extends Mappable<IN, OUT>, OUT extends Mappab
 
 	default void beforeMapping(@NonNull IN in, @NonNull @Context OUT out)
 	{
+		Objects.requireNonNull(in,  "in");
+		Objects.requireNonNull(out, "out");
 		out.beforeMapping(out, in);
 	}
 
 	default void afterMapping(@NonNull IN in, @NonNull @Context OUT out)
 	{
+		Objects.requireNonNull(in,  "in");
+		Objects.requireNonNull(out, "out");
 		out.afterMapping(out, in);
 	}
 }

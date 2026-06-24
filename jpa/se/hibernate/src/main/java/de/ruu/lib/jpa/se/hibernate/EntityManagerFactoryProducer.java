@@ -6,7 +6,6 @@ import static org.hibernate.cfg.AvailableSettings.JAKARTA_JDBC_USER;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
 /**
@@ -14,11 +13,18 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
  * {@link PersistenceUnitInfo} and {@link PersistenceUnitProperties}. The returned {@link EntityManagerFactory} is
  * prepared to produce instances of {@link jakarta.persistence.EntityManager} based on hibernate.
  */
-@RequiredArgsConstructor
 public class EntityManagerFactoryProducer
 {
 	private final PersistenceUnitInfo       persistenceUnitInfo;
 	private final PersistenceUnitProperties persistenceUnitProperties;
+
+	public EntityManagerFactoryProducer(
+			PersistenceUnitInfo       persistenceUnitInfo,
+			PersistenceUnitProperties persistenceUnitProperties)
+	{
+		this.persistenceUnitInfo       = persistenceUnitInfo;
+		this.persistenceUnitProperties = persistenceUnitProperties;
+	}
 
 	public EntityManagerFactory produce(String username, String password)
 	{

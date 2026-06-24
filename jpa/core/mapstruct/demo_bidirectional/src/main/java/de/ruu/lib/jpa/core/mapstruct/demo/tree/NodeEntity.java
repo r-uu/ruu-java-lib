@@ -4,14 +4,14 @@ import de.ruu.lib.jpa.core.AbstractDTO;
 import de.ruu.lib.jpa.core.mapstruct.AbstractMappedEntity;
 import de.ruu.lib.util.Strings;
 import jakarta.annotation.Nullable;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -19,17 +19,12 @@ import java.util.Optional;
  * TODO Is there a better way to go?
  * TODO Delegates perhaps?
  */
-@Slf4j
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 public class NodeEntity extends AbstractMappedEntity<NodeDTO> implements Node<NodeEntity>
 {
+	private static final Logger log = LoggerFactory.getLogger(NodeEntity.class);
+
 	@NonNull  private String           name;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@Nullable private NodeEntity       parent;
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@NonNull  private List<NodeEntity> children;
 
 	protected NodeEntity() { } // required by mapstruct
@@ -111,7 +106,7 @@ public class NodeEntity extends AbstractMappedEntity<NodeDTO> implements Node<No
 		private AbstractDTOSimple(@NonNull NodeSimple nodeSimple) { this.nodeSimple = nodeSimple; }
 	}
 
-  /**
+	/**
 	 * to be called in mapstruct callbacks by subclasses
 	 * <p>
 	 * Picks the {@link AbstractDTO#getId()} and {@link AbstractDTO#getVersion()} values and assigns them to the
@@ -119,12 +114,25 @@ public class NodeEntity extends AbstractMappedEntity<NodeDTO> implements Node<No
 	 *
 	 * @param source
 	 * @throws NullPointerException if {@code source} is {@code null}
-   */
-
-
+	 */
 	protected void mapIdAndVersion(@NonNull NodeSimple source)
 	{
 		// set fields that can not be modified from outside
 		super.mapIdAndVersion(new AbstractDTOSimple(source));
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof NodeEntity other)) return false;
+		if (!super.equals(o)) return false;
+		return Objects.equals(name, other.name);
+	}
+
+	@Override public int hashCode() { return Objects.hash(super.hashCode(), name); }
+
+	@Override public String toString()
+	{
+		return super.toString() + ", NodeEntity(name=" + name + ")";
 	}
 }

@@ -6,21 +6,25 @@ import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.adapter.JsonbAdapter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
 import java.util.Optional;
 
-@Slf4j
-@RequiredArgsConstructor
 public class CircuitBreaker<ORIGINAL> implements JsonbAdapter<ORIGINAL, JsonValue>
 {
-	private static final Jsonb JSONB = JsonbConfigurator.context();
+	private static final Logger log  = LoggerFactory.getLogger(CircuitBreaker.class);
+	private static final Jsonb  JSONB = JsonbConfigurator.context();
 
-	private BiMap biMap = new BiMap();
-
+	private BiMap                biMap = new BiMap();
 	private @NonNull Class<ORIGINAL> type;
+
+	public CircuitBreaker(@NonNull Class<ORIGINAL> type)
+	{
+		this.type = Objects.requireNonNull(type, "type");
+	}
 
 	@Override public JsonValue adaptToJson(@NonNull ORIGINAL original) throws Exception
 	{

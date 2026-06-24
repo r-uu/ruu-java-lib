@@ -9,6 +9,5 @@ module de.ruu.lib.util.config.mp
 	requires transitive jakarta.cdi;
 	requires transitive microprofile.config.api;
 
-	requires static lombok;
 	requires org.slf4j;
 }

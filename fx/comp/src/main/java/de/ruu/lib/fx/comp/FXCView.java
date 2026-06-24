@@ -37,7 +37,7 @@
 package de.ruu.lib.fx.comp;
 
 import javafx.scene.Parent;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Interface for JavaFX visual components (<code>FXComp</code> views) that are designed to be used as building blocks

@@ -4,19 +4,23 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.skin.TableColumnHeader;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static de.ruu.lib.fx.css.TableViewSelector.COLUMN_HEADER;
 import static de.ruu.lib.fx.css.TableViewSelector.LABEL;
 
-@RequiredArgsConstructor
 public class TableViewUtil
 {
-	@NonNull private TableView<?> tableView;
+	@NonNull private final TableView<?> tableView;
+
+	public TableViewUtil(@NonNull TableView<?> tableView)
+	{
+		this.tableView = Objects.requireNonNull(tableView, "tableView");
+	}
 
 	public Set<TableColumnHeader> tableColumnHeaders()
 	{

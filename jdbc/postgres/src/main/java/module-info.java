@@ -9,5 +9,4 @@ module de.ruu.lib.jdbc.postgres
 	requires java.sql;
 	requires org.postgresql.jdbc;
 
-	requires static lombok;
 }

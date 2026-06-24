@@ -1,35 +1,23 @@
 package de.ruu.lib.jpa.core.mapstruct.demo.bidirectional;
 
 import de.ruu.lib.jpa.core.mapstruct.AbstractMappedDTO;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static lombok.AccessLevel.PROTECTED;
+import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-@Slf4j
-@Getter                   // generate getter methods for all fields using lombok unless configured otherwise ({@code
-                          // @Getter(AccessLevel.NONE}))
-@Accessors(fluent = true) // generate fluent accessors with lombok and java-bean-style-accessors in non-abstract classes
-                          // with ide, fluent accessors will (usually / by default) be ignored by mapstruct
-//@RequiredArgsConstructor// provide handmade required args constructor to properly handle relationships
-@NoArgsConstructor(access = PROTECTED, force = true) // generate no args constructor for jsonb, jaxb, mapstruct, ...
 public class EmployeeDTO extends AbstractMappedDTO<EmployeeEntity>
 {
-	/** mutable non-null */
-	@NonNull @Setter private String name;
+	private static final Logger log = LoggerFactory.getLogger(EmployeeDTO.class);
 
 	/** mutable non-null */
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	@NonNull @Setter private DepartmentDTO department;
+	@NonNull private String name;
+
+	/** mutable non-null */
+	@NonNull private DepartmentDTO department;
+
+	protected EmployeeDTO() { }
 
 	/** provide handmade required args constructor to properly handle relationships */
 	EmployeeDTO(@NonNull DepartmentDTO department, @NonNull String name)
@@ -38,6 +26,12 @@ public class EmployeeDTO extends AbstractMappedDTO<EmployeeEntity>
 		name(name);
 		department.add(this);
 	}
+
+	public @NonNull String        name()       { return name; }
+	public @NonNull DepartmentDTO department() { return department; }
+
+	public void name      (@NonNull String        v) { this.name       = v; }
+	public void department(@NonNull DepartmentDTO v) { this.department = v; }
 
 	// java bean style accessors for those who do not work with fluent style accessors (mapstruct)
 	public @NonNull String getName() { return name(); }
@@ -57,4 +51,19 @@ public class EmployeeDTO extends AbstractMappedDTO<EmployeeEntity>
 	}
 
 	@Override public @NonNull EmployeeEntity toSource() { return Mapper.INSTANCE.map(this); }
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (!(o instanceof EmployeeDTO other)) return false;
+		if (!super.equals(o)) return false;
+		return Objects.equals(name, other.name);
+	}
+
+	@Override public int hashCode() { return Objects.hash(super.hashCode(), name); }
+
+	@Override public String toString()
+	{
+		return super.toString() + ", EmployeeDTO(name=" + name + ")";
+	}
 }

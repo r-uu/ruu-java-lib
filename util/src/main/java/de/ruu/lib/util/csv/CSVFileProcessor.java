@@ -2,18 +2,20 @@ package de.ruu.lib.util.csv;
 
 import java.nio.file.Path;
 
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface CSVFileProcessor
 {
 	void process(@NonNull Path csvFile);
-	
+
 	CSVFileProcessor csvRowProcessor(@NonNull CSVRowProcessor processor);
 
-	@Slf4j
 	class CSVFileProcessorSimple implements CSVFileProcessor
 	{
+		static final Logger log = LoggerFactory.getLogger(CSVFileProcessorSimple.class);
+
 		private @NonNull CSVRowProcessor processor = CSVRowProcessor.create();
 
 		/** Public constructor. */

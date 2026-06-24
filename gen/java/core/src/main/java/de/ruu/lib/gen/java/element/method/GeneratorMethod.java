@@ -9,9 +9,7 @@ import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorModifiersAbstractable;
 import de.ruu.lib.gen.java.element.GeneratorModifiersMethod;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 /** method generator for all non-interface methods (see {@link GeneratorMethodInterface} */
 public interface GeneratorMethod extends GeneratorMethodDeclaration
@@ -25,15 +23,13 @@ public interface GeneratorMethod extends GeneratorMethodDeclaration
 	@Override GeneratorMethod parameters         (@NonNull GeneratorParameters       parameters);
 	@Override GeneratorMethod throwsClause       (@NonNull GeneratorThrowsClause     throwsClause);
 	@Override GeneratorMethod codeBlock          (@NonNull GeneratorCodeBlock codeBlockContent);
-	
+
 	default GeneratorMethod isDefault(boolean isDefault) throws UnsupportedOperationException
 	{
 		if (isDefault) throw new UnsupportedOperationException("default not allowed for non interface methods");
 		return this;
 	}
 
-	@Getter
-	@Accessors(fluent = true)
 	abstract class GeneratorMethodAbstract extends GeneratorDeclarationAbstract implements GeneratorMethod
 	{
 		protected GeneratorMethodAbstract(
@@ -101,7 +97,7 @@ public interface GeneratorMethod extends GeneratorMethodDeclaration
 							.append(super.generate())
 							.append(";");
 					return result;
-				}				
+				}
 			}
 			result
 					.append(super.generate())
@@ -119,13 +115,13 @@ public interface GeneratorMethod extends GeneratorMethodDeclaration
 			super(context, type, name);
 		}
 	}
-	
+
 	static GeneratorMethod create(
 			@NonNull CompilationUnitContext context, @NonNull String type, @NonNull String name)
 	{
 		return new GeneratorMethodSimple(context, type, name);
 	}
-	
+
 	static GeneratorMethod method(
 			@NonNull CompilationUnitContext context, @NonNull String type, @NonNull String name)
 	{

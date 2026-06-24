@@ -12,8 +12,6 @@ module de.ruu.lib.jsonb
 	requires jakarta.json.bind;
 	requires jakarta.ws.rs;
 
-	requires static lombok;
-
 	// Open for JSON-B serialization/deserialization reflection
 	// - org.eclipse.yasson: JSON-B implementation runtime reflection
 	opens de.ruu.lib.jsonb.recursion to org.eclipse.yasson;

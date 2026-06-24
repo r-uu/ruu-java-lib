@@ -22,5 +22,4 @@ module de.ruu.lib.fx.demo
 	requires de.ruu.lib.gen.java.fx.comp;
 	requires de.ruu.lib.gen.java.fx.tableview;
 
-	requires static lombok;
 }

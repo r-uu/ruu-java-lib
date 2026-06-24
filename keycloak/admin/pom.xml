@@ -73,12 +73,6 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Lombok for reducing boilerplate -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
 
     <!-- JUnit for testing -->
     <dependency>

@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import de.ruu.lib.util.Files;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface CompilationUnitFileWriter
 {
@@ -24,11 +23,10 @@ public interface CompilationUnitFileWriter
 
 	void write(@NonNull String output) throws IOException;
 
-	@Slf4j
-	@Getter
-	@Accessors(fluent = true)
 	abstract class CompilationUnitFileWriterAbstract implements CompilationUnitFileWriter
 	{
+		static final Logger log = LoggerFactory.getLogger(CompilationUnitFileWriterAbstract.class);
+
 		private Path root = DEFAULT_ROOT_DIRECTORY;
 
 		private String packageName;
@@ -39,10 +37,14 @@ public interface CompilationUnitFileWriter
 		{
 			if (packageName   .isEmpty()) throw new IllegalArgumentException(    "package name may not be empty");
 			if (simpleFileName.isEmpty()) throw new IllegalArgumentException("simple file name may not be empty");
-			
+
 			this.packageName    = packageName;
 			this.simpleFileName = simpleFileName;
 		}
+
+		public Path   root()             { return root; }
+		public String packageName()      { return packageName; }
+		public String simpleFileName()   { return simpleFileName; }
 
 		@Override public CompilationUnitFileWriter root(@NonNull Path root) // TODO validation?
 		{
@@ -75,7 +77,7 @@ public interface CompilationUnitFileWriter
 			log.debug("wrote {}", path.toAbsolutePath());
 		}
 	}
-	
+
 	class CompilationUnitFileWriterSimple extends CompilationUnitFileWriterAbstract
 	{
 		protected CompilationUnitFileWriterSimple(@NonNull String packageName, @NonNull String simpleFileName)

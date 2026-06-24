@@ -4,5 +4,4 @@ module de.ruu.lib.gen.core
 
 	requires de.ruu.lib.util;
 
-	requires static lombok;
 }

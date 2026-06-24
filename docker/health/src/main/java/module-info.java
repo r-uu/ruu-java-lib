@@ -1,6 +1,5 @@
 module de.ruu.lib.docker.health
 {
-	requires static lombok;
 	requires org.slf4j;
 	requires java.sql;
 	requires org.postgresql.jdbc;  // PostgreSQL JDBC driver (automatic module)

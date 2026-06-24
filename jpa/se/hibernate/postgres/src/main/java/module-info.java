@@ -22,5 +22,4 @@ module de.ruu.lib.jpa.se.hibernate.postgres
 	requires de.ruu.lib.jpa.se;
 	requires de.ruu.lib.jpa.se.hibernate;
 
-	requires static lombok;
 }

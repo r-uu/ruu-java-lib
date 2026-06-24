@@ -1,6 +1,6 @@
 package de.ruu.lib.jpa.core;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.util.List;

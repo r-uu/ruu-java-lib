@@ -10,9 +10,7 @@ import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.LineIndenter;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 public interface Generator extends de.ruu.lib.gen.Generator
 {
@@ -23,7 +21,7 @@ public interface Generator extends de.ruu.lib.gen.Generator
 	Generator lineIndenter(LineIndenter lineIndenter);
 	/** configures line indenter for {@link #generate()} output */
 	Generator lineIndenter(String indentation, int level);
-	
+
 	/** @return non {@code null}, separator for {@link #generate()} output of children */
 	StringBuilder childNodesSeparator();
 
@@ -46,8 +44,6 @@ public interface Generator extends de.ruu.lib.gen.Generator
 				"adding " + other.getClass().getName() + " generator is not supported");
 	}
 
-	@Getter
-	@Accessors(fluent = true)
 	abstract class GeneratorAbstract implements Generator
 	{
 		private final CompilationUnitContext  context;
@@ -56,6 +52,11 @@ public interface Generator extends de.ruu.lib.gen.Generator
 		private       StringBuilder           childNodesSeparator = sb();
 
 		protected GeneratorAbstract(@NonNull CompilationUnitContext context) { this.context = context; }
+
+		public CompilationUnitContext context()           { return context; }
+		public List<Generator>        children()          { return children; }
+		public LineIndenter           lineIndenter()      { return lineIndenter; }
+		public StringBuilder          childNodesSeparator() { return childNodesSeparator; }
 
 		// TODO can not be final because otherwise it would not be possible to disallow adding unwanted child
 		//      generators in sub classes???
@@ -127,15 +128,11 @@ public interface Generator extends de.ruu.lib.gen.Generator
 			lineIndenter = new LineIndenter(indentation, level);
 			return this;
 		}
-
-		protected CompilationUnitContext context() { return context; }
 	}
-	
+
 	/**
 	 * produces generator output and finally disallows adding children ({@link #add(GeneratorAnnotations)})
 	 */
-	@Getter
-	@Accessors(fluent = true)
 	class GeneratorSimple extends GeneratorAbstract
 	{
 		private String output = "";
@@ -146,6 +143,8 @@ public interface Generator extends de.ruu.lib.gen.Generator
 			this(context);
 			this.output = input;
 		}
+
+		public String output() { return output; }
 
 		public GeneratorSimple output(@NonNull String input)
 		{

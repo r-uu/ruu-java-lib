@@ -1,9 +1,10 @@
 package de.ruu.lib.jsonb;
 
 import jakarta.json.bind.Jsonb;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serial;
 import java.lang.reflect.Type;
@@ -14,9 +15,10 @@ import static de.ruu.lib.util.StringBuilders.rTrimChars;
 import static de.ruu.lib.util.StringBuilders.sb;
 import static org.assertj.core.api.Assertions.assertThat;
 @Disabled("there is a subtle problem with the jsonb configurator that causes the test to fail in github actions")
-@Slf4j
 class TestJsonBWithMaxEncapsulationForData
 {
+	private static final Logger log = LoggerFactory.getLogger(TestJsonBWithMaxEncapsulationForData.class);
+
 	private final static Type SET_OF_PARENTS = new HashSet<Parent>()
 			{
 				@Serial private static final long serialVersionUID = 5432832750500023858L;

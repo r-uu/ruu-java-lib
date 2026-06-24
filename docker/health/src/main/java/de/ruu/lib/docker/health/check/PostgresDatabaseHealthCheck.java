@@ -1,7 +1,8 @@
 package de.ruu.lib.docker.health.check;
 
 import de.ruu.lib.docker.health.HealthCheckResult;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,9 +10,10 @@ import java.sql.DriverManager;
 /**
  * Checks if a PostgreSQL database is accessible.
  */
-@Slf4j
 public class PostgresDatabaseHealthCheck implements HealthCheck
 {
+	private static final Logger log = LoggerFactory.getLogger(PostgresDatabaseHealthCheck.class);
+
 	private final String containerName;
 	private final String databaseName;
 	private final int    port;

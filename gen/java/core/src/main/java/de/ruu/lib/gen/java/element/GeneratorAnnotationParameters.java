@@ -5,7 +5,9 @@ import static de.ruu.lib.util.StringBuilders.sb;
 import de.ruu.lib.gen.GeneratorException;
 import de.ruu.lib.gen.java.Generator;
 import de.ruu.lib.gen.java.context.CompilationUnitContext;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link GeneratorAnnotationParameters} for annotation parameters

@@ -8,10 +8,7 @@ import de.ruu.lib.gen.java.context.CompilationUnitContext;
 import de.ruu.lib.gen.java.doc.GeneratorJavaDoc;
 import de.ruu.lib.gen.java.element.GeneratorAnnotations;
 import de.ruu.lib.gen.java.element.GeneratorModifiers;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.experimental.Accessors;
+import org.jspecify.annotations.NonNull;
 
 public interface GeneratorMethodInterface extends GeneratorMethodDeclaration
 {
@@ -22,12 +19,9 @@ public interface GeneratorMethodInterface extends GeneratorMethodDeclaration
 	GeneratorMethodInterface type(               @NonNull String type);
 	GeneratorMethodInterface parameters(         @NonNull GeneratorParameters parameters);
 	GeneratorMethodInterface throwsClause(       @NonNull GeneratorThrowsClause throwsClause);
-	GeneratorMethodInterface codeBlock(   @NonNull GeneratorCodeBlock codeBlockContent);
+	GeneratorMethodInterface codeBlock(          @NonNull GeneratorCodeBlock codeBlockContent);
 	GeneratorMethodInterface isDefault(          boolean isDefault);
 
-	@Getter
-	@Setter
-	@Accessors(fluent = true)
 	abstract class GeneratorMethodInterfaceAbstract extends GeneratorDeclarationAbstract implements GeneratorMethodInterface
 	{
 		private boolean isDefault = false;
@@ -35,6 +29,14 @@ public interface GeneratorMethodInterface extends GeneratorMethodDeclaration
 		protected GeneratorMethodInterfaceAbstract(
 				@NonNull CompilationUnitContext context, @NonNull String type, @NonNull String name)
 		{ super(context, type, name); }
+
+		public boolean isDefault() { return isDefault; }
+
+		@Override public GeneratorMethodInterfaceAbstract isDefault(boolean v)
+		{
+			this.isDefault = v;
+			return this;
+		}
 
 		@Override public GeneratorMethodInterface childNodesSeparator(@NonNull String separator)
 		{
@@ -110,7 +112,7 @@ public interface GeneratorMethodInterface extends GeneratorMethodDeclaration
 	{
 		return new GeneratorMethodInterfaceSimple(context, type, name);
 	}
-	
+
 	static GeneratorMethodInterface interfaceMethod(
 			@NonNull CompilationUnitContext context, @NonNull String type, @NonNull String name)
 	{

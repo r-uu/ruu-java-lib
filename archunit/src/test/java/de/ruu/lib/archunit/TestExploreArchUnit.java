@@ -1,31 +1,24 @@
 package de.ruu.lib.archunit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import com.tngtech.archunit.core.domain.JavaAccess;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaField;
 import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-@Slf4j
 class TestExploreArchUnit
 {
+	private static final Logger log = LoggerFactory.getLogger(TestExploreArchUnit.class);
 
-	@Getter
-	@Setter
-	@Accessors(fluent = true)
 	private abstract static class AbstractClass
 	{
 //		private int        intFieldFromAbstract;
@@ -33,22 +26,22 @@ class TestExploreArchUnit
 //		private BigDecimal bigDecimalFromAbstract;
 	}
 
-	@Getter
-	@Setter
-	@Accessors(fluent = true)
 	private static class ExtendingAbstractClass extends AbstractClass
 	{
 //		private int        intFieldFromExtending;
 //		private boolean    booleanFieldFromExtending;
 //		private BigDecimal bigDecimalFromExtending;
 		private List<String> stringList;
+
+		public List<String>           stringList()                    { return stringList;       }
+		public ExtendingAbstractClass stringList(List<String> value)  { stringList = value; return this; }
 	}
 
 	private static JavaClass clazz;
 
 	@BeforeAll static void beforeAll()
 	{
-    clazz = new ClassFileImporter().importClass(ExtendingAbstractClass.class);
+		clazz = new ClassFileImporter().importClass(ExtendingAbstractClass.class);
 	}
 
 	@Test void exploreAccessesFromSelf()

@@ -1,7 +1,7 @@
 package de.ruu.lib.fx.control.treeview;
 
 import javafx.scene.control.TreeItem;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import static java.util.Objects.isNull;
 

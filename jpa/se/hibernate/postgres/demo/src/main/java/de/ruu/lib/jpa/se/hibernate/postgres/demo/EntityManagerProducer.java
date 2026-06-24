@@ -9,8 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import jakarta.interceptor.Interceptor;
 import jakarta.persistence.EntityManager;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 import static jakarta.interceptor.Interceptor.Priority.APPLICATION;
@@ -31,7 +29,6 @@ import static jakarta.interceptor.Interceptor.Priority.APPLICATION;
 	@Interceptor
 	@Priority(APPLICATION) // this makes the interceptor available in other modules / archives
 	@Transactional
-	@NoArgsConstructor
 	public static class TransactionalInterceptorCDI extends AbstractTransactionalInterceptor
 	{
 		@HibernatePostgresDemoQualifier
