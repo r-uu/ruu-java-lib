@@ -89,18 +89,19 @@ public class AutoFixRunner
 	public boolean runWithAutoFix()
 	{
 		// Initial health check
-		if (healthCheckRunner.runAll())
+		HealthCheckRunner.RunResult initial = healthCheckRunner.runAll();
+		if (initial.healthy())
 		{
 			log.debug("All health checks passed - no auto-fix needed");
 			return true;
 		}
 
-		log.warn("⚠️ Health check failures detected - attempting auto-fix...");
+		log.warn("[WARN] Health check failures detected - attempting auto-fix...");
 
 		// Attempt fixes
 		boolean anyFixAttempted = false;
 
-		for (HealthCheckResult failure : healthCheckRunner.failures())
+		for (HealthCheckResult failure : initial.failures())
 		{
 			String serviceName = failure.service();
 			log.info("Attempting to fix: {}", serviceName);
@@ -118,19 +119,19 @@ public class AutoFixRunner
 
 			if (strategy.fix(serviceName))
 			{
-				log.info("✅ Fix successful for: {}", serviceName);
+				log.info("[OK] Fix successful for: {}", serviceName);
 				anyFixAttempted = true;
 			}
 			else
 			{
-				log.error("❌ Fix failed for: {}", serviceName);
+				log.error("[FAIL] Fix failed for: {}", serviceName);
 			}
 		}
 
 		// If no fixes were attempted, return failure
 		if (!anyFixAttempted)
 		{
-			log.error("❌ No fixes could be attempted");
+			log.error("[FAIL] No fixes could be attempted");
 			return false;
 		}
 
@@ -148,18 +149,18 @@ public class AutoFixRunner
 
 		// Re-run health checks
 		log.info("Re-running health checks after auto-fix...");
-		boolean success = healthCheckRunner.runAll();
+		HealthCheckRunner.RunResult recheck = healthCheckRunner.runAll();
 
-		if (success)
+		if (recheck.healthy())
 		{
-			log.info("✅ Auto-fix successful - all health checks passed!");
+			log.info("[OK] Auto-fix successful - all health checks passed!");
 		}
 		else
 		{
-			log.error("❌ Auto-fix incomplete - some health checks still failing");
+			log.error("[FAIL] Auto-fix incomplete - some health checks still failing");
 		}
 
-		return success;
+		return recheck.healthy();
 	}
 
 	/**

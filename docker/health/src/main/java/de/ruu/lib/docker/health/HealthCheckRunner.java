@@ -23,176 +23,154 @@ import java.util.List;
  *     .addCheck(new KeycloakServerHealthCheck())
  *     .build();
  *
- * boolean allHealthy = runner.runAll();
- * if (!allHealthy) {
- *     List&lt;HealthCheckResult&gt; failures = runner.failures();
- *     // Handle failures
+ * HealthCheckRunner.RunResult result = runner.runAll();
+ * if (!result.healthy()) {
+ *     result.failures().forEach(f -> System.err.println(f.service()));
  * }
  * </pre>
  */
 public class HealthCheckRunner
 {
-	private static final Logger log = LoggerFactory.getLogger(HealthCheckRunner.class);
+  private static final Logger log = LoggerFactory.getLogger(HealthCheckRunner.class);
 
-	private final List<HealthCheck> checks;
-	private final List<HealthCheckResult> results = new ArrayList<>();
-	private boolean allHealthy = true;
+  private final List<HealthCheck> checks;
 
-	private HealthCheckRunner(List<HealthCheck> checks)
-	{
-		this.checks = new ArrayList<>(checks);
-	}
+  private HealthCheckRunner(List<HealthCheck> checks)
+  {
+    this.checks = new ArrayList<>(checks);
+  }
 
-	/**
-	 * Runs all configured health checks.
-	 *
-	 * @return true if all checks passed, false otherwise
-	 */
-	public boolean runAll()
-	{
-		results.clear();
-		allHealthy = true;
+  /**
+   * Runs all configured health checks and returns an immutable result.
+   * <p>
+   * This method is stateless and safe for concurrent use: each call creates
+   * fresh local state and returns it as a {@link RunResult} value object.
+   *
+   * @return aggregated result of all health checks
+   */
+  public RunResult runAll()
+  {
+    List<HealthCheckResult> results = new ArrayList<>();
+    boolean allHealthy = true;
 
-		log.info("""
-				════════════════════════════════════════════════════════════════
-				🏥 Docker Environment Health Check
-				════════════════════════════════════════════════════════════════""");
+    log.info("""
+        ================================================================
+        Docker Environment Health Check
+        ================================================================""");
 
-		for (HealthCheck check : checks)
-		{
-			HealthCheckResult result = check.check();
-			results.add(result);
+    for (HealthCheck check : checks)
+    {
+      HealthCheckResult result = check.check();
+      results.add(result);
+      if (!result.healthy()) allHealthy = false;
+    }
 
-			if (!result.healthy())
-			{
-				allHealthy = false;
-			}
-		}
+    RunResult runResult = new RunResult(allHealthy, List.copyOf(results));
+    printResults(runResult);
+    return runResult;
+  }
 
-		printResults();
-		return allHealthy;
-	}
+  private void printResults(RunResult runResult)
+  {
+    log.info("================================================================");
 
-	/**
-	 * Returns all health check results.
-	 */
-	public List<HealthCheckResult> results()
-	{
-		return new ArrayList<>(results);
-	}
+    if (runResult.healthy())
+    {
+      log.info("""
+          [OK] ALL SERVICES HEALTHY - Ready to start!
+          ================================================================""");
+    }
+    else
+    {
+      List<HealthCheckResult> failures = runResult.failures();
+      log.error("[FAIL] HEALTH CHECK FAILED - {} issue(s) found", failures.size());
+      log.info("""
+          ================================================================
 
-	/**
-	 * Returns only failed health check results.
-	 */
-	public List<HealthCheckResult> failures()
-	{
-		return results.stream()
-				.filter(r -> !r.healthy())
-				.toList();
-	}
+          HOW TO FIX:
+          """);
 
-	/**
-	 * Returns true if all checks passed.
-	 */
-	public boolean healthy()
-	{
-		return allHealthy;
-	}
+      for (int i = 0; i < failures.size(); i++)
+      {
+        HealthCheckResult failure = failures.get(i);
+        log.info("""
+            Issue {}/{}: {}
+              Problem: {}
 
-	private void printResults()
-	{
-		log.info("════════════════════════════════════════════════════════════════");
+              Quick fix (alias):
+                 {}
 
-		if (allHealthy)
-		{
-			log.info("""
-					✅ ALL SERVICES HEALTHY - Ready to start!
-					════════════════════════════════════════════════════════════════""");
-		}
-		else
-		{
-			List<HealthCheckResult> failures = failures();
-			log.error("❌ HEALTH CHECK FAILED - {} issue(s) found", failures.size());
-			log.info("""
-					════════════════════════════════════════════════════════════════
-					
-					🔧 HOW TO FIX:
-					""");
+              Full command:
+                 {}
+            """,
+            i + 1, failures.size(), failure.service(),
+            failure.problem(),
+            failure.alias(),
+            failure.fixCommand());
+      }
 
-			for (int i = 0; i < failures.size(); i++)
-			{
-				HealthCheckResult failure = failures.get(i);
-				log.info("""
-						Issue {}/{}: {}
-						  Problem: {}
-						  
-						  ⚡ Quick fix (alias):
-						     {}
-						  
-						  📝 Full command:
-						     {}
-						  """,
-						i + 1, failures.size(), failure.service(),
-						failure.problem(),
-						failure.alias(),
-						failure.fixCommand());
-			}
+      log.info("""
+          ================================================================
+          TIP: Copy & paste commands above to fix all issues
+          ================================================================""");
+    }
+  }
 
-			log.info("""
-					════════════════════════════════════════════════════════════════
-					💡 TIP: Copy & paste commands above to fix all issues
-					════════════════════════════════════════════════════════════════""");
-		}
-	}
+  /**
+   * Creates a new builder for configuring health checks.
+   */
+  public static Builder builder()
+  {
+    return new Builder();
+  }
 
-	/**
-	 * Creates a new builder for configuring health checks.
-	 */
-	public static Builder builder()
-	{
-		return new Builder();
-	}
+  /**
+   * Immutable value object holding the aggregated result of a {@link #runAll()} call.
+   */
+  public record RunResult(boolean allHealthy, List<HealthCheckResult> results)
+  {
+    /** @return {@code true} if all health checks passed */
+    public boolean healthy() { return allHealthy; }
 
-	/**
-	 * Builder for HealthCheckRunner.
-	 */
-	public static class Builder
-	{
-		private final List<HealthCheck> checks = new ArrayList<>();
+    /** @return list of failed health check results */
+    public List<HealthCheckResult> failures()
+    {
+      return results.stream().filter(r -> !r.healthy()).toList();
+    }
+  }
 
-		/**
-		 * Adds a single health check.
-		 */
-		public Builder addCheck(HealthCheck check)
-		{
-			checks.add(check);
-			return this;
-		}
+  /**
+   * Builder for HealthCheckRunner.
+   */
+  public static class Builder
+  {
+    private final List<HealthCheck> checks = new ArrayList<>();
 
-		/**
-		 * Adds multiple health checks.
-		 */
-		public Builder addChecks(HealthCheck... checks)
-		{
-			this.checks.addAll(Arrays.asList(checks));
-			return this;
-		}
+    /** Adds a single health check. */
+    public Builder addCheck(HealthCheck check)
+    {
+      checks.add(check);
+      return this;
+    }
 
-		/**
-		 * Adds multiple health checks from a list.
-		 */
-		public Builder addChecks(List<HealthCheck> checks)
-		{
-			this.checks.addAll(checks);
-			return this;
-		}
+    /** Adds multiple health checks. */
+    public Builder addChecks(HealthCheck... checks)
+    {
+      this.checks.addAll(Arrays.asList(checks));
+      return this;
+    }
 
-		/**
-		 * Builds the HealthCheckRunner.
-		 */
-		public HealthCheckRunner build()
-		{
-			return new HealthCheckRunner(checks);
-		}
-	}
+    /** Adds multiple health checks from a list. */
+    public Builder addChecks(List<HealthCheck> checks)
+    {
+      this.checks.addAll(checks);
+      return this;
+    }
+
+    /** Builds the HealthCheckRunner. */
+    public HealthCheckRunner build()
+    {
+      return new HealthCheckRunner(checks);
+    }
+  }
 }

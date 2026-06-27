@@ -170,7 +170,7 @@ public class WritableFileConfigSource implements ConfigSource
 	@Override public Set<String> getPropertyNames()
 	{
 		ensureLoaded();
-		return properties.keySet();
+		return Collections.unmodifiableSet(properties.keySet());
 	}
 
 	@Override public String getValue(String key)

@@ -96,10 +96,10 @@ public abstract class CDIContainer
 
 			log.debug("initialised CDI successfully: {}", container != null);
 		}
-		catch (Throwable t) // NOSONAR
+		catch (Exception e)
 		{
-			log.error("failure initialising CDI", t);
-			throw t;
+			log.error("failure initialising CDI", e);
+			throw e;
 		}
 	}
 

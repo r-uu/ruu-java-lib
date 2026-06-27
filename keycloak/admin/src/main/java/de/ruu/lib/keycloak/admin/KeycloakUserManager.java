@@ -128,20 +128,28 @@ public class KeycloakUserManager implements AutoCloseable
 
 		try (Response response = realm().users().create(user))
 		{
-			if (response.getStatus() == 201) // Created
-			{
-				String userId = extractUserIdFromLocation(response.getLocation().toString());
-				log.info("User created successfully: {} (ID: {})", username, userId);
-				return userId;
-			}
-			else
+			if (response.getStatus() != 201)
 			{
 				String error = response.readEntity(String.class);
 				log.error("Failed to create user: {} - Status: {} - Error: {}", username, response.getStatus(), error);
-				throw new KeycloakAdminException("Failed to create user: " + username + " - " + error);
+				throw new KeycloakAdminException(
+						"Failed to create user: " + username + " (HTTP " + response.getStatus() + "): " + error);
 			}
+			String userId = extractUserIdFromLocation(response.getLocation().toString());
+			log.info("User created successfully: {} (ID: {})", username, userId);
+			return userId;
 		}
-		catch (Exception e)
+		catch (KeycloakAdminException e)
+		{
+			throw e;
+		}
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error creating user: {} - HTTP {}", username, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error creating user: " + username + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error creating user: {}", username, e);
 			throw new KeycloakAdminException("Error creating user: " + username, e);
@@ -201,7 +209,13 @@ public class KeycloakUserManager implements AutoCloseable
 			realm().users().get(userId).resetPassword(credential);
 			log.info("Password set successfully for user ID: {}", userId);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error setting password for user ID: {} - HTTP {}", userId, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error setting password for user ID: " + userId + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error setting password for user ID: {}", userId, e);
 			throw new KeycloakAdminException("Error setting password for user ID: " + userId, e);
@@ -229,7 +243,13 @@ public class KeycloakUserManager implements AutoCloseable
 			userResource.roles().realmLevel().add(roles);
 			log.info("Roles assigned successfully to user ID {}: {}", userId, Arrays.toString(roleNames));
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error assigning roles to user ID {} - HTTP {}", userId, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error assigning roles to user ID: " + userId + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error assigning roles to user ID {}: {}", userId, Arrays.toString(roleNames), e);
 			throw new KeycloakAdminException("Error assigning roles to user ID: " + userId, e);
@@ -248,18 +268,26 @@ public class KeycloakUserManager implements AutoCloseable
 
 		try (Response response = realm().users().delete(userId))
 		{
-			if (response.getStatus() == 204) // No Content = success
-			{
-				log.info("User deleted successfully: {}", userId);
-			}
-			else
+			if (response.getStatus() != 204)
 			{
 				String error = response.readEntity(String.class);
 				log.error("Failed to delete user ID {}: Status {} - {}", userId, response.getStatus(), error);
-				throw new KeycloakAdminException("Failed to delete user: " + userId);
+				throw new KeycloakAdminException(
+						"Failed to delete user: " + userId + " (HTTP " + response.getStatus() + "): " + error);
 			}
+			log.info("User deleted successfully: {}", userId);
 		}
-		catch (Exception e)
+		catch (KeycloakAdminException e)
+		{
+			throw e;
+		}
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error deleting user ID: {} - HTTP {}", userId, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error deleting user: " + userId + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error deleting user ID: {}", userId, e);
 			throw new KeycloakAdminException("Error deleting user: " + userId, e);

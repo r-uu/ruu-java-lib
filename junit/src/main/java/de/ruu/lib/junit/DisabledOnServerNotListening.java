@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(DisableOnServerNotListening.class)
+@ExtendWith(DisabledOnServerNotListeningCondition.class)
 public @interface DisabledOnServerNotListening
 {
 	String propertyNameHost() default "host";

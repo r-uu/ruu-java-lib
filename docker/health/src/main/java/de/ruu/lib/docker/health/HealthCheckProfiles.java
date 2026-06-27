@@ -12,11 +12,12 @@ import de.ruu.lib.docker.health.check.*;
  * <pre>
  * // Full check for all services
  * HealthCheckRunner runner = HealthCheckProfiles.fullEnvironment();
- * boolean healthy = runner.runAll();
+ * HealthCheckRunner.RunResult result = runner.runAll();
+ * boolean healthy = result.healthy();
  *
  * // Check only database services
  * HealthCheckRunner dbRunner = HealthCheckProfiles.databaseOnly();
- * boolean dbHealthy = dbRunner.runAll();
+ * boolean dbHealthy = dbRunner.runAll().healthy();
  * </pre>
  */
 public class HealthCheckProfiles

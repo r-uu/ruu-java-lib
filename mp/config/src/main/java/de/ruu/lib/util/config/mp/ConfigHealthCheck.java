@@ -194,34 +194,31 @@ public class ConfigHealthCheck
 		 */
 		public void printReport()
 		{
-			System.out.println("════════════════════════════════════════════════════════════════");
-			System.out.println("📋 Configuration Health Check");
-			System.out.println("════════════════════════════════════════════════════════════════");
+			log.info("================================================================");
+			log.info("Configuration Health Check");
+			log.info("================================================================");
 
 			if (healthy)
 			{
-				System.out.println("✅ All required properties are present");
-				System.out.println();
-				System.out.println("Validated properties:");
+				log.info("[OK] All required properties are present");
+				log.info("Validated properties:");
 				validatedProperties.forEach((key, value) ->
-						System.out.printf("  %-30s = %s%n", key, value));
+						log.info("  {}", String.format("%-30s = %s", key, value)));
 			}
 			else
 			{
-				System.out.println("❌ Configuration validation FAILED");
-				System.out.println();
-				System.out.println("Errors:");
-				errors.forEach(error -> System.out.println("  ❌ " + error));
+				log.error("[FAIL] Configuration validation FAILED");
+				log.error("Errors:");
+				errors.forEach(error -> log.error("  [FAIL] {}", error));
 			}
 
 			if (!warnings.isEmpty())
 			{
-				System.out.println();
-				System.out.println("Warnings:");
-				warnings.forEach(warning -> System.out.println("  ⚠️  " + warning));
+				log.warn("Warnings:");
+				warnings.forEach(warning -> log.warn("  [WARN] {}", warning));
 			}
 
-			System.out.println("════════════════════════════════════════════════════════════════");
+			log.info("================================================================");
 		}
 
 		/**

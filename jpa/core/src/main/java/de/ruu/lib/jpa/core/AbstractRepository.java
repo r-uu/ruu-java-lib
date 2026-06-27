@@ -4,7 +4,6 @@ import de.ruu.lib.jpa.core.criteria.Criteria;
 import de.ruu.lib.jpa.core.criteria.restriction.Restrictions;
 import de.ruu.lib.util.Reflection;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
@@ -19,7 +18,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.isNull;
 
 /**
  * Abstract implementation of generic DAO.
@@ -93,7 +91,9 @@ public abstract class AbstractRepository<T extends Entity<ID>, ID extends Serial
 	{
 		return
 				entityManager()
-					.createQuery("select count(*) from " + clazz.getSimpleName(), Long.class)
+					.createQuery(
+							"select count(*) from " + entityManager().getMetamodel().entity(clazz).getName(),
+							Long.class)
 					.getSingleResult();
 	}
 
@@ -134,31 +134,16 @@ public abstract class AbstractRepository<T extends Entity<ID>, ID extends Serial
 
 	/**
 	 * Updates an existing entity.
-	 * - Throws EntityNotFoundException if the entity does not exist in the database.
-	 * - If the entity is already attached to the persistence context, no merge is needed.
-	 * - Otherwise, merge() is used to reattach and update the entity.
+	 * <p>
+	 * Trusts JPA merge() semantics: managed entities are returned as-is, detached entities are
+	 * merged back into the persistence context. A new entity (no id) will be inserted by merge().
 	 */
-	@Override public @NonNull T update(@NonNull T entity) throws EntityNotFoundException
+	@Override public @NonNull T update(@NonNull T entity)
 	{
-		if (isNull(entityManager().find(clazz, entity.id())))
-				throw
-						new EntityNotFoundException(
-								"entity of type " + clazz.getSimpleName() + " with id " + entity.id() + " not found");
-
-		if (entityManager().contains(entity))
-				// Entity is already managed → changes will be tracked automatically
-				return entity;
-		else
-				// Detached entity → merge is required to reattach and update
-				return entityManager().merge(entity);
+		if (entityManager().contains(entity)) return entity;
+		return entityManager().merge(entity);
 	}
 
-	/**
-	 * Updates multiple entities.
-	 * - For each entity, checks if it exists in the database.
-	 * - If not found, throws EntityNotFoundException.
-	 * - Uses merge() only when necessary (for detached entities).
-	 */
 	@Override public @NonNull Set<T> update(@NonNull Set<T> entities)
 	{
 		Set<T> result = new HashSet<>();

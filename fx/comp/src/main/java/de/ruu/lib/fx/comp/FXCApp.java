@@ -117,8 +117,6 @@ public abstract class FXCApp extends Application
 		}
 
 		primaryStage.setOnShowing(e -> onStageShowing());
-		// TODO property add listener style does not work - why???
-		// primaryStage.onShowingProperty().addListener((obs, old, newValue) -> onStageShowing());
 
 		final Optional<DefaultFXCView<?, ?, ?>> optionalView = optionalPrimaryView();
 

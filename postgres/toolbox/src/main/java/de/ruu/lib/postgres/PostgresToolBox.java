@@ -13,24 +13,26 @@ import de.ruu.lib.util.config.mp.WritableFileConfigSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class PostgresToolBox
+public class PostgresToolBox
 {
 	private static final Logger log = LoggerFactory.getLogger(PostgresToolBox.class);
-{
+
+	private PostgresToolBox() { throw new UnsupportedOperationException("utility class, not meant to be instantiated"); }
+
 	public static void backup(
 			Path executable, String host, int port, String dbName, String username, String password, Path backupFile)
 			throws IOException, InterruptedException
 	{
 		List<String> command = List.of
-		(
-				executable.toString(),
-				"-h", host,
-				"-p", String.valueOf(port),
-				"-U", username,
-				"-Fc", // custom format
-				"-f", backupFile.toAbsolutePath().toString(),
-				dbName
-		);
+				(
+						executable.toString(),
+						"-h", host,
+						"-p", String.valueOf(port),
+						"-U", username,
+						"-Fc", // custom format
+						"-f", backupFile.toAbsolutePath().toString(),
+						dbName
+				);
 
 		runCommandWithEnv(command, Map.of("PGPASSWORD", password));
 	}
@@ -40,16 +42,16 @@ public abstract class PostgresToolBox
 			throws IOException, InterruptedException
 	{
 		List<String> command = List.of
-		(
-				executable.toString(),
-				"-h", host,
-				"-p", String.valueOf(port),
-				"-U", username,
-				"-d", dbName,
-				"-c",          // clean (drop objects before recreating)
-				"--if-exists", // ignore errors if objects don't exist
-				backupFile.toAbsolutePath().toString()
-		);
+				(
+						executable.toString(),
+						"-h", host,
+						"-p", String.valueOf(port),
+						"-U", username,
+						"-d", dbName,
+						"-c",          // clean (drop objects before recreating)
+						"--if-exists", // ignore errors if objects don't exist
+						backupFile.toAbsolutePath().toString()
+				);
 
 		runCommandWithEnv(command, Map.of("PGPASSWORD", password));
 	}
@@ -90,10 +92,7 @@ public abstract class PostgresToolBox
 	 * </ul>
 	 *
 	 * @return WritableFileConfigSource instance for the postgres config
-	 *
-	 * @example
-	 *
-	 * <pre>
+	 * @example <pre>
 	 *   {@code
 	 *     // Simple usage in your application startup
 	 *     WritableFileConfigSource postgresConfig = ConfigFileInitializer.initializePostgresUtilConfig();
@@ -118,15 +117,15 @@ public abstract class PostgresToolBox
 	public static WritableFileConfigSource initializePostgresUtilConfig(String configFilePath)
 	{
 		Map<String, String> defaults = new HashMap<>();
-		defaults.put("postgres.host"              , "localhost");
-		defaults.put("postgres.port"              , "5432"     );
-		defaults.put("postgres.database"          , "mydb"     );
-		defaults.put("postgres.username"          , "admin"    );
-		defaults.put("postgres.password"          , "changeme" );
-		defaults.put("postgres.schema"            , "public"   );
-		defaults.put("postgres.ssl.enabled"       , "false"    );
-		defaults.put("postgres.connection.timeout", "30000"    );
-		defaults.put("postgres.max.pool.size"     , "10"       );
+		defaults.put("postgres.host", "localhost");
+		defaults.put("postgres.port", "5432");
+		defaults.put("postgres.database", "mydb");
+		defaults.put("postgres.username", "admin");
+		defaults.put("postgres.password", "changeme");
+		defaults.put("postgres.schema", "public");
+		defaults.put("postgres.ssl.enabled", "false");
+		defaults.put("postgres.connection.timeout", "30000");
+		defaults.put("postgres.max.pool.size", "10");
 
 		return ConfigFileInitializer.initializeConfigFile(configFilePath, defaults);
 	}

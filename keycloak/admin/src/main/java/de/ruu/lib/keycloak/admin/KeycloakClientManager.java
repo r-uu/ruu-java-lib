@@ -223,21 +223,29 @@ public class KeycloakClientManager implements AutoCloseable
 	{
 		try (Response response = realm().clients().create(client))
 		{
-			if (response.getStatus() == 201) // Created
-			{
-				String clientUuid = extractIdFromLocation(response.getLocation().toString());
-				log.info("Client created successfully: {} (UUID: {})", client.getClientId(), clientUuid);
-				return clientUuid;
-			}
-			else
+			if (response.getStatus() != 201)
 			{
 				String error = response.readEntity(String.class);
-				log.error("Failed to create client: {} - Status: {} - Error: {}", 
+				log.error("Failed to create client: {} - Status: {} - Error: {}",
 						client.getClientId(), response.getStatus(), error);
-				throw new KeycloakAdminException("Failed to create client: " + client.getClientId() + " - " + error);
+				throw new KeycloakAdminException(
+						"Failed to create client: " + client.getClientId() + " (HTTP " + response.getStatus() + "): " + error);
 			}
+			String clientUuid = extractIdFromLocation(response.getLocation().toString());
+			log.info("Client created successfully: {} (UUID: {})", client.getClientId(), clientUuid);
+			return clientUuid;
 		}
-		catch (Exception e)
+		catch (KeycloakAdminException e)
+		{
+			throw e;
+		}
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error creating client: {} - HTTP {}", client.getClientId(), e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error creating client: " + client.getClientId() + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error creating client: {}", client.getClientId(), e);
 			throw new KeycloakAdminException("Error creating client: " + client.getClientId(), e);
@@ -262,7 +270,13 @@ public class KeycloakClientManager implements AutoCloseable
 			log.debug("Client secret retrieved for UUID: {}", clientUuid);
 			return secret;
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error getting client secret for UUID: {} - HTTP {}", clientUuid, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error getting client secret for UUID: " + clientUuid + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error getting client secret for UUID: {}", clientUuid, e);
 			throw new KeycloakAdminException("Error getting client secret for UUID: " + clientUuid, e);
@@ -284,7 +298,13 @@ public class KeycloakClientManager implements AutoCloseable
 			realm().clients().get(clientUuid).remove();
 			log.info("Client deleted successfully: {}", clientUuid);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error deleting client UUID: {} - HTTP {}", clientUuid, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error deleting client: " + clientUuid + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error deleting client UUID: {}", clientUuid, e);
 			throw new KeycloakAdminException("Error deleting client: " + clientUuid, e);
@@ -337,7 +357,13 @@ public class KeycloakClientManager implements AutoCloseable
 			log.info("Direct access grants {} for client: {}", 
 					enabled ? "enabled" : "disabled", clientUuid);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error updating direct access grants for client: {} - HTTP {}", clientUuid, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error updating client: " + clientUuid + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error updating direct access grants for client: {}", clientUuid, e);
 			throw new KeycloakAdminException("Error updating client: " + clientUuid, e);

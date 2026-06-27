@@ -22,6 +22,7 @@ public class EmployeeDTO extends AbstractMappedDTO<EmployeeEntity>
 	/** provide handmade required args constructor to properly handle relationships */
 	EmployeeDTO(@NonNull DepartmentDTO department, @NonNull String name)
 	{
+		Objects.requireNonNull(name, "name");
 		this.department = department;
 		name(name);
 		department.add(this);

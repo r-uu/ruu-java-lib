@@ -14,11 +14,11 @@ import java.net.UnknownHostException;
 import java.text.MessageFormat;
 import java.util.Optional;
 
-public class DisableOnServerNotListening implements ExecutionCondition
+public class DisabledOnServerNotListeningCondition implements ExecutionCondition
 {
-	private static final Logger log = LoggerFactory.getLogger(DisableOnServerNotListening.class);
+	private static final Logger log = LoggerFactory.getLogger(DisabledOnServerNotListeningCondition.class);
 
-	public DisableOnServerNotListening() { }
+	public DisabledOnServerNotListeningCondition() { }
 
 	@Override public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context)
 	{

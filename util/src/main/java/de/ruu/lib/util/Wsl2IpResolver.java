@@ -33,7 +33,8 @@ public class Wsl2IpResolver
 	}
 
 	private static final String WSL2_IP_PLACEHOLDER = "${WSL2_IP}";
-	private static String cachedWsl2Ip = null;
+
+	private static volatile String cachedWsl2Ip = null;
 
 	/**
 	 * Get the current WSL2 IP address.

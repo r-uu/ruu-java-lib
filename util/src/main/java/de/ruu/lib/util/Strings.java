@@ -22,7 +22,7 @@ public interface Strings
 
 	static String indent(String string, String indent, int indentLevel)
 	{
-		if (isNullOrEmptyOrBlank(string)) return string;
+		if (isNullOrBlank(string)) return string;
 		if (indentLevel < 0) return string;
 
 		String indentation = indent.repeat(indentLevel);
@@ -75,7 +75,7 @@ public interface Strings
 	 */
 	static String lTrimChars(String input, String charsToTrim)
 	{
-		if (isNullOrEmptyOrBlank(input))
+		if (isNullOrBlank(input))
 		{
 			return input;
 		}
@@ -96,7 +96,7 @@ public interface Strings
 	 */
 	static String rTrimChars(String input, String charsToTrim)
 	{
-		if (isNullOrEmptyOrBlank(input))
+		if (isNullOrBlank(input))
 		{
 			return input;
 		}
@@ -132,21 +132,25 @@ public interface Strings
 		return input + ("" + fillChar).repeat(targetLength - input.length());
 	}
 
-	static boolean isNullOrEmpty(String string)           { return isNull(string) || string.isEmpty(); }
+	static boolean isNullOrEmpty(String string)            { return isNull(string) || string.isEmpty(); }
 
-	static boolean isNullOrBlank(String string)           { return isNull(string) || string.isBlank(); }
+	static boolean isNullOrBlank(String string)            { return isNull(string) || string.isBlank(); }
 
-	static boolean isNullOrEmptyOrBlank(String string)    { return isNullOrEmpty(string) || string.isBlank(); }
+	/** @deprecated equivalent to {@link #isNullOrBlank(String)} — use that instead */
+	@Deprecated
+	static boolean isNullOrEmptyOrBlank(String string) { return isNullOrBlank(string); }
 
-	static boolean isEmptyOrBlank(String string)          { return string.isEmpty() || string.isBlank(); }
+	static boolean isEmptyOrBlank(String string)           { return string.isEmpty() || string.isBlank(); }
 
-	static boolean isNotNullOrEmpty(String string)        { return not(isNullOrEmpty(string)); }
+	static boolean isNotNullOrEmpty(String string)         { return not(isNullOrEmpty(string)); }
 
-	static boolean isNotNullOrBlank(String string)        { return not(isNullOrBlank(string)); }
+	static boolean isNotNullOrBlank(String string)         { return not(isNullOrBlank(string)); }
 
-	static boolean isNotNullOrEmptyOrBlank(String string) { return not(isNullOrEmptyOrBlank(string)); }
+	/** @deprecated equivalent to {@link #isNotNullOrBlank(String)} — use that instead */
+	@Deprecated
+	static boolean isNotNullOrEmptyOrBlank(String string) { return isNotNullOrBlank(string); }
 
-	static boolean isNotEmptyOrBlank(String string)       { return not(isEmptyOrBlank(string)); }
+	static boolean isNotEmptyOrBlank(String string)        { return not(isEmptyOrBlank(string)); }
 
 	static boolean isNullSafeEquals(String nullSafeString, String other)
 	{
@@ -154,50 +158,23 @@ public interface Strings
 		return nullSafeString.equals(other);
 	}
 
-	/**
-	 * Recursive implementation!
-	 * <p>
-	 * Removes the characters in <code>charsToTrim</code> from front or back of <code>input</code>.
-	 *
-	 * @param input
-	 * @param charsToTrim
-	 * @param fromFront
-	 * @return trimmed input string buffer
-	 */
 	private static StringBuffer trimChars(StringBuffer input, String charsToTrim, boolean fromFront)
 	{
-		// recursive calls may lead to empty input
-		if (input.length() == 0)
-		{
-			return new StringBuffer();
-		}
-
 		char[] charsToTrimAsArray = charsToTrim.toCharArray();
-
-		// test each character if it has to be trimmed from front / back of input
-		for (char c : charsToTrimAsArray)
+		outer:
+		while (input.length() > 0)
 		{
-			if (fromFront)
+			char c = fromFront ? input.charAt(0) : input.charAt(input.length() - 1);
+			for (char trimChar : charsToTrimAsArray)
 			{
-				if (input.charAt(0) == c)
+				if (c == trimChar)
 				{
-					// found character to be trimmed from front, delete that character and start recursive call
-					input.deleteCharAt(0);
-					return trimChars(input, charsToTrim, fromFront);
+					input.deleteCharAt(fromFront ? 0 : input.length() - 1);
+					continue outer;
 				}
 			}
-			else
-			{
-				int lastCharPos = input.length() - 1;
-				if (input.charAt(lastCharPos) == c)
-				{
-					// found character to be trimmed from back, delete that character and start recursive call
-					input.deleteCharAt(lastCharPos);
-					return trimChars(input, charsToTrim, fromFront);
-				}
-			}
+			break;
 		}
-
 		return input;
 	}
 

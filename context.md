@@ -66,4 +66,10 @@ Wenn möglich, soll für soll fluent style verwendet werden.
 
 Wenn sinnvoll, soll das builder-pattern anstelle von Konstruktoren verwendet werden.
 
+## Persistenz
+
+### JPA
+
+Wenn möglich, immer das JPA-Criteria-API, ggf. zusammen mit dem Specificator-Pattern (aber ohne Spring-Data) verwenden. Queries by Example sind akzeptabel. Native queries nach Möglichkeit vermeiden.
+
 # Vorgehensweisen

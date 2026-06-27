@@ -128,7 +128,13 @@ public class KeycloakRealmManager implements AutoCloseable
 			realm().roles().create(role);
 			log.info("Realm role created successfully: {}", roleName);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error creating role: {} - HTTP {}", roleName, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error creating role: " + roleName + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error creating role: {}", roleName, e);
 			throw new KeycloakAdminException("Error creating role: " + roleName, e);
@@ -161,7 +167,13 @@ public class KeycloakRealmManager implements AutoCloseable
 			realm().roles().deleteRole(roleName);
 			log.info("Realm role deleted successfully: {}", roleName);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error deleting role: {} - HTTP {}", roleName, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error deleting role: " + roleName + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error deleting role: {}", roleName, e);
 			throw new KeycloakAdminException("Error deleting role: " + roleName, e);
@@ -184,7 +196,7 @@ public class KeycloakRealmManager implements AutoCloseable
 			log.debug("Realm role found: {}", roleName);
 			return role;
 		}
-		catch (Exception e)
+		catch (RuntimeException e)
 		{
 			log.debug("Realm role not found: {}", roleName);
 			return null;
@@ -234,7 +246,13 @@ public class KeycloakRealmManager implements AutoCloseable
 			parentRole.addComposites(childRoles);
 			log.info("Composite roles added to {}: {}", parentRoleName, String.join(", ", childRoleNames));
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error adding composite roles to {} - HTTP {}", parentRoleName, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error adding composite roles to: " + parentRoleName + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error adding composite roles to {}", parentRoleName, e);
 			throw new KeycloakAdminException("Error adding composite roles to: " + parentRoleName, e);
@@ -267,7 +285,13 @@ public class KeycloakRealmManager implements AutoCloseable
 			parentRole.deleteComposites(childRoles);
 			log.info("Composite roles removed from {}: {}", parentRoleName, String.join(", ", childRoleNames));
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error removing composite roles from {} - HTTP {}", parentRoleName, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error removing composite roles from: " + parentRoleName + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error removing composite roles from {}", parentRoleName, e);
 			throw new KeycloakAdminException("Error removing composite roles from: " + parentRoleName, e);
@@ -306,7 +330,13 @@ public class KeycloakRealmManager implements AutoCloseable
 			roleResource.update(role);
 			log.info("Role description updated: {}", roleName);
 		}
-		catch (Exception e)
+		catch (jakarta.ws.rs.WebApplicationException e)
+		{
+			log.error("Error updating role description: {} - HTTP {}", roleName, e.getResponse().getStatus(), e);
+			throw new KeycloakAdminException(
+					"Error updating role: " + roleName + " (HTTP " + e.getResponse().getStatus() + ")", e);
+		}
+		catch (RuntimeException e)
 		{
 			log.error("Error updating role description: {}", roleName, e);
 			throw new KeycloakAdminException("Error updating role: " + roleName, e);
