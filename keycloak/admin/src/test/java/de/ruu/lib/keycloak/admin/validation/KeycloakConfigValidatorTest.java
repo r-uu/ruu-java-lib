@@ -23,10 +23,10 @@ class KeycloakConfigValidatorTest
 		
 		RoleValidationResult result = KeycloakConfigValidator.validateRoles(tokenRoles, requiredRoles);
 		
-		assertThat(result.isValid()).isTrue();
-		assertThat(result.getMissingRoles()).isEmpty();
-		assertThat(result.getExtraRoles()).hasSize(1);
-		assertThat(result.getExtraRoles()).contains("task-delete");
+		assertThat(result.valid()).isTrue();
+		assertThat(result.missingRoles()).isEmpty();
+		assertThat(result.extraRoles()).hasSize(1);
+		assertThat(result.extraRoles()).contains("task-delete");
 	}
 	
 	@Test
@@ -37,11 +37,11 @@ class KeycloakConfigValidatorTest
 		
 		RoleValidationResult result = KeycloakConfigValidator.validateRoles(tokenRoles, requiredRoles);
 		
-		assertThat(result.isValid()).isFalse();
-		assertThat(result.getMissingRoles()).hasSize(2);
-		assertThat(result.getMissingRoles()).contains("task-write");
-		assertThat(result.getMissingRoles()).contains("task-delete");
-		assertThat(result.getExtraRoles()).isEmpty();
+		assertThat(result.valid()).isFalse();
+		assertThat(result.missingRoles()).hasSize(2);
+		assertThat(result.missingRoles()).contains("task-write");
+		assertThat(result.missingRoles()).contains("task-delete");
+		assertThat(result.extraRoles()).isEmpty();
 
 		assertThat(result.recommendations()).isNotEmpty();
 		assertThat(result.summary()).contains("Missing");
@@ -56,8 +56,8 @@ class KeycloakConfigValidatorTest
 		AudienceValidationResult result = KeycloakConfigValidator
 				.validateAudience(tokenAudiences, expectedAudience);
 		
-		assertThat(result.isValid()).isTrue();
-		assertThat(result.getExpectedAudience()).isEqualTo("pragma-backend");
+		assertThat(result.valid()).isTrue();
+		assertThat(result.expectedAudience()).isEqualTo("pragma-backend");
 	}
 	
 	@Test
@@ -69,7 +69,7 @@ class KeycloakConfigValidatorTest
 		AudienceValidationResult result = KeycloakConfigValidator
 				.validateAudience(tokenAudiences, expectedAudience);
 		
-		assertThat(result.isValid()).isFalse();
+		assertThat(result.valid()).isFalse();
 		assertThat(result.recommendations()).isNotEmpty();
 		assertThat(result.summary()).contains("does not contain");
 	}
@@ -82,9 +82,9 @@ class KeycloakConfigValidatorTest
 		NamingConsistencyResult result = KeycloakConfigValidator
 				.validateRoleNamingConsistency(roles);
 		
-		assertThat(result.isConsistent()).isTrue();
-		assertThat(result.getSuspiciousRoles()).isEmpty();
-		assertThat(result.getSuggestions()).isEmpty();
+		assertThat(result.consistent()).isTrue();
+		assertThat(result.suspiciousRoles()).isEmpty();
+		assertThat(result.suggestions()).isEmpty();
 	}
 	
 	@Test
@@ -96,8 +96,8 @@ class KeycloakConfigValidatorTest
 		NamingConsistencyResult result = KeycloakConfigValidator
 				.validateRoleNamingConsistency(roles);
 		
-		assertThat(result.isConsistent()).isFalse();
-		assertThat(result.getSuspiciousRoles()).isNotEmpty();
+		assertThat(result.consistent()).isFalse();
+		assertThat(result.suspiciousRoles()).isNotEmpty();
 
 		// Both "taskgroup-read" and "task-group-read" should be flagged as conflicting
 		assertThat(result.recommendations()).isNotEmpty();

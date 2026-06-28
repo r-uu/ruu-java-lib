@@ -117,6 +117,7 @@ public abstract class AbstractPersistenceUnitInfo implements PersistenceUnitInfo
 	public AbstractPersistenceUnitInfo newTempClassLoader         (ClassLoader     v) { this.newTempClassLoader         = v; return this; }
 	public AbstractPersistenceUnitInfo classLoader                (ClassLoader     v) { this.classLoader                = v; return this; }
 
+	public Class<?> getPersistenceProvider()                  { return persistenceProvider; }
 	@Override public String getPersistenceProviderClassName() { return persistenceProvider.getName(); }
 
 	// TODO: find out if it makes sense to maintain only one datasource and return this for jta and

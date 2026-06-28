@@ -34,8 +34,8 @@ public class EmployeeEntity extends AbstractMappedEntity<EmployeeDTO>
 	public @NonNull String           name()       { return name; }
 	public @NonNull DepartmentEntity department() { return department; }
 
-	public void name      (@NonNull String           v) { this.name       = v; }
-	public void department(@NonNull DepartmentEntity v) { this.department = v; }
+	public void name      (@NonNull String           v) { this.name       = Objects.requireNonNull(v); }
+	public void department(@NonNull DepartmentEntity v) { this.department = Objects.requireNonNull(v); }
 
 	// java bean style accessors for those who do not work with fluent style accessors (mapstruct)
 	public @NonNull String getName() { return name(); }

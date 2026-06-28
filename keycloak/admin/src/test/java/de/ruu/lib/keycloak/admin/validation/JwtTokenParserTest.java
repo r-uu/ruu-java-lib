@@ -67,21 +67,21 @@ class JwtTokenParserTest
 		TokenInfo tokenInfo = JwtTokenParser.parseToken(SAMPLE_TOKEN);
 		
 		assertThat(tokenInfo).isNotNull();
-		assertThat(tokenInfo.getIssuer()).isEqualTo("http://localhost:8080/realms/test-realm");
-		assertThat(tokenInfo.getSubject()).isEqualTo("user-123");
-		assertThat(tokenInfo.getPreferredUsername()).isEqualTo("testuser");
-		assertThat(tokenInfo.getExpirationTime()).isEqualTo(1735680000L);
-		assertThat(tokenInfo.getIssuedAt()).isEqualTo(1735679700L);
+		assertThat(tokenInfo.issuer()).isEqualTo("http://localhost:8080/realms/test-realm");
+		assertThat(tokenInfo.subject()).isEqualTo("user-123");
+		assertThat(tokenInfo.preferredUsername()).isEqualTo("testuser");
+		assertThat(tokenInfo.expirationTime()).isEqualTo(1735680000L);
+		assertThat(tokenInfo.issuedAt()).isEqualTo(1735679700L);
 
 		// Check audiences
-		assertThat(tokenInfo.getAudiences()).contains("pragma-backend");
-		assertThat(tokenInfo.getAudiences()).contains("account");
-		assertThat(tokenInfo.getAudiences()).hasSize(2);
+		assertThat(tokenInfo.audiences()).contains("pragma-backend");
+		assertThat(tokenInfo.audiences()).contains("account");
+		assertThat(tokenInfo.audiences()).hasSize(2);
 
 		// Check roles
-		assertThat(tokenInfo.getRoles()).contains("task-read");
-		assertThat(tokenInfo.getRoles()).contains("task-write");
-		assertThat(tokenInfo.getRoles()).hasSize(2);
+		assertThat(tokenInfo.roles()).contains("task-read");
+		assertThat(tokenInfo.roles()).contains("task-write");
+		assertThat(tokenInfo.roles()).hasSize(2);
 	}
 	
 	@Test
@@ -179,8 +179,8 @@ class JwtTokenParserTest
 		String token = "header." + singleAudPayload + ".signature";
 		TokenInfo tokenInfo = JwtTokenParser.parseToken(token);
 		
-		assertThat(tokenInfo.getAudiences()).hasSize(1);
-		assertThat(tokenInfo.getAudiences()).contains("pragma-backend");
+		assertThat(tokenInfo.audiences()).hasSize(1);
+		assertThat(tokenInfo.audiences()).contains("pragma-backend");
 	}
 	
 	@Test
@@ -198,7 +198,7 @@ class JwtTokenParserTest
 		String token = "header." + noRolesPayload + ".signature";
 		TokenInfo tokenInfo = JwtTokenParser.parseToken(token);
 		
-		assertThat(tokenInfo.getRoles()).isNotNull();
-		assertThat(tokenInfo.getRoles()).isEmpty();
+		assertThat(tokenInfo.roles()).isNotNull();
+		assertThat(tokenInfo.roles()).isEmpty();
 	}
 }
